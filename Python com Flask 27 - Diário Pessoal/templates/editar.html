@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Editar Entrada - Diário</title>
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Editar Memória 📝</h1>
+            <a href="{{ url_for('index') }}" class="btn btn-edit" style="background: #ccc;">Voltar</a>
+        </header>
+
+        <section class="edicao" style="margin-top: 20px;">
+            <div class="card" style="border-left-color: #f9d423;">
+                <span class="data-tag">📅 Data do registro: {{ entrada.data }}</span>
+                
+                <form action="{{ url_for('editar', id=entrada.id) }}" method="POST">
+                    <textarea name="texto" required>{{ entrada.texto }}</textarea>
+                    
+                    <div style="margin-top: 15px;">
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        <a href="{{ url_for('index') }}" class="btn btn-danger" style="margin-left: 10px;">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

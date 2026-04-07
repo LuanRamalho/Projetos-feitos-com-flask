@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Meu Diário Colorido</title>
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Olá, {{ session['usuario'] }}! ✍️</h1>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Sair</a>
+        </header>
+
+        <section class="novo-post">
+            <h3>Como foi o seu dia?</h3>
+            <form action="{{ url_for('adicionar') }}" method="POST">
+                <textarea name="texto" placeholder="Escreva seus pensamentos aqui..." required></textarea>
+                <button type="submit" class="btn btn-primary">Salvar no Diário</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="entradas">
+            <h2>Suas Memórias</h2>
+            {% for entrada in entradas %}
+            <div class="card">
+                <span class="data-tag">📅 {{ entrada.data }}</span>
+                <p>{{ entrada.texto }}</p>
+                <a href="{{ url_for('editar', id=entrada.id) }}" class="btn btn-edit">Editar</a>
+                <a href="{{ url_for('excluir', id=entrada.id) }}" class="btn btn-danger" onclick="return confirm('Excluir esta memória?')">Apagar</a>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+</body>
+</html>

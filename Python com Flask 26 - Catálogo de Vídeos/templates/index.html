@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Vídeos</title>
+    <style>
+        :root {
+            --primary: #6C5CE7; --secondary: #00CEC9; --bg: #F0F2F5;
+            --card-bg: #FFFFFF; --text: #2D3436; --danger: #FF7675;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .search-box { display: flex; gap: 10px; }
+        input { padding: 10px; border-radius: 8px; border: 2px solid #ddd; outline: none; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .btn-add { background: var(--secondary); color: white; }
+        .btn-edit { background: var(--primary); color: white; font-size: 0.8em; }
+        .btn-del { background: var(--danger); color: white; font-size: 0.8em; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-bottom: 5px solid var(--primary); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .card-content { padding: 15px; }
+        .card-actions { padding: 10px; display: flex; gap: 10px; justify-content: flex-end; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 style="color: var(--primary);">🎵 Meu Catálogo</h1>
+            <div class="search-box">
+                <form action="/" method="get" style="display: flex; gap: 5px;">
+                    <input type="text" name="search" placeholder="Buscar música..." value="{{ search }}">
+                    <button type="submit" class="btn" style="background: #ddd;">Buscar</button>
+                </form>
+                <a href="/add" class="btn btn-add">+ Novo Vídeo</a>
+            </div>
+        </header>
+
+        <div class="grid">
+            {% for video in videos %}
+            <div class="card">
+                <div class="video-container">
+                    <iframe src="{{ video.embed_link }}" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>{{ video.titulo }}</h3>
+                    <p>{{ video.descricao }}</p>
+                </div>
+                <div class="card-actions">
+                    <a href="/edit/{{ video.id }}" class="btn btn-edit">Editar</a>
+                    <a href="/delete/{{ video.id }}" class="btn btn-del" onclick="return confirm('Excluir este vídeo?')">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Login - Diário Pessoal</title>
+</head>
+<body>
+    <div class="container" style="max-width: 400px; margin-top: 100px; text-align: center;">
+        <h1 style="color: #6a11cb;">Bem-vindo! 🖋️</h1>
+        <p>Identifique-se para acessar seu diário</p>
+        
+        <form action="{{ url_for('login') }}" method="POST">
+            <div style="margin-bottom: 20px;">
+                <input type="text" name="username" placeholder="Seu nome de usuário" 
+                       required style="width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #ddd;">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Entrar no Diário</button>
+        </form>
+        
+        <p style="margin-top: 20px; font-size: 0.9em; color: #777;">
+            Os dados serão salvos localmente em formato JSON.
+        </p>
+    </div>
+</body>
+</html>

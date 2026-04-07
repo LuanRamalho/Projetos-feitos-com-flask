@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ action }} Vídeo</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #6C5CE7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+        h2 { color: #6C5CE7; margin-top: 0; }
+        .field { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; }
+        .btn-save { background: #00CEC9; color: white; width: 100%; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        .btn-back { display: block; text-align: center; margin-top: 15px; color: #aaa; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h2>{{ action }} Vídeo</h2>
+        <form method="post">
+            <div class="field">
+                <label>Título da Música</label>
+                <input type="text" name="titulo" value="{{ video.titulo if video else '' }}" required>
+            </div>
+            <div class="field">
+                <label>Descrição</label>
+                <textarea name="descricao" rows="3">{{ video.descricao if video else '' }}</textarea>
+            </div>
+            <div class="field">
+                <label>Link do YouTube</label>
+                <input type="url" name="link" value="{{ video.link if video else '' }}" required placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            <button type="submit" class="btn-save">Salvar Vídeo</button>
+            <a href="/" class="btn-back">Cancelar e Voltar</a>
+        </form>
+    </div>
+</body>
+</html>
