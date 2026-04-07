@@ -1,0 +1,29 @@
+[
+    {
+        "nome": "Brigadeiro",
+        "ingredientes": "1 caixa de leite condensado\r\n\r\nmargarina sem sal\r\n\r\n1 colher (sopa) de margarina sem sal\r\n\r\nachocolatado\r\n\r\n7 colheres (sopa) de achocolatado ou 4 colheres (sopa) de chocolate em pó\r\n\r\nchocolate granulado",
+        "preparo": "1 Em uma panela funda, acrescente o leite condensado, a margarina e o chocolate em pó.\r\n\r\n2 Cozinhe em fogo médio e mexa até que o brigadeiro comece a desgrudar da panela.\r\n\r\n3 Deixe esfriar e faça pequenas bolas com a mão passando a massa no chocolate granulado.",
+        "tempo": "25",
+        "porcoes": "30",
+        "categoria": "Guloseima",
+        "url_imagem": "https://www.receiteria.com.br/wp-content/uploads/brigadeiro-08-730x548.jpeg"
+    },
+    {
+        "nome": "Panqueca",
+        "ingredientes": "1 ovo\r\n\r\n1 xícara de farinha de trigo\r\n\r\n1 xícara de leite\r\n\r\n1 pitada de sal\r\n\r\n1 colher (sopa) de óleo",
+        "preparo": "1 Bata todos os ingredientes no liquidificador até obter uma consistência cremosa.\r\n\r\n2 Unte uma frigideira com óleo e despeje uma concha de massa.\r\n\r\n3 Faça movimentos circulares para que a massa se espalhe por toda a frigideira.\r\n\r\n4 Espere até a massa se soltar do fundo, vire e deixe fritar do outro lado.\r\n\r\n5 Acrescente o recheio de sua preferência, enrole e está pronta para servir.",
+        "tempo": "15",
+        "porcoes": "8",
+        "categoria": "Massa",
+        "url_imagem": "https://moinhoglobo.com.br/wp-content/uploads/2018/09/24-panqueca.jpg"
+    },
+    {
+        "nome": "Bolo de Fubá",
+        "ingredientes": "3 ovos.\r\n\r\n2 xícaras (chá) de açúcar.\r\n\r\n2 xícaras (chá) de fubá.\r\n\r\n3 colheres (sopa) rasas de farinha de trigo.\r\n\r\n1/2 copo (americano) de óleo.\r\n\r\n1 copo de leite.\r\n\r\n1 colher (sopa) de fermento em pó.",
+        "preparo": "1 Bata todos os ingredientes no liquidificador.\r\n\r\n2 Coloque em uma forma untada e enfarinhada.\r\n\r\n3 Leve ao forno preaquecido e deixe assar, por cerca de 40 minutos.",
+        "tempo": "40",
+        "porcoes": "8",
+        "categoria": "Doce",
+        "url_imagem": "https://s2-receitas.glbimg.com/GDADinKyW8a4LTtwZyXlG1OiP_E=/0x0:1280x800/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/w/I/HzhyCkTqm1UoDynv8XDQ/bolo-de-fuba-fofino.jpg"
+    }
+]

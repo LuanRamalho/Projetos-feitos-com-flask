@@ -1,0 +1,158 @@
+[
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Corcovado (Cristo Redentor)",
+        "image_url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/e4/12/c9/visao-privilegiada.jpg?w=600&h=400&s=1"
+    },
+    {
+        "city": "Paris",
+        "country": "França",
+        "landmark": "Torre Eiffel",
+        "image_url": "https://cdn-imgix.headout.com/mircobrands-content/image/15fa043d98f93cfb629799a920ddb1eb-Why%20Visit%20the%20Eiffel%20Tower%20at%20Night%3F.jpeg?auto=format&w=814.9333333333333&h=458.4&q=90&fit=crop&ar=16%3A9&crop=faces"
+    },
+    {
+        "city": "Cairo",
+        "country": "Egito",
+        "landmark": "Pirâmides de Gizé",
+        "image_url": "https://www.civitatis.com/f/egipto/el-cairo/piramides-giza-menfis-saqqara-589x392.jpg"
+    },
+    {
+        "city": "Roma",
+        "country": "Itália",
+        "landmark": "Torre de Pisa",
+        "image_url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/0c/56/eb/caption.jpg?w=1200&h=-1&s=1"
+    },
+    {
+        "city": "Nova York",
+        "country": "Estados Unidos",
+        "landmark": "Estátua da Liberdade",
+        "image_url": "https://s2.static.brasilescola.uol.com.br/be/2023/02/grande-escultura-verde-de-uma-mulher-em-pe-erguendo-uma-tocha-conhecida-como-a-estatua-da-liberdade.jpg"
+    },
+    {
+        "city": "Londres",
+        "country": "Inglaterra",
+        "landmark": "Relógio Big Bang",
+        "image_url": "https://s1.static.brasilescola.uol.com.br/be/conteudo/images/big-ben.jpg"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Pão de Açúcar",
+        "image_url": "https://riotur.rio/wp-content/uploads/2015/09/14521730864_3b0816ce80_c.jpg"
+    },
+    {
+        "city": "Tóquio",
+        "country": "Japão",
+        "landmark": "Monte Fuji",
+        "image_url": "https://viagemeturismo.abril.com.br/wp-content/uploads/2016/10/131906563tokyo.jpg?quality=70&strip=info&w=613&w=636"
+    },
+    {
+        "city": "Pequim",
+        "country": "China",
+        "landmark": "Muralha da China",
+        "image_url": "https://conteudo.imguol.com.br/c/bol/fotos/b9/2017/05/08/muralha-da-china-1494296179991_615x300.jpg"
+    },
+    {
+        "city": "Roma",
+        "country": "Itália",
+        "landmark": "Coliseu",
+        "image_url": "https://super.abril.com.br/wp-content/uploads/2023/08/0814_coliseu_layout_site.jpg?quality=70&strip=info&w=1024"
+    },
+    {
+        "city": "Atenas",
+        "country": "Grécia",
+        "landmark": "Partenon",
+        "image_url": "https://www.civitatis.com/f/grecia/atenas/atenas.jpg"
+    },
+    {
+        "city": "Lisboa",
+        "country": "Portugal",
+        "landmark": "Casas em Lisboa",
+        "image_url": "https://s1.static.brasilescola.uol.com.br/be/vestibular/lisboa-capital-portugal-cidade-mais-populosa-pais-5aa29c0aa7796.jpg"
+    },
+    {
+        "city": "Lisboa",
+        "country": "Portugal",
+        "landmark": "Bondinho de Lisboa",
+        "image_url": "https://www.melhoresdestinos.com.br/wp-content/uploads/2017/01/lisboa-portugal-capa-1-820x430.jpg"
+    },
+    {
+        "city": "Barcelona",
+        "country": "Espanha",
+        "landmark": "Catedral da Sagrada Família",
+        "image_url": "https://www.passagenspromo.com.br/blog/wp-content/uploads/2022/01/O-que-fazer-em-Barcelona-Espanha-sagrada-familia.jpg"
+    },
+    {
+        "city": "Niagara Falls",
+        "country": "Estados Unidos",
+        "landmark": "Cataratas do Niágara",
+        "image_url": "https://static.nationalgeographicbrasil.com/files/styles/image_3200/public/niagara-falls---aerial-view--niagara-falls-tourism-.3l0.webp?w=1600&h=900"
+    },
+    {
+        "city": "Phoenix",
+        "country": "Estados Unidos",
+        "landmark": "Grand Canyon",
+        "image_url": "https://cdn.outsideonline.com/wp-content/uploads/2018/11/20/outside-guide-grand-canyon_s.jpg?crop=1:1&width=600&enable=upscale&quality=100"
+    },
+    {
+        "city": "Manaus",
+        "country": "Brasil",
+        "landmark": "Floresta Amazônica",
+        "image_url": "https://static.todamateria.com.br/upload/fl/or/floresta-amazonica-og.jpg"
+    },
+    {
+        "city": "Salvador",
+        "country": "Brasil",
+        "landmark": "Largo do Pelourinho",
+        "image_url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/43/ac/8f/pelourinho.jpg?w=900&h=500&s=1"
+    },
+    {
+        "city": "Salvador",
+        "country": "Brasil",
+        "landmark": "Elevador Lacerda",
+        "image_url": "https://espel.com.br/wp-content/uploads/2024/09/Elevador-Lacerda.jpg"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Floresta da Tijuca",
+        "image_url": "https://cdn.dooca.store/3074/products/cascatinha-taunay-floresta-da-tijuca_640x640+fill_ffffff.png?v=1645017599&webp=0"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Museu do Amanhã (Praça Mauá)",
+        "image_url": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/39/ac/c4.jpg"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Escadaria Selaron (Escadaria da Lapa)",
+        "image_url": "https://static.wixstatic.com/media/0a8f4f_2dae877674cd4f75a40ba88ced727d8b~mv2.png/v1/fill/w_1000,h_666,al_c,q_90,usm_0.66_1.00_0.01/0a8f4f_2dae877674cd4f75a40ba88ced727d8b~mv2.png"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Arco da Lapa",
+        "image_url": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/09/0e/55/ba/arcos-da-lapa.jpg?w=900&h=500&s=1"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Estádio do Maracanã",
+        "image_url": "https://dynamic-media.tacdn.com/media/photo-o/2f/ab/11/ee/caption.jpg?w=700&h=500&s=1"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Estádio Nilton Santos",
+        "image_url": "https://prefeitura.rio/wp-content/uploads/2024/01/53145780238_995f9cca3f_k.jpg"
+    },
+    {
+        "city": "Rio de Janeiro",
+        "country": "Brasil",
+        "landmark": "Estádio de São Januário",
+        "image_url": "https://s2-ge.glbimg.com/ZZoKFIT32yV1vqK51ovYgCcvdYM=/0x0:1080x1080/924x0/smart/filters:strip_icc()/s.glbimg.com/es/ge/f/original/2017/03/07/saojanu.jpeg"
+    }
+]

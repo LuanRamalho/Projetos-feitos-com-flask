@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gerador de Senhas</title>
+    <style>
+        .generator-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        #password-display {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.5rem;
+            background: #eee;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            word-break: break-all;
+            display: block;
+        }
+        .slider-container {
+            margin: 20px 0;
+        }
+        .slider {
+            width: 100%;
+            cursor: pointer;
+        }
+        .btn-action {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-action:hover {
+            background: #2980b9;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="generator-box">
+            <h1>Gerador de Senha</h1>
+            <p>Crie senhas fortes e seguras instantaneamente.</p>
+
+            <div id="password-display">Clique em Gerar</div>
+
+            <div class="slider-container">
+                <label for="length">Comprimento: <span id="length-val">16</span> caracteres</label>
+                <input type="range" min="8" max="64" value="16" class="slider" id="length-slider">
+            </div>
+
+            <button class="btn-action" onclick="generatePassword()">Gerar Nova Senha</button>
+            <button class="btn-action" style="background: #2ecc71;" onclick="copyPassword()">Copiar</button>
+
+            <a href="/" class="back-link">← Voltar para o Início</a>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('length-slider');
+        const output = document.getElementById('length-val');
+        
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+
+        async function generatePassword() {
+            const length = slider.value;
+            const response = await fetch(`/api/generate?length=${length}`);
+            const data = await response.json();
+            document.getElementById('password-display').innerText = data.password;
+        }
+
+        function copyPassword() {
+            const text = document.getElementById('password-display').innerText;
+            if(text !== "Clique em Gerar") {
+                navigator.clipboard.writeText(text);
+                alert("Senha copiada para a área de transferência!");
+            }
+        }
+    </script>
+</body>
+</html>

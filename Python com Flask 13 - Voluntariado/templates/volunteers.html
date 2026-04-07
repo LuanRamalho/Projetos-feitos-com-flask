@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Voluntários</title>
+    <style>
+        :root {
+            --secondary: #a29bfe;
+            --primary: #6c5ce7;
+            --bg: #f0f2f5;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 40px; display: flex; justify-content: center; }
+        .container { 
+            max-width: 600px; 
+            width: 100%;
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            text-align: center;
+        }
+        h2 { color: var(--primary); }
+        p { color: #636e72; margin-bottom: 20px; }
+        textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid var(--secondary); 
+            border-radius: 12px; 
+            font-size: 16px; 
+            box-sizing: border-box;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+        .btn-save { 
+            width: 100%;
+            padding: 15px; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-back { 
+            display: block; 
+            margin-top: 15px; 
+            color: #b2bec3; 
+            text-decoration: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>👥 Gerir Voluntários</h2>
+        <p>Projeto: <strong>{{ projeto.nome }}</strong></p>
+        
+        <form method="POST">
+            <p>Digite os nomes dos voluntários abaixo (um por linha):</p>
+            <textarea name="voluntarios" rows="12" placeholder="Ex:&#10;João Silva&#10;Maria Santos...">{{ projeto.voluntarios }}</textarea>
+            
+            <button type="submit" class="btn-save">Atualizar Lista de Voluntários</button>
+            <a href="/" class="btn-back">Cancelar e Voltar</a>
+        </form>
+    </div>
+</body>
+</html>

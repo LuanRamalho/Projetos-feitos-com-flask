@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráfico de Faturamento - {{ f.ano }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; text-align: center; padding: 40px; }
+        .chart-container { background: white; padding: 30px; border-radius: 15px; display: inline-block; width: 80%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        .destaque-total { font-size: 1.5em; color: #27ae60; margin: 20px 0; }
+        .btn-back { margin-top: 20px; display: inline-block; text-decoration: none; color: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <h1>Faturamento de {{ f.ano }}</h1>
+        <div class="destaque-total">Faturamento Total Anual: R$ {{ "%.2f"|format(total|float) }}</div>
+        <canvas id="myChart"></canvas>
+        <a href="/" class="btn-back">← Voltar ao Dashboard</a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        const dataValues = {{ f.meses.values() | list | tojson }};
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'R$ Faturado',
+                    data: dataValues,
+                    backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                    borderColor: 'rgba(52, 152, 219, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+/* Configurações Globais e Cores Vibrantes */
+:root {
+    /* Paleta mais colorida e vibrante */
+    --p-main: #3d05dd;        /* Roxo intenso */
+    --p-light: #6c5ce7;       /* Roxo claro */
+    --accent: #ff6b6b;        /* Vermelho vibrante (p/ deletar) */
+    --success: #00cec9;       /* Ciano vibrante (p/ disponível) */
+    --warning: #ff9f43;       /* Laranja (p/ emprestado) */
+    
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --bg-start: #0f0c29;      /* Início do degradê de fundo */
+    --bg-end: #302b63;        /* Fim do degradê de fundo */
+    
+    /* Efeito de Vidro Melhorado */
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Certifique-se de carregar essa fonte no HTML */
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end), var(--bg-start));
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite; /* Fundo dinâmico */
+    color: var(--text);
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+header span {
+    color: var(--p-light);
+    text-shadow: 0 0 15px var(--p-light);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Formulário de Adição (Estilo "Glass") */
+.add-game {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.glass-form {
+    background: var(--glass);
+    padding: 20px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+}
+
+.glass-form input {
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    flex: 1;
+    min-width: 220px;
+}
+
+.glass-form input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+.glass-form button {
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(45deg, var(--p-main), var(--p-light));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.glass-form button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+}
+
+/* Grelha de Jogos */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ========================================================= */
+/* O CARD MELHORADO - AQUI ESTÁ A DIFERENÇA                */
+/* ========================================================= */
+.game-card {
+    min-height: 400px; /* Garante altura mínima para todos os elementos */
+    background: var(--glass);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Mantém as ações sempre no rodapé */
+}
+
+/* Efeito de hover suave no card */
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 45px 0 rgba(0,0,0,0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Luz decorativa superior */
+.game-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.01) 60%);
+    border-radius: 20px 20px 100% 100%;
+    z-index: -1;
+}
+
+/* Tipografia do Card */
+.game-card h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.game-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.game-card strong {
+    color: var(--text);
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+/* Status Badge - Cores Vivas */
+.status-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.available .status-badge {
+    background-color: var(--success);
+    color: #00302e;
+    box-shadow: 0 0 10px rgba(0, 206, 201, 0.4);
+}
+
+.lent .status-badge {
+    background-color: var(--warning); /* Laranja vibrante */
+    color: #0f0c29; /* Cor do texto escura para contraste máximo (a mesma cor de fundo da página) */
+    box-shadow: 0 0 10px rgba(255, 159, 67, 0.4);
+}
+
+/* Informação de Empréstimo */
+.lent-info {
+    font-size: 0.95rem;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text);
+}
+
+.lent-info span {
+    font-weight: 600;
+    color: var(--warning);
+}
+
+/* Área de Ações Melhorada */
+.actions {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column; /* Coloca o formulário em cima e o delete embaixo */
+    gap: 12px;
+}
+
+/* Formulário de Empréstimo Integrado */
+.loan-form {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.loan-form input {
+    flex: 2; /* Dá mais espaço para o input */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-size: 0.85rem;
+}
+
+.loan-form input::placeholder {
+    color: rgba(255,255,255,0.3);
+}
+
+/* Botões de Ação Dinâmicos */
+.btn-loan, .btn-return, .btn-delete {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-loan {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+.btn-loan:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.btn-return {
+    background-color: var(--warning);
+    color: #40280b;
+}
+.btn-return:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: rgba(255, 107, 107, 0.1); /* Fundo sutil para indicar perigo */
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    width: 100%; /* Ocupa a largura total para facilitar o clique */
+    height: 45px;
+    font-size: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-delete::after {
+    content: ' Excluir Jogo'; /* Adiciona texto para ficar mais claro */
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+/* Efeito de hover super visível e moderno no botão de deletar */
+.btn-delete:hover {
+    background-color: var(--accent);
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}

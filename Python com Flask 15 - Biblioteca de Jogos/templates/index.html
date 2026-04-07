@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoardGame Shelf</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎲 BoardGame <span>Shelf</span></h1>
+            <p>Gerencie sua coleção e seus empréstimos</p>
+        </header>
+
+        <section class="add-game">
+            <form action="/add" method="POST" class="glass-form">
+                <input type="text" name="titulo" placeholder="Nome do Jogo" required>
+                <input type="text" name="categoria" placeholder="Categoria (ex: Estratégia)" required>
+                <input type="text" name="jogadores" placeholder="Nº de Jogadores" required>
+                <button type="submit">Adicionar Jogo</button>
+            </form>
+        </section>
+
+        <main class="game-grid">
+            {% for game in games %}
+            <div class="game-card {{ 'lent' if game.status == 'Emprestado' else 'available' }}">
+                <h3>{{ game.titulo }}</h3>
+                <p><strong>Categoria:</strong> {{ game.categoria }}</p>
+                <p><strong>Jogadores:</strong> {{ game.jogadores }}</p>
+                <p class="status-badge">{{ game.status }}</p>
+                
+                {% if game.status == "Emprestado" %}
+                    <p class="lent-info">👤 {{ game.emprestado_para }}</p>
+                {% endif %}
+
+                <div class="actions">
+                    <form action="/loan/{{ game.id }}" method="POST" class="loan-form">
+                        {% if game.status == "Disponível" %}
+                            <input type="text" name="pessoa" placeholder="Emprestar para..." required>
+                            <button type="submit" class="btn-loan">Emprestar</button>
+                        {% else %}
+                            <button type="submit" class="btn-return">Devolver</button>
+                        {% endif %}
+                    </form>
+                    <a href="/delete/{{ game.id }}" class="btn-delete" onclick="return confirm('Excluir este jogo?')">🗑️</a>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+    </div>
+</body>
+</html>

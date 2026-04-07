@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Dia - {{ day }}/{{ month }}</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --danger: #e74c3c;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --border: #dcdde1;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+
+        .back-link:hover { transform: translateX(-5px); }
+
+        h2 { margin: 0 0 25px 0; font-weight: 300; border-bottom: 2px solid var(--bg); padding-bottom: 10px; }
+
+        .tabs { display: flex; gap: 10px; margin-bottom: 30px; }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: var(--bg);
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active { background: var(--primary); color: white; }
+
+        .section { display: none; animation: fadeIn 0.3s ease; }
+        .section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Formulários e Inputs */
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        textarea:focus, input[type="text"]:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(52,152,219,0.2); }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        /* Lista de Tarefas */
+        ul { list-style: none; padding: 0; margin-top: 20px; }
+
+        li {
+            background: var(--bg);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-actions button, .task-actions a {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .edit-form { display: none; width: 100%; gap: 10px; }
+        .edit-form.active { display: flex; }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/" class="back-link">← Voltar ao Calendário</a>
+    <h2>Data: {{ day }}/{{ month }}/{{ year }}</h2>
+
+    <div class="tabs">
+        <button class="tab-btn active" id="btn-comp" onclick="showSection('comp-sec')">Compromissos</button>
+        <button class="tab-btn" id="btn-task" onclick="showSection('task-sec')">Tarefas</button>
+    </div>
+
+    <div id="comp-sec" class="section active">
+        <form action="{{ url_for('salvar', date_key=year ~ '-' ~ '%02d' % month ~ '-' ~ '%02d' % day) }}" method="POST">
+            <input type="hidden" name="tipo" value="compromisso">
+            <textarea name="conteudo" placeholder="O que você tem planejado para hoje?">{{ dados.compromisso }}</textarea>
+            <button type="submit" class="btn-save">Salvar Alterações</button>
+        </form>
+    </div>
+
+    <div id="task-sec" class="section">
+        <form action="{{ url_for('salvar', date_key=year ~ '-' ~ '%02d' % month ~ '-' ~ '%02d' % day) }}" method="POST" style="display: flex; gap: 10px;">
+            <input type="hidden" name="tipo" value="tarefa">
+            <input type="text" name="conteudo" placeholder="Nova tarefa..." required>
+            <button type="submit" class="btn-save" style="width: auto;">Add</button>
+        </form>
+
+        <ul>
+            {% for tarefa in dados.tarefas %}
+            <li>
+                <div id="view-{{ loop.index0 }}" style="display: flex; justify-content: space-between; width: 100%;">
+                    <span>{{ tarefa }}</span>
+                    <div class="task-actions">
+                        <button onclick="toggleEdit('{{ loop.index0 }}')">✏️</button>
+                        <a href="{{ url_for('deletar_tarefa', date_key=year ~ '-' ~ '%02d' % month ~ '-' ~ '%02d' % day, index=loop.index0) }}" style="color: var(--danger);">✕</a>
+                    </div>
+                </div>
+
+                <form id="edit-form-{{ loop.index0 }}" class="edit-form" action="{{ url_for('editar_tarefa', date_key=year ~ '-' ~ '%02d' % month ~ '-' ~ '%02d' % day, index=loop.index0) }}" method="POST">
+                    <input type="text" name="novo_nome" value="{{ tarefa }}">
+                    <button type="submit" style="color: var(--secondary); background: none; border: none; font-size: 1.2rem; cursor: pointer;">OK</button>
+                    <button type="button" onclick="toggleEdit('{{ loop.index0 }}')" style="color: var(--danger); background: none; border: none; font-size: 1.2rem; cursor: pointer;">✕</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+    function showSection(id) {
+        // Alternar seções
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+
+        // Alternar botões das abas
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if(id === 'comp-sec') document.getElementById('btn-comp').classList.add('active');
+        else document.getElementById('btn-task').classList.add('active');
+    }
+
+    function toggleEdit(index) {
+        const view = document.getElementById(`view-${index}`);
+        const form = document.getElementById(`edit-form-${index}`);
+        
+        if (view.style.display !== 'none') {
+            view.style.display = 'none';
+            form.classList.add('active');
+        } else {
+            view.style.display = 'flex';
+            form.classList.remove('active');
+        }
+    }
+</script>
+
+</body>
+</html>

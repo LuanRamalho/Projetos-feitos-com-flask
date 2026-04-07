@@ -1,0 +1,29 @@
+{
+    "Google": {
+        "url": "google.com.br",
+        "user": "Nerd_O_Hacker",
+        "passwords": [
+            "`0Y\\H\\$2K1].LK7c"
+        ],
+        "extra_fields": {}
+    },
+    "League of Legends": {
+        "url": "riot.com.br",
+        "user": "Dragon_Knight",
+        "passwords": [
+            "z9)e:L`_i\"^aMwev:7"
+        ],
+        "extra_fields": {}
+    },
+    "Mercantil": {
+        "url": "mercantil.com.br",
+        "user": "Rico_e_Milionario",
+        "passwords": [
+            "465478",
+            "786945"
+        ],
+        "extra_fields": {
+            "Dinheiro na Conta": "R$15.000.000,00"
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Filme</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 40px auto; }
+        input, textarea { width: 100%; padding: 8px; margin: 10px 0; display: block; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        .voltar { display: block; margin-top: 20px; color: #555; }
+    </style>
+</head>
+<body>
+    <h2>✏️ Editar Filme: {{ filme.titulo }}</h2>
+    <form method="POST">
+        <label>Título do Filme:</label>
+        <input type="text" name="titulo" value="{{ filme.titulo }}" required>
+
+        <label>Diretor:</label>
+        <input type="text" name="diretor" value="{{ filme.diretor }}" required>
+
+        <label>Gênero:</label>
+        <input type="text" name="genero" value="{{ filme.genero }}" required>
+
+        <label>Ano de Lançamento:</label>
+        <input type="number" name="ano" value="{{ filme.ano }}" required>
+
+        <label>Sinopse:</label>
+        <textarea name="sinopse" rows="4">{{ filme.sinopse }}</textarea>
+
+        <label>URL da Imagem da Capa:</label>
+        <input type="url" name="capa" value="{{ filme.capa }}" required>
+
+        <button type="submit">Atualizar Filme</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="voltar">← Cancelar e voltar</a>
+</body>
+</html>

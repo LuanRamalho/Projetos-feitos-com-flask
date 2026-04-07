@@ -1,0 +1,32 @@
+{
+  "projetos": [
+    {
+      "id": 1,
+      "nome": "Caridade a um Centro Espírita",
+      "descricao": "Doação de Roupas, Alimentos, brinquedos a um centro espírita.",
+      "data_inicio": "2023-04-03",
+      "data_fim": "2023-04-04",
+      "status": "Concluído",
+      "voluntarios": "Joyce Carvalho\nJoão Silva"
+    },
+    {
+      "id": 2,
+      "nome": "Ajudar uma ONG",
+      "descricao": "Nesse projeto iremos ajudar uma ONG de animais.",
+      "data_inicio": "2023-04-05",
+      "data_fim": "2023-04-10",
+      "status": "Em andamento",
+      "voluntarios": "José Carlos\nSílvio Correa"
+
+    },
+    {
+      "id": 3,
+      "nome": "Orfanato",
+      "descricao": "Nesse projeto iremos ajudar crianças de um orfanato.",
+      "data_inicio": "2023-04-12",
+      "data_fim": "2023-04-15",
+      "status": "Pendente",
+      "voluntarios": "Carla da Silva\nJosé da Silva"
+    }
+  ]
+}

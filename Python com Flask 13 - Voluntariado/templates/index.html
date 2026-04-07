@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Programa de Voluntariado</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --success: #00b894;
+            --danger: #d63031;
+            --warning: #fdcb6e;
+            --bg: #f0f2f5;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1 { color: var(--primary); text-align: center; }
+        
+        /* Barra de Busca */
+        .search-container { display: flex; gap: 10px; margin-bottom: 30px; }
+        input[type="text"], textarea, select, input[type="date"] {
+            width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; box-sizing: border-box;
+        }
+        
+        /* Botões */
+        .btn { padding: 10px 15px; border: none; border-radius: 8px; cursor: pointer; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-add { background: var(--primary); margin-bottom: 20px; display: inline-block; }
+        .btn-view { background: var(--success); }
+        .btn-edit { background: var(--warning); color: #2d3436; }
+        .btn-delete { background: var(--danger); }
+        .btn-vol { background: var(--secondary); }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        /* Lista de Projetos */
+        .project-item { 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 15px; border-bottom: 1px solid #eee; background: #fff;
+        }
+        .project-actions { display: flex; gap: 8px; }
+        
+        .card { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Voluntariado Connect</h1>
+        
+        <form action="/" method="GET" class="search-container">
+            <input type="text" name="search" placeholder="Buscar projeto pelo nome..." value="{{ search }}">
+            <button type="submit" class="btn btn-add">Buscar</button>
+        </form>
+
+        <a href="/add" class="btn btn-add">+ Novo Projeto</a>
+
+        <div class="project-list">
+            {% for p in projetos %}
+            <div class="project-item">
+                <strong>{{ p.nome }}</strong>
+                <div class="project-actions">
+                    <a href="/view/{{ p.id }}" class="btn btn-view">Visualizar</a>
+                    <a href="/edit/{{ p.id }}" class="btn btn-edit">Editar</a>
+                    <a href="/delete/{{ p.id }}" class="btn btn-delete" onclick="return confirm('Excluir?')">Excluir</a>
+                    <a href="/volunteers/{{ p.id }}" class="btn btn-vol">Voluntários</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

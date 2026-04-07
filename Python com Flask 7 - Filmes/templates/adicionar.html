@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Filme</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 40px auto; line-height: 1.6; }
+        input, textarea { width: 100%; padding: 8px; margin: 10px 0; display: block; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        .voltar { display: block; margin-top: 20px; color: #555; }
+    </style>
+</head>
+<body>
+    <h2>🎬 Adicionar Novo Filme</h2>
+    <form method="POST">
+        <label>Título do Filme:</label>
+        <input type="text" name="titulo" required>
+
+        <label>Diretor:</label>
+        <input type="text" name="diretor" required>
+
+        <label>Gênero:</label>
+        <input type="text" name="genero" required>
+
+        <label>Ano de Lançamento:</label>
+        <input type="number" name="ano" required>
+
+        <label>Sinopse:</label>
+        <textarea name="sinopse" rows="4"></textarea>
+
+        <label>URL da Imagem da Capa:</label>
+        <input type="url" name="capa" placeholder="http://exemplo.com/imagem.jpg" required>
+
+        <button type="submit">Salvar no Catálogo</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="voltar">← Voltar para a lista</a>
+</body>
+</html>

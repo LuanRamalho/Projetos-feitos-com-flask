@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizar Projeto</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --bg: #f0f2f5;
+            --success: #00b894;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 40px; display: flex; justify-content: center; }
+        .container { 
+            max-width: 700px; 
+            width: 100%;
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+        .header { border-bottom: 3px solid var(--primary); margin-bottom: 25px; padding-bottom: 10px; }
+        h2 { color: var(--primary); margin: 0; }
+        .info-box { background: #f9f9fb; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+        .label { font-weight: bold; color: var(--primary); text-transform: uppercase; font-size: 12px; display: block; margin-bottom: 5px; }
+        .value { font-size: 18px; margin-bottom: 20px; display: block; color: #2d3436; }
+        .status-badge { 
+            display: inline-block; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            color: white; 
+            font-weight: bold;
+            background: var(--success);
+        }
+        pre { background: #eee; padding: 15px; border-radius: 8px; white-space: pre-wrap; font-family: inherit; }
+        .btn-back { 
+            display: inline-block; 
+            padding: 12px 25px; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Detalhes do Projeto</h2>
+        </div>
+        
+        <div class="info-box">
+            <span class="label">Nome do Projeto</span>
+            <span class="value">{{ projeto.nome }}</span>
+
+            <span class="label">Descrição</span>
+            <span class="value">{{ projeto.descricao }}</span>
+
+            <span class="label">Período</span>
+            <span class="value">📅 {{ projeto.data_inicio }} até {{ projeto.data_fim }}</span>
+
+            <span class="label">Situação</span>
+            <span class="status-badge">{{ projeto.status }}</span>
+        </div>
+
+        <div class="info-box">
+            <span class="label">Equipe de Voluntários</span>
+            <pre>{{ projeto.voluntarios or 'Nenhum voluntário registado ainda.' }}</pre>
+        </div>
+
+        <a href="/" class="btn-back">⬅ Voltar para a Lista</a>
+    </div>
+</body>
+</html>

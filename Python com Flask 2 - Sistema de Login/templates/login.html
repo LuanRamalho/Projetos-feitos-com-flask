@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Moderno</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        h2 { color: #4b6cb7; margin-bottom: 1.5rem; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #f1f2f6;
+            border-radius: 10px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus { border-color: #667eea; }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #ff4757;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background: #ff6b81; transform: translateY(-2px); }
+        .btn-register { background: #2f3542; }
+        .btn-register:hover { background: #57606f; }
+        a { color: #747d8c; text-decoration: none; font-size: 0.85rem; display: block; margin: 15px 0; }
+        a:hover { color: #2f3542; text-decoration: underline; }
+        .error-msg { color: #eb4d4b; background: #fab1a044; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; border: 1px solid #eb4d4b; }
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Acesso ao Sistema</h2>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="error-msg">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">ENTRAR</button>
+        </form>
+
+        <a href="/esqueci">Esqueci minha senha</a>
+        <hr>
+        <p style="font-size: 0.9rem; color: #57606f;">Não tem uma conta?</p>
+        <a href="/cadastro"><button type="button" class="btn-register">CRIAR CONTA</button></a>
+    </div>
+</body>
+</html>

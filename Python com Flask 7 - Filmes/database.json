@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "titulo": "O poderoso Chef\u00e3o",
+        "diretor": "Francis Ford Coppola",
+        "genero": "A\u00e7\u00e3o/M\u00e1fia",
+        "ano": "1972",
+        "sinopse": "\u00c9 um filme policial estadunidense de 1972 dirigido por Francis Ford Coppola e baseado no livro hom\u00f4nimo de Mario Puzo, tendo seu roteiro escrito por ambos. O filme \u00e9 estrelado por Marlon Brando, Al Pacino, James Caan, Richard Castellano, Robert Duvall, Sterling Hayden, John Marley, Richard Conte e Diane Keaton. \u00c9 a primeira parte da trilogia The Godfather, narrando a fam\u00edlia Corleone sob o comando do patriarca Vito Corleone entre os anos de 1945 a 1955; o filme se concentra na transforma\u00e7\u00e3o de seu filho mais novo, Michael Corleone, de relutante forasteiro da fam\u00edlia a implac\u00e1vel chefe da m\u00e1fia.",
+        "capa": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhdoTx8bOwEn1nf6UFOqmXAmuQJhBYYq0ZJA&s"
+    },
+    {
+        "id": 2,
+        "titulo": "O auto da Compadecida",
+        "diretor": "Guel Arraes",
+        "genero": "Com\u00e9dia/Aventura",
+        "ano": "2000",
+        "sinopse": "As aventuras de Jo\u00e3o Grilo e Chic\u00f3, dois nordestinos pobres que vivem de golpes para sobreviver. Eles est\u00e3o sempre enganando o povo de um pequeno vilarejo, inclusive o temido cangaceiro Severino de Aracaju, que os persegue pela regi\u00e3o.",
+        "capa": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPIqXA0mJb4YcldEZTmm9yhDzPS8mJdjgAiA&s"
+    },
+    {
+        "id": 3,
+        "titulo": "Esqueceram de Mim",
+        "diretor": "Chris Columbus",
+        "genero": "Infantil/Com\u00e9dia",
+        "ano": "1990",
+        "sinopse": "Home Alone \u00e9 um filme de com\u00e9dia de Natal estadunidense de 1990, escrito e produzido por John Hughes e dirigido por Chris Columbus. O filme \u00e9 estrelado por Macaulay Culkin como Kevin McCallister, um menino de 8 anos que \u00e9 erroneamente deixado para tr\u00e1s quando sua fam\u00edlia voa para Paris para suas f\u00e9rias de Natal.",
+        "capa": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/37F6E7D8E3F632F8884F0A7D383CE304876E2C4B54D9556A3B761804EF480CE8/scale?width=1200&aspectRatio=1.78&format=webp"
+    },
+    {
+        "id": 4,
+        "titulo": "Hamnet: A Vida Antes de Hamlet",
+        "diretor": "Chlo\u00e9 Zhao",
+        "genero": "Drama/Fic\u00e7\u00e3o hist\u00f3rica",
+        "ano": "2025",
+        "sinopse": "William Shakespeare e a sua esposa, Agnes, celebram o nascimento do seu filho, Hamnet. No entanto, quando a trag\u00e9dia atinge e Hamnet morre ainda jovem, isso inspira Shakespeare a escrever a sua obra-prima intemporal, Hamlet.",
+        "capa": "https://m.media-amazon.com/images/S/pv-target-images/a52de74ea55637699ee0b4a9b1b1f8987b93d7885d511873c8d3254d2d236d8d.jpg"
+    }
+]

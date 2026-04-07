@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Chef Digital - Receitas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background: linear-gradient(45deg, #ff416c, #ff4b2b); color: white; margin-bottom: 30px; }
+        .card { border: none; border-radius: 15px; transition: transform 0.3s; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); }
+        .card-img-top { height: 200px; object-fit: cover; }
+        .badge-cat { background-color: #6a11cb; position: absolute; top: 10px; right: 10px; }
+        .btn-add { background: #28a745; color: white; border-radius: 30px; padding: 10px 25px; }
+        .search-bar { border-radius: 25px; padding-left: 20px; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand text-white fw-bold" href="/">CHEF DIGITAL 🍳</a>
+        <a href="/add" class="btn btn-add fw-bold">+ Nova Receita</a>
+    </div>
+</nav>
+
+<div class="container">
+    <form action="/" method="GET" class="mb-5">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control search-bar" placeholder="Pesquisar receita pelo nome..." value="{{ search }}">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for r in recipes %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <span class="badge badge-cat p-2">{{ r.categoria }}</span>
+                <img src="{{ r.url_imagem }}" class="card-img-top" alt="{{ r.nome }}">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-dark">{{ r.nome }}</h5>
+                    <p class="text-muted small">⏱ {{ r.tempo }} | 🍽 {{ r.porcoes }} porções</p>
+                    <p class="card-text text-truncate">{{ r.ingredientes }}</p>
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="/edit/{{ r.nome }}" class="btn btn-sm btn-outline-warning">Editar</a>
+                        <a href="/delete/{{ r.nome }}" class="btn btn-sm btn-outline-danger" onclick="return confirm('Excluir esta receita?')">Deletar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

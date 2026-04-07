@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - {{ titulo }}</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 40px 20px; }
+        .card { background: white; max-width: 650px; margin: 0 auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; margin-bottom: 5px; }
+        .total-votes { color: #7f8c8d; margin-bottom: 30px; font-size: 14px; }
+        
+        .result-item { margin-bottom: 25px; }
+        .info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 600; }
+        
+        .progress-bg { background-color: #edeff2; height: 24px; border-radius: 12px; overflow: hidden; width: 100%; }
+        .progress-bar { 
+            height: 100%; width: 0; /* Começa em 0 para o JS animar */
+            background: linear-gradient(90deg, #3498db, #2ecc71); 
+            border-radius: 12px; transition: width 1.5s cubic-bezier(0.1, 0.5, 0.5, 1);
+        }
+        
+        .btn-back { 
+            display: inline-block; margin-top: 30px; padding: 12px 25px; 
+            background-color: #34495e; color: white; text-decoration: none; border-radius: 8px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>{{ titulo }}</h2>
+        <p class="total-votes">Total de participações: {{ total }}</p>
+
+        {% for item in resultados %}
+        <div class="result-item">
+            <div class="info">
+                <span>{{ item.opcao }}</span>
+                <span>{{ item.porcentagem }}% ({{ item.votos }} votos)</span>
+            </div>
+            <div class="progress-bg">
+                <div class="progress-bar" data-target="{{ item.porcentagem }}"></div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <a href="/" class="btn-back">Voltar para Início</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.progress-bar');
+            
+            // Pequeno delay para garantir que a transição seja visível após carregar
+            setTimeout(() => {
+                bars.forEach(bar => {
+                    const target = bar.getAttribute('data-target');
+                    bar.style.width = target + '%';
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>

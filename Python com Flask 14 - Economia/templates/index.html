@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Econômico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background: #f4f4f9; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+        .form-group { margin-bottom: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 4px; }
+        .btn-delete { background: #dc3545; }
+        .chart-container { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciar Dados Econômicos</h2>
+        
+        <div>
+            <input type="text" id="year" placeholder="Ano (ex: 2026)" style="width: 100px;">
+            <p>Insira os valores percentuais para os 12 meses:</p>
+            <div class="form-group" id="month-inputs">
+                </div>
+            <button onclick="saveData()">Salvar/Atualizar Ano</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="economicChart"></canvas>
+        </div>
+
+        <h3>Anos Registrados</h3>
+        <ul id="year-list"></ul>
+    </div>
+
+    <script>
+        const months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+        const ctx = document.getElementById('economicChart').getContext('2d');
+        let chart;
+
+        // Gerar inputs dos meses
+        const inputContainer = document.getElementById('month-inputs');
+        months.forEach((m, i) => {
+            inputContainer.innerHTML += `<input type="number" step="0.01" class="month-val" placeholder="${m}" data-idx="${i}">`;
+        });
+
+        async function loadDashboard() {
+            const res = await fetch('/api/data');
+            const data = await res.json();
+            
+            updateChart(data);
+            updateList(data);
+        }
+
+        function updateChart(data) {
+            const datasets = Object.keys(data).map(year => ({
+                label: year,
+                data: data[year],
+                borderColor: '#' + Math.floor(Math.random()*16777215).toString(16),
+                fill: false
+            }));
+
+            if (chart) chart.destroy();
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: months, datasets: datasets },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+        }
+
+        function updateList(data) {
+            const list = document.getElementById('year-list');
+            list.innerHTML = '';
+            
+            Object.keys(data).forEach(year => {
+                // Adicionamos o botão Editar aqui
+                list.innerHTML += `
+                    <li style="margin-bottom: 10px;">
+                        <strong>${year}</strong> 
+                        <button onclick="prepareEdit('${year}')" style="background: #007bff; margin-left: 10px;">Editar</button>
+                        <button class="btn-delete" onclick="deleteYear('${year}')">Excluir</button>
+                    </li>`;
+            });
+        }
+
+        async function prepareEdit(year) {
+        // 1. Busca os dados atuais do "banco"
+        const res = await fetch('/api/data');
+        const data = await res.json();
+        const values = data[year];
+
+        if (values) {
+            // 2. Preenche o campo do ano
+            document.getElementById('year').value = year;
+
+            // 3. Preenche os 12 inputs de meses com os valores salvos
+            const inputs = document.querySelectorAll('.month-val');
+            values.forEach((val, index) => {
+                inputs[index].value = val;
+            });
+
+            // 4. Rola a página para o topo para facilitar a visualização do formulário
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+        async function saveData() {
+            const year = document.getElementById('year').value;
+            const values = Array.from(document.querySelectorAll('.month-val')).map(i => i.value || 0);
+            
+            if(!year) return alert("Digite o ano");
+
+            await fetch('/api/data', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ year, values })
+            });
+            loadDashboard();
+        }
+
+        async function deleteYear(year) {
+            await fetch(`/api/data/${year}`, { method: 'DELETE' });
+            loadDashboard();
+        }
+
+        loadDashboard();
+    </script>
+</body>
+</html>

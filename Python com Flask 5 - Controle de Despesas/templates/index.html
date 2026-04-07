@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Flow - Modern Control</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { --primary: #3498db; --income: #2ecc71; --expense: #e74c3c; --dark: #2c3e50; --bg: #f4f7f6; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; display: flex; flex-direction: column; align-items: center; }
+        .container { width: 95%; max-width: 1000px; margin-top: 20px; }
+        .calendar-card { background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px; }
+        .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .cal-day { background: #fff; border: 1px solid #eee; height: 80px; padding: 5px; cursor: pointer; border-radius: 8px; transition: 0.2s; }
+        .cal-day:hover { background: #f8f9fa; transform: scale(1.02); }
+        .cal-day.has-data { border: 2px solid var(--primary); background: #ebf5fb; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 100; width: 320px; }
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 99; }
+        input, select, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-main { background: var(--primary); color: white; border: none; cursor: pointer; font-weight: bold; }
+        .charts-container { display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%; margin-bottom: 30px; }
+        .chart-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        .entry-item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 8px; margin-bottom: 5px; border-radius: 6px; border-left: 4px solid #ddd; }
+        .btn-action { width: auto; padding: 5px 10px; margin-left: 5px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="calendar-card">
+        <div class="cal-header">
+            <button onclick="changeMonth(-1)" class="btn-main" style="width: auto;">&lt; Anterior</button>
+            <h2 id="currentMonthYear">Mês Ano</h2>
+            <button onclick="changeMonth(1)" class="btn-main" style="width: auto;">Próximo &gt;</button>
+        </div>
+        <div class="cal-grid" id="calendarGrid"></div>
+        <button class="btn-main" style="margin-top: 15px;" onclick="toggleCharts()">Visualizar Gráficos de Finanças</button>
+    </div>
+
+    <div class="charts-container" id="chartsSection">
+        <div class="chart-card">
+            <h3>Dia Selecionado</h3>
+            <input type="date" id="filterDay" onchange="renderAllCharts()">
+            <canvas id="dayChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h3>Mês Selecionado</h3>
+            <input type="month" id="filterMonth" onchange="renderAllCharts()">
+            <canvas id="monthChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h3>Ano Selecionado</h3>
+            <input type="number" id="filterYear" placeholder="Ex: 2026" min="2000" max="2099" onchange="renderAllCharts()">
+            <canvas id="yearChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div class="modal" id="modal">
+    <h3 id="modalTitle" style="margin-top:0">Adicionar Registro</h3>
+    <p id="selectedDateText" style="color: var(--primary); font-weight: bold;"></p>
+    <input type="text" id="desc" placeholder="Ex: Mercado, Salário...">
+    <input type="number" step="0.01" id="amount" placeholder="Valor (R$)">
+    <select id="type">
+        <option value="income">Receita</option>
+        <option value="expense" selected>Despesa</option>
+    </select>
+    <button class="btn-main" onclick="saveTransaction()">Confirmar</button>
+    <div id="entriesList" style="margin-top:15px; max-height: 150px; overflow-y: auto;"></div>
+</div>
+
+<script>
+    let date = new Date();
+    let transactions = [];
+    let selectedDateStr = "";
+    let editingIndex = null;
+    let charts = {};
+
+    async function loadTransactions() {
+        const res = await fetch('/api/transactions');
+        transactions = await res.json();
+        renderCalendar();
+        if(document.getElementById('chartsSection').style.display === 'grid') renderAllCharts();
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('calendarGrid');
+        const monthYear = document.getElementById('currentMonthYear');
+        grid.innerHTML = '';
+        const year = date.getFullYear();
+        const month = date.getMonth();
+        monthYear.innerText = new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric' }).format(date);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'].forEach(d => {
+            grid.innerHTML += `<div style="text-align:center; font-weight:bold; padding:10px;">${d}</div>`;
+        });
+
+        for (let i = 0; i < firstDay; i++) grid.innerHTML += '<div></div>';
+
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            const hasData = transactions.some(t => t.date === dStr);
+            grid.innerHTML += `<div class="cal-day ${hasData ? 'has-data' : ''}" onclick="openModal('${dStr}')"><strong>${d}</strong></div>`;
+        }
+    }
+
+    function openModal(dateStr) {
+        selectedDateStr = dateStr;
+        const [y, m, d] = dateStr.split('-');
+        document.getElementById('selectedDateText').innerText = `Data: ${d}/${m}/${y}`;
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+        updateEntriesList();
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        resetForm();
+    }
+
+    function resetForm() {
+        document.getElementById('desc').value = '';
+        document.getElementById('amount').value = '';
+        document.getElementById('modalTitle').innerText = "Adicionar Registro";
+        editingIndex = null;
+    }
+
+    async function saveTransaction() {
+        const desc = document.getElementById('desc').value;
+        const amount = document.getElementById('amount').value;
+        const type = document.getElementById('type').value;
+
+        if(!desc || !amount) return alert("Preencha os campos!");
+
+        const payload = { date: selectedDateStr, description: desc, amount: parseFloat(amount), type: type };
+        
+        const url = editingIndex !== null ? '/api/transactions/update' : '/api/transactions';
+        const body = editingIndex !== null ? { index: editingIndex, item: payload } : payload;
+
+        await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        });
+
+        resetForm();
+        await loadTransactions();
+        updateEntriesList();
+    }
+
+    function updateEntriesList() {
+        const list = document.getElementById('entriesList');
+        const filtered = transactions
+            .map((t, i) => ({...t, originalIndex: i}))
+            .filter(t => t.date === selectedDateStr);
+
+        list.innerHTML = filtered.map(t => `
+            <div class="entry-item" style="border-left-color: ${t.type === 'income' ? '#2ecc71' : '#e74c3c'}">
+                <span>${t.description}: <b>R$ ${t.amount.toLocaleString('pt-BR', {minimumFractionDigits:2})}</b></span>
+                <div>
+                    <button class="btn-action" style="background:#f1c40f; color:white; border:none;" onclick="prepareEdit(${t.originalIndex})">✎</button>
+                    <button class="btn-action" style="background:#e74c3c; color:white; border:none;" onclick="deleteEntry(${t.originalIndex})">✕</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function prepareEdit(index) {
+        const item = transactions[index];
+        document.getElementById('desc').value = item.description;
+        document.getElementById('amount').value = item.amount;
+        document.getElementById('type').value = item.type;
+        document.getElementById('modalTitle').innerText = "Editar Registro";
+        editingIndex = index;
+    }
+
+    async function deleteEntry(index) {
+        if(!confirm("Excluir este registro?")) return;
+        await fetch('/api/transactions/delete', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ index: index })
+        });
+        await loadTransactions();
+        updateEntriesList();
+    }
+
+    // Inicializa os inputs com a data atual ao abrir a seção de gráficos
+    function toggleCharts() {
+        const section = document.getElementById('chartsSection');
+        const isVisible = section.style.display === 'grid';
+        
+        if (!isVisible) {
+            // Preenche os inputs com valores padrão baseados na navegação do calendário
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            
+            document.getElementById('filterYear').value = year;
+            document.getElementById('filterMonth').value = `${year}-${month}`;
+            document.getElementById('filterDay').value = selectedDateStr || `${year}-${month}-01`;
+            
+            section.style.display = 'grid';
+            renderAllCharts();
+        } else {
+            section.style.display = 'none';
+        }
+    }
+
+    function renderAllCharts() {
+        const selDay = document.getElementById('filterDay').value;
+        const selMonth = document.getElementById('filterMonth').value; // Formato YYYY-MM
+        const selYear = document.getElementById('filterYear').value;
+
+        // Filtros lógicos precisos
+        const dData = processData(transactions.filter(t => t.date === selDay));
+        const mData = processData(transactions.filter(t => t.date.startsWith(selMonth)));
+        const yData = processData(transactions.filter(t => t.date.startsWith(selYear)));
+
+        updateChart('dayChart', dData);
+        updateChart('monthChart', mData);
+        updateChart('yearChart', yData);
+    }
+
+    function processData(list) {
+        const inc = list.filter(t => t.type === 'income').reduce((a, b) => a + b.amount, 0);
+        const exp = list.filter(t => t.type === 'expense').reduce((a, b) => a + b.amount, 0);
+        const total = inc + exp;
+        return {
+            labels: [`Receita (R$ ${inc.toFixed(2)})`, `Despesa (R$ ${exp.toFixed(2)})`],
+            data: [inc, exp],
+            perc: [total ? (inc/total*100).toFixed(1) : 0, total ? (exp/total*100).toFixed(1) : 0]
+        };
+    }
+
+    function updateChart(id, info) {
+        if(charts[id]) charts[id].destroy();
+        charts[id] = new Chart(document.getElementById(id), {
+            type: 'pie',
+            data: {
+                labels: info.labels.map((l, i) => `${l} (${info.perc[i]}%)`),
+                datasets: [{ data: info.data, backgroundColor: ['#2ecc71', '#e74c3c'] }]
+            }
+        });
+    }
+
+    function changeMonth(s) { date.setMonth(date.getMonth() + s); renderCalendar(); }
+    loadTransactions();
+</script>
+</body>
+</html>

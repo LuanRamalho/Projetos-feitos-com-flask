@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Criar Enquete</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { color: #2c3e50; margin-bottom: 20px; text-align: center; }
+        label { display: block; margin-top: 15px; font-weight: 600; color: #34495e; }
+        input, textarea { 
+            width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #edeff2; 
+            border-radius: 10px; box-sizing: border-box; font-family: inherit;
+        }
+        textarea { resize: vertical; }
+        .btn-send { 
+            width: 100%; padding: 15px; border: none; border-radius: 10px; 
+            background-color: #2ecc71; color: white; font-size: 16px; font-weight: bold; 
+            cursor: pointer; margin-top: 25px; transition: 0.3s;
+        }
+        .btn-send:hover { background-color: #27ae60; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #95a5a6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Criar Nova Enquete</h2>
+        <form method="POST">
+            <label>Pergunta:</label>
+            <input type="text" name="pergunta" placeholder="Ex: Qual sua cor favorita?" required>
+            
+            <label>Opções (separe por vírgula):</label>
+            <textarea name="opcoes" placeholder="Ex: Azul, Vermelho, Verde, Amarelo" rows="4" required></textarea>
+            
+            <button type="submit" class="btn-send">Publicar Enquete</button>
+        </form>
+        <a href="/" class="back-link">Voltar para a lista</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Filmes</title>
+    <style>
+        .filme-card { border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; width: 250px; vertical-align: top; }
+        .capa { width: 100%; height: auto; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🎬 Meu Catálogo de Filmes</h1>
+    <a href="{{ url_for('adicionar') }}">Adicionar Novo Filme</a>
+    
+    <hr>
+    <form method="GET">
+        <input type="text" name="nome" placeholder="Buscar por título">
+        <input type="text" name="genero" placeholder="Buscar por gênero">
+        <button type="submit">Filtrar</button>
+    </form>
+    <hr>
+
+    <div class="container">
+        {% for filme in filmes %}
+        <div class="filme-card">
+            <img src="{{ filme.capa }}" alt="Capa de {{ filme.titulo }}" class="capa">
+            <h3>{{ filme.titulo }} ({{ filme.ano }})</h3>
+            <p><strong>Gênero:</strong> {{ filme.genero }}</p>
+            <p><strong>Diretor:</strong> {{ filme.diretor }}</p>
+            <p>{{ filme.sinopse }}</p>
+            <a href="{{ url_for('editar', id=filme.id) }}">Editar</a> | 
+            <a href="{{ url_for('deletar', id=filme.id) }}" onclick="return confirm('Excluir?')">Deletar</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

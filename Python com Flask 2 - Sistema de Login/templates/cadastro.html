@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Cadastro</title>
+    <style>
+        /* Reutilizando o estilo base para consistência */
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+        .card { background: white; padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2); width: 350px; text-align: center; }
+        h2 { color: #11998e; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 2px solid #f1f2f6; border-radius: 10px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 10px; background: #11998e; color: white; font-weight: bold; cursor: pointer; }
+        .btn-back { background: #2f3542; margin-top: 10px; }
+        .msg { color: #eb4d4b; font-size: 0.9rem; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Cadastrar Usuário</h2>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="msg">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="/cadastro" method="POST">
+            <input type="text" name="username" placeholder="Escolha um Usuário" required>
+            <input type="password" name="password" placeholder="Digite a Senha" required>
+            <input type="password" name="confirm_password" placeholder="Confirme a Senha" required>
+            <button type="submit">FINALIZAR CADASTRO</button>
+        </form>
+        <a href="/"><button class="btn-back">VOLTAR</button></a>
+    </div>
+</body>
+</html>

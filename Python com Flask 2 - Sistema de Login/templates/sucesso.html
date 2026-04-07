@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Acesso Permitido</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f1f2f6; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }
+        .card { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 400px; text-align: center; border-top: 8px solid #2ed573; }
+        .icon { font-size: 50px; color: #2ed573; margin-bottom: 10px; }
+        h1 { color: #2f3542; margin: 0; }
+        p { color: #747d8c; font-size: 1.1rem; }
+        button { padding: 12px 30px; border: none; border-radius: 10px; background: #2f3542; color: white; font-weight: bold; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">✔</div>
+        <h1>Logado!</h1>
+        <p>Bem-vindo de volta, <strong>{{ nome }}</strong>.</p>
+        <p>Seu acesso foi validado com sucesso.</p>
+        <a href="/"><button>ENCERRAR SESSÃO</button></a>
+    </div>
+</body>
+</html>

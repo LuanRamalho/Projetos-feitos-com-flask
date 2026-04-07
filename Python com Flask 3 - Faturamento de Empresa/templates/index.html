@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Faturamento Mensal</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { 
+            background: white; border-radius: 12px; padding: 20px; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;
+            border-bottom: 5px solid #3498db;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h2 { color: #2c3e50; margin-top: 0; }
+        .meses-list { font-size: 0.85em; color: #7f8c8d; display: grid; grid-template-columns: 1fr 1fr; }
+        .total-destaque { margin-top: 15px; font-weight: bold; color: #27ae60; font-size: 1.2em; }
+        .btn { background: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-bottom: 20px; }
+        .actions { margin-top: 10px; display: flex; gap: 10px; }
+        .btn-edit { color: #f39c12; text-decoration: none; font-size: 0.9em; }
+        .btn-del { color: #e74c3c; text-decoration: none; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Dashboard de Faturamento</h1>
+    <a href="/novo" class="btn">+ Adicionar Ano</a>
+    
+    <div class="container">
+        {% for f in faturamentos %}
+        <div class="card" onclick="location.href='/grafico/{{ f.ano }}'">
+            <h2>Ano: {{ f.ano }}</h2>
+            <div class="meses-list">
+                {% set nomes_meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"] %}
+                {% for i in range(1, 13) %}
+                <span>{{ nomes_meses[i-1] }}: R$ {{ "%.2f"|format(f.meses[i|string]|float) }}</span>
+                {% endfor %}
+            </div>
+            <div class="total-destaque">Total: R$ {{ "%.2f"|format(f.total|float) }}</div>
+            <div class="actions">
+                <a href="/editar/{{ f.ano }}" class="btn-edit" onclick="event.stopPropagation()">Editar</a>
+                <a href="/excluir/{{ f.ano }}" class="btn-del" onclick="event.stopPropagation()">Excluir</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

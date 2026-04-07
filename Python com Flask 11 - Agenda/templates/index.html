@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agenda - {{ month_name }}</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --border-color: #ddd;
+            --cell-size: 70px; 
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 30px;
+        }
+
+        h1 { margin-bottom: 10px; color: #2c3e50; font-weight: 300; }
+
+        .nav-buttons { margin-bottom: 25px; display: flex; gap: 10px; }
+
+        .nav-buttons button {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .nav-buttons button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .calendar-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        table { border-collapse: collapse; table-layout: fixed; }
+
+        /* Estilo dos cabeçalhos (dias da semana) */
+        th { 
+            color: #7f8c8d; 
+            font-weight: 600; 
+            font-size: 0.85rem;
+            padding-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Estilo das células de dia */
+        td { 
+            border: 1px solid var(--border-color); 
+            width: var(--cell-size); 
+            height: var(--cell-size); 
+            text-align: center;
+            vertical-align: middle;
+            padding: 0;
+            position: relative;
+        }
+
+        /* Links clicáveis dos dias */
+        .day-link { 
+            text-decoration: none; 
+            color: var(--text-color); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        /* Efeito de hover nos dias */
+        td:not(:empty):hover .day-link {
+            background-color: #eaf2f8;
+        }
+
+        /* Células vazias (fora do mês) */
+        td:empty {
+            background-color: #fafafa;
+            border: 1px solid #eee;
+        }
+
+        /* ESTILO DE DESTAQUE: Dias com compromisso em verde */
+        .highlight { 
+            background-color: var(--secondary-color) !important; 
+            border-color: #27ae60;
+        }
+
+        .highlight .day-link { 
+            color: white; 
+            font-weight: bold; 
+        }
+        
+        /* Ajuste fino para o hover em dias destacados */
+        .highlight:hover .day-link {
+            background-color: #27ae60 !important;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>{{ month_name }} {{ year }}</h1>
+    
+    <div class="nav-buttons">
+        <a href="{{ url_for('index', year=year, month=month-1) }}"><button>Voltar</button></a>
+        <a href="{{ url_for('index', year=year, month=month+1) }}"><button>Avançar</button></a>
+    </div>
+
+    <div class="calendar-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for week in weeks %}
+                <tr>
+                    {% for day in week %}
+                    <td class="{% if day in highlighted_days %}highlight{% endif %}">
+                        {% if day != 0 %}
+                        <a class="day-link" href="{{ url_for('detalhe_dia', year=year, month=month, day=day) }}">
+                            {{ day }}
+                        </a>
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

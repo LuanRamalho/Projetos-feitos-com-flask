@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votar - {{ titulo }}</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { color: #2c3e50; margin-bottom: 25px; text-align: center; }
+        .option-label { 
+            display: block; padding: 15px; border: 2px solid #edeff2; border-radius: 10px; 
+            margin-bottom: 12px; cursor: pointer; transition: 0.3s;
+        }
+        .option-label:hover { border-color: #3498db; background-color: #f7fbfe; }
+        input[type="radio"] { margin-right: 15px; transform: scale(1.2); }
+        .btn-submit { 
+            width: 100%; padding: 15px; border: none; border-radius: 10px; 
+            background-color: #3498db; color: white; font-size: 16px; font-weight: bold; 
+            cursor: pointer; margin-top: 20px;
+        }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #95a5a6; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>{{ titulo }}</h2>
+        <form method="POST">
+            {% for opcao in enquete %}
+            <label class="option-label">
+                <input type="radio" name="opcao" value="{{ opcao }}" required>
+                {{ opcao }}
+            </label>
+            {% endfor %}
+            <button type="submit" class="btn-submit">Confirmar Voto</button>
+        </form>
+        <a href="/" class="back-link">Cancelar e voltar</a>
+    </div>
+</body>
+</html>

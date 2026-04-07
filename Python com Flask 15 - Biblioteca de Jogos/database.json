@@ -1,0 +1,26 @@
+[
+    {
+        "id": "dd01b434-5a56-481c-9daf-391bf2f31f93",
+        "titulo": "Domin\u00f3",
+        "categoria": "Tabuleiro",
+        "jogadores": "4",
+        "status": "Emprestado",
+        "emprestado_para": "Carlos Jos\u00e9"
+    },
+    {
+        "id": "e1ce34a1-8d63-4054-8175-9835b6484fe7",
+        "titulo": "Xadrez",
+        "categoria": "Tabuleiro",
+        "jogadores": "2",
+        "status": "Dispon\u00edvel",
+        "emprestado_para": ""
+    },
+    {
+        "id": "41d4bd0a-9628-4338-8ebe-48be255ca615",
+        "titulo": "Damas",
+        "categoria": "Tabuleiro",
+        "jogadores": "2",
+        "status": "Dispon\u00edvel",
+        "emprestado_para": ""
+    }
+]

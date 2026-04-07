@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Simples</title>
+    <style>
+        /* Estilos Globais e Fundo de Tela Moderno */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #12042b 0%, #032d4b 100%);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        /* O Contêiner Central (Cartão) */
+        .form-container {
+            background: rgba(255, 255, 255, 0.08); /* Fundo semi-transparente */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            width: 400px;
+            backdrop-filter: blur(10px); /* Efeito de vidro borrado */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px); /* Pequeno pulo ao passar o mouse */
+        }
+
+        /* Título Principal */
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: #00f2fe; /* Azul vibrante */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0,242,254,0.5);
+        }
+
+        /* Estrutura dos Campos */
+        .campo {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        /* Rótulos (Nome, Idade, etc) */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4facfe; /* Outro tom de azul */
+        }
+
+        /* Estilo para Campos de Entrada, Seleção e Texto */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #032d4b;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box; /* Garante que o padding não aumente o tamanho */
+            transition: all 0.3s ease;
+        }
+
+        /* Efeitos ao Clicar/Focar no Campo */
+        input:focus, select:focus, textarea:focus {
+            border-color: #00f2fe;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0,242,254,0.3);
+            outline: none;
+        }
+
+        /* Estilo Específico para o Campo de Gênero */
+        select option {
+            background-color: #12042b;
+            color: #fff;
+        }
+
+        /* Estilo Específico para a Área de Texto (Hobbies) */
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        /* Estilo Específico para os Placeholders */
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* O Botão de Enviar Colorido e Animado */
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #00f2fe 0%, #4facfe 100%);
+            color: #12042b;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,242,254,0.4);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            color: #5b1010;
+            box-shadow: 0 5px 20px rgba(255,154,158,0.5);
+            transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Detalhe Decorativo Inferior (Rodapé) */
+        .footer-decor {
+            position: fixed;
+            bottom: 20px;
+            color: rgba(255,255,255,0.2);
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="form-container">
+        <h2>Cadastro de Usuário</h2>
+        <form action="/enviar" method="POST">
+            <div class="campo">
+                <label>Seu Nome Completo:</label>
+                <input type="text" name="nome" placeholder="Digite seu nome..." required>
+            </div>
+            <div class="campo">
+                <label>Sua Idade:</label>
+                <input type="number" name="idade" placeholder="Ex: 25" required>
+            </div>
+            <div class="campo">
+                <label>Seu Melhor Email:</label>
+                <input type="email" name="email" placeholder="exemplo@email.com" required>
+            </div>
+            <div class="campo">
+                <label>Gênero:</label>
+                <select name="genero">
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label>Seus Hobbies Favoritos:</label>
+                <textarea name="hobbies" placeholder="Ex: Programar, Ler livros, Praticar esportes..."></textarea>
+            </div>
+            <button type="submit">Enviar Meus Dados</button>
+        </form>
+    </div>
+
+    <div class="footer-decor">
+        Projeto Flask | JSON Database
+    </div>
+
+</body>
+</html>

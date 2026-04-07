@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ action }} Projeto - Voluntariado</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --text: #2d3436;
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg); 
+            color: var(--text);
+            margin: 0; 
+            padding: 20px; 
+            display: flex;
+            justify-content: center;
+        }
+        .container { 
+            max-width: 600px; 
+            width: 100%;
+            background: var(--white); 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 30px; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary); }
+        
+        input[type="text"], 
+        textarea, 
+        select, 
+        input[type="date"] {
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 20px;
+            border: 2px solid #eee; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--secondary); outline: none; }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        .btn { 
+            flex: 1;
+            padding: 15px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: bold; 
+            text-align: center;
+            font-size: 16px;
+            transition: 0.3s; 
+        }
+        .btn-save { background: var(--primary); }
+        .btn-cancel { background: #b2bec3; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ action }} Projeto</h2>
+        <form method="POST">
+            <label>Nome do Projeto</label>
+            <input type="text" name="nome" placeholder="Ex: Ajudar Orfanato" value="{{ projeto.nome or '' }}" required>
+            
+            <label>Descrição Detalhada</label>
+            <textarea name="descricao" rows="5" placeholder="Descreva os objetivos do projeto..." required>{{ projeto.descricao or '' }}</textarea>
+            
+            <label>Data de Início</label>
+            <input type="date" name="data_inicio" value="{{ projeto.data_inicio or '' }}" required>
+            
+            <label>Previsão de Término</label>
+            <input type="date" name="data_fim" value="{{ projeto.data_fim or '' }}" required>
+            
+            <label>Status Atual</label>
+            <select name="status">
+                <option value="Concluído" {% if projeto.status == 'Concluído' %}selected{% endif %}>Concluído</option>
+                <option value="Não Concluído" {% if projeto.status == 'Não Concluído' %}selected{% endif %}>Não Concluído</option>
+            </select>
+            
+            <div class="btn-group">
+                <button type="submit" class="btn btn-save">Salvar Alterações</button>
+                <a href="/" class="btn btn-cancel">Voltar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

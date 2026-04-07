@@ -1,0 +1,86 @@
+[
+    {
+        "date": "2026-03-11",
+        "description": "Conta de Ágia",
+        "amount": 380,
+        "type": "expense"
+    },
+    {
+        "date": "2026-03-09",
+        "description": "Vendas de Produtos",
+        "amount": 200,
+        "type": "income"
+    },
+    {
+        "date": "2026-03-20",
+        "description": "Venda de Produtos",
+        "amount": 250,
+        "type": "income"
+    },
+    {
+        "date": "2026-02-02",
+        "description": "Conta de Luz",
+        "amount": 280.52,
+        "type": "expense"
+    },
+    {
+        "date": "2026-02-05",
+        "description": "IPTU",
+        "amount": 1204.52,
+        "type": "expense"
+    },
+    {
+        "date": "2026-02-07",
+        "description": "Serviços Externos",
+        "amount": 2500,
+        "type": "income"
+    },
+    {
+        "date": "2026-01-01",
+        "description": "Simples",
+        "amount": 85,
+        "type": "expense"
+    },
+    {
+        "date": "2026-01-03",
+        "description": "DARF",
+        "amount": 125.66,
+        "type": "expense"
+    },
+    {
+        "date": "2026-01-12",
+        "description": "Serviços Externos",
+        "amount": 1232,
+        "type": "income"
+    },
+    {
+        "date": "2025-12-01",
+        "description": "Conta de Água ",
+        "amount": 345.33,
+        "type": "expense"
+    },
+    {
+        "date": "2025-12-02",
+        "description": "Conta de Luz",
+        "amount": 85.66,
+        "type": "expense"
+    },
+    {
+        "date": "2025-12-04",
+        "description": "Conta de Internet",
+        "amount": 88.32,
+        "type": "expense"
+    },
+    {
+        "date": "2025-12-07",
+        "description": "Venda de Produtos",
+        "amount": 120,
+        "type": "income"
+    },
+    {
+        "date": "2025-12-11",
+        "description": "Serviços Externos",
+        "amount": 523,
+        "type": "income"
+    }
+]

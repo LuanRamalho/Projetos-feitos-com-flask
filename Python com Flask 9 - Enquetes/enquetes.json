@@ -1,0 +1,18 @@
+{
+    "Qual é a linguagem de programação mais popular do mundo?": {
+        "C": 0,
+        "C++": 1,
+        "C#": 2,
+        "Python": 8,
+        "Java": 1,
+        "Javascript": 4
+    },
+    "Qual a sua cor favorita": {
+        "Verde": 2,
+        "Amarelo": 1,
+        "Vermelho": 1,
+        "Azul": 12,
+        "Roxo": 1,
+        "Rosa": 2
+    }
+}

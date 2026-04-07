@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes - {{ name }}</title>
+    <style>
+        :root {
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --primary: #4a69bd;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --border-color: #dcdde1;
+            --radius: 8px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-body);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 { margin-bottom: 25px; color: var(--primary); border-bottom: 2px solid var(--bg-body); padding-bottom: 10px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 5px;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: var(--radius);
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-add { background: #eee; color: var(--primary); margin-bottom: 20px; font-size: 0.85rem; }
+        .btn-add:hover { background: var(--primary); color: white; }
+
+        .save-btn { background: var(--success); color: white; padding: 12px 25px; }
+        .del-btn { color: var(--danger); text-decoration: none; font-weight: bold; }
+        
+        .actions {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icon-action { cursor: pointer; font-size: 1.2rem; user-select: none; }
+        .remove-btn { color: var(--danger); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Site: {{ name }}</h2>
+        <form action="/update/{{ name }}" method="POST">
+            <div class="form-group">
+                <label>URL do Site</label>
+                <input type="text" name="url" value="{{ data.url }}">
+            </div>
+            <div class="form-group">
+                <label>Usuário Principal</label>
+                <input type="text" name="user" value="{{ data.user }}">
+            </div>
+
+            <div id="password-section">
+                <label>Senhas Armazenadas</label>
+                {% for pwd in data.passwords %}
+                <div class="input-row">
+                    <input type="password" name="passwords[]" value="{{ pwd }}">
+                    <span class="icon-action" onclick="toggleView(this)">👁️</span>
+                    <span class="icon-action remove-btn" onclick="this.parentElement.remove()">X</span>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-add" onclick="addPassword()">+ Adicionar Senha Extra</button>
+
+            <div id="extra-fields-section">
+                <label>Outras Informações (Campos Extras)</label>
+                {% for key, val in data.extra_fields.items() %}
+                <div class="input-row">
+                    <input type="text" name="extra_keys[]" value="{{ key }}" placeholder="Campo">
+                    <input type="text" name="extra_vals[]" value="{{ val }}" placeholder="Valor">
+                    <span class="icon-action remove-btn" onclick="this.parentElement.remove()">X</span>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-add" onclick="addField()">+ Adicionar Campo Extra</button>
+
+            <div class="actions">
+                <button type="submit" class="btn save-btn">✅ Atualizar Dados</button>
+                <a href="/delete/{{ name }}" class="del-btn" onclick="return confirm('Excluir permanentemente?')">Excluir Site</a>
+                <a href="/" style="color: #7f8c8d; text-decoration: none;">⬅ Voltar</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleView(el) {
+            const input = el.previousElementSibling;
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function addPassword() {
+            const div = document.createElement('div');
+            div.className = 'input-row';
+            div.innerHTML = `<input type="password" name="passwords[]" placeholder="Nova Senha">
+                             <span class="icon-action" onclick="toggleView(this)">👁️</span>
+                             <span class="icon-action remove-btn" onclick="this.parentElement.remove()">X</span>`;
+            document.getElementById('password-section').appendChild(div);
+        }
+
+        function addField() {
+            const div = document.createElement('div');
+            div.className = 'input-row';
+            div.innerHTML = `<input type="text" name="extra_keys[]" placeholder="Ex: Chave de Recuperação">
+                             <input type="text" name="extra_vals[]" placeholder="Valor">
+                             <span class="icon-action remove-btn" onclick="this.parentElement.remove()">X</span>`;
+            document.getElementById('extra-fields-section').appendChild(div);
+        }
+    </script>
+</body>
+</html>
