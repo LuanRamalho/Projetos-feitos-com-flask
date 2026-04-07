@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo - DevLearn</title>
+    <style>
+        :root { --primary: #6C63FF; --danger: #ff4757; --success: #2ed573; }
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        .admin-container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #444; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; }
+        .btn-add { background: var(--success); width: 100%; font-size: 16px; margin-top: 10px; }
+        .btn-del { background: var(--danger); text-decoration: none; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; }
+        .color-preview { width: 20px; height: 20px; border-radius: 50%; display: inline-block; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <a href="/">← Voltar para a Home</a>
+        <h1>Gerenciar Tutoriais (CRUD)</h1>
+        
+        <form action="/admin/add" method="POST">
+            <div class="form-group">
+                <label>Título do Tutorial</label>
+                <input type="text" name="titulo" required placeholder="Ex: Masterizando Listas em Python">
+            </div>
+            <div class="form-group">
+                <label>Pequena Descrição</label>
+                <input type="text" name="descricao" required placeholder="Breve resumo para o card">
+            </div>
+            <div class="form-group">
+                <label>Conteúdo Educativo</label>
+                <textarea name="conteudo" rows="5" required placeholder="Explicação detalhada..."></textarea>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 2;">
+                    <label>Pergunta do Quiz</label>
+                    <input type="text" name="pergunta_quiz" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>Resposta Correta</label>
+                    <input type="text" name="resposta_correta" required>
+                </div>
+                <div class="form-group" style="flex: 0.5;">
+                    <label>Cor (Hex)</label>
+                    <input type="color" name="cor" value="#6C63FF">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-add">🚀 Criar Novo Tutorial</button>
+        </form>
+
+        <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+        <h3>Tutoriais Ativos</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Cor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in tutorials %}
+                <tr>
+                    <td>{{ t.id }}</td>
+                    <td>{{ t.titulo }}</td>
+                    <td><div class="color-preview" style="background: {{ t.cor }}"></div></td>
+                    <td>
+                        <a href="/admin/edit/{{ t.id }}" class="btn" style="background: #f1c40f; text-decoration: none; font-size: 12px; margin-right: 5px;">Editar</a>
+                        <a href="/admin/delete/{{ t.id }}" class="btn btn-del" onclick="return confirm('Tem certeza?')">Excluir</a>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

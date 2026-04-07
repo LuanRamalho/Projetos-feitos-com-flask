@@ -1,0 +1,44 @@
+[
+    {
+        "nome": "Projetos com Python",
+        "time": "Equipe composta por 10 programadores experientes em python",
+        "prazo": "2023-03-03",
+        "status": "pendente",
+        "descricao": "Projeto com MySQL, django."
+    },
+    {
+        "nome": "Desenvolvimento de API Node.js",
+        "time": "Backend Squad",
+        "prazo": "2026-05-15",
+        "status": "em_andamento",
+        "descricao": "Criação de endpoints RESTful para o sistema de inventário utilizando Express e MongoDB."
+    },
+    {
+        "nome": "Refatoração de Frontend React",
+        "time": "UI/UX Design Team",
+        "prazo": "2026-04-20",
+        "status": "pendente",
+        "descricao": "Migração de componentes de classe para Functional Components e implementação de Tailwind CSS."
+    },
+    {
+        "nome": "Implementação de Autenticação OAuth2",
+        "time": "Cyber Security Group",
+        "prazo": "2026-06-01",
+        "status": "em_andamento",
+        "descricao": "Configuração de login social via Google e GitHub para aumentar a segurança do portal."
+    },
+    {
+        "nome": "Migração de Banco de Dados",
+        "time": "Data Engineering",
+        "prazo": "2026-03-25",
+        "status": "concluido",
+        "descricao": "Transferência completa de dados do ambiente de staging para produção no PostgreSQL."
+    },
+    {
+        "nome": "Testes Automatizados com Pytest",
+        "time": "QA Quality Assurance",
+        "prazo": "2026-05-10",
+        "status": "pendente",
+        "descricao": "Criação de suites de teste unitário e de integração para garantir a estabilidade do código Python."
+    }
+]

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Master - Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: #6c5ce7; color: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; }
+        .btn-add { background-color: #00b894; }
+        .btn-edit { background-color: #0984e3; }
+        .btn-del { background-color: #d63031; }
+        .btn-reg { background-color: #fdcb6e; color: #2d3436; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 12px; border-left: 8px solid #6c5ce7; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .card h3 { margin-top: 0; color: #2d3436; }
+        .card p { color: #636e72; font-size: 0.9em; }
+        .badge { background: #dfe6e9; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; margin-right: 5px; }
+        .actions { margin-top: 15px; display: flex; gap: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Event Master</h1>
+            <a href="/evento/novo" class="btn btn-add">+ Novo Evento</a>
+        </header>
+        <div class="grid">
+            {% for e in eventos %}
+            <div class="card">
+                <h3>{{ e.nome }}</h3>
+                <p><strong>Data:</strong> {{ e.data }}</p>
+                <p><strong>Palestrantes:</strong><br>
+                   {% for p in e.palestrantes %}<span class="badge">{{ p }}</span>{% endfor %}</p>
+                <p><strong>Vagas:</strong> {{ e.participantes|length }} / {{ e.vagas }}</p>
+                <div class="actions">
+                    <a href="/evento/registrar/{{ e.id }}" class="btn btn-reg">Inscrição</a>
+                    <a href="/evento/editar/{{ e.id }}" class="btn btn-edit">📝</a>
+                    <a href="/evento/deletar/{{ e.id }}" class="btn btn-del" onclick="return confirm('Excluir evento?')">🗑️</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

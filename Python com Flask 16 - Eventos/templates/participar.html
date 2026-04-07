@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; background: #fab1a0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .reg-card { background: white; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        input { padding: 15px; width: 250px; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 20px; }
+        .btn-go { background: #e17055; color: white; border: none; padding: 15px 30px; border-radius: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="reg-card">
+        <h1>Participar de: {{ evento.nome }}</h1>
+        <p>Garanta sua vaga agora!</p>
+        <form method="POST">
+            <input type="text" name="nome_participante" placeholder="Seu nome completo" required><br>
+            <button type="submit" class="btn-go">Confirmar Presença</button>
+        </form>
+        <br>
+        <a href="/">Voltar</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ acao }}</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; padding: 50px; }
+        .form-card { background: white; padding: 30px; border-radius: 15px; width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h2 { color: #6c5ce7; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #dfe6e9; border-radius: 8px; box-sizing: border-box; }
+        .btn-save { width: 100%; background: #6c5ce7; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="form-card">
+        <h2>{{ acao }}</h2>
+        <form method="POST">
+            <label>Nome do Evento</label>
+            <input type="text" name="nome" value="{{ evento.nome if evento else '' }}" required>
+            <label>Data</label>
+            <input type="date" name="data" value="{{ evento.data if evento else '' }}" required>
+            <label>Palestrantes (separe por vírgula)</label>
+            <input type="text" name="palestrantes" value="{{ palestrantes_str if evento else '' }}" placeholder="Ex: João, Maria">
+            <label>Capacidade Máxima</label>
+            <input type="number" name="vagas" value="{{ evento.vagas if evento else '' }}" required>
+            <button type="submit" class="btn-save">Salvar Evento</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tutorial.titulo }} - DevLearn</title>
+    <style>
+        :root {
+            --primary: {{ tutorial.cor }};
+            --bg: #f0f2f5;
+            --text: #2d3436;
+        }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; 
+            color: var(--text);
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+        }
+        .header-tutorial {
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            white-space: pre-wrap; /* Mantém as quebras de linha do conteúdo */
+        }
+        .quiz-card {
+            background: #f8f9fa;
+            border: 2px dashed var(--primary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        .quiz-card h3 { margin-top: 0; color: var(--primary); }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            margin: 15px 0;
+            box-sizing: border-box;
+        }
+        .btn-check {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        .btn-check:hover { opacity: 0.9; }
+        
+        #feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            font-weight: bold;
+            text-align: center;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        .back-link { text-decoration: none; color: #666; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        .back-link:hover { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Voltar para a lista</a>
+        
+        <div class="header-tutorial">
+            <h1>{{ tutorial.titulo }}</h1>
+        </div>
+
+        <div class="content">
+            {{ tutorial.conteudo }}
+        </div>
+
+        <div class="quiz-card">
+            <h3>🧠 Desafio Prático</h3>
+            {% for i in range(tutorial.pergunta_quiz|length) %}
+            <div class="pergunta-item" style="margin-bottom: 20px;">
+                <p><strong>{{ i + 1 }}.</strong> {{ tutorial.pergunta_quiz[i] }}</p>
+                <input type="text" class="userAnswer" data-index="{{ i }}" placeholder="Sua resposta...">
+            </div>
+            {% endfor %}
+            
+            <button class="btn-check" onclick="verifyAllAnswers()">Verificar Tudo</button>
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        async function verifyAllAnswers() {
+            const inputs = document.querySelectorAll('.userAnswer');
+            const feedbackDiv = document.getElementById('feedback');
+            let acertos = 0;
+            let total = inputs.length;
+
+            // Limpa o feedback anterior
+            feedbackDiv.style.display = 'none';
+            feedbackDiv.className = '';
+
+            for (let input of inputs) {
+                const index = input.getAttribute('data-index');
+                const answer = input.value.trim();
+                
+                // Faz a requisição para a nova rota que valida por índice
+                const response = await fetch(`/check_answer/{{ tutorial.id }}/${index}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `answer=${encodeURIComponent(answer)}`
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    input.style.borderColor = '#2ed573'; // Verde para correto
+                    acertos++;
+                } else {
+                    input.style.borderColor = '#ff4757'; // Vermelho para errado
+                }
+            }
+
+            // Exibe o resultado final
+            feedbackDiv.style.display = 'block';
+            if (acertos === total) {
+                feedbackDiv.innerText = `Excelente! Você acertou todas as ${total} perguntas! 🎉`;
+                feedbackDiv.className = 'success';
+            } else {
+                feedbackDiv.innerText = `Você acertou ${acertos} de ${total}. Revise os campos em vermelho! ✍️`;
+                feedbackDiv.className = 'error';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Serviços</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 40px; }
+        .doc-page { background: white; padding: 50px; border-radius: 5px; box-shadow: 0 0 20px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
+        
+        .header { text-align: center; border-bottom: 2px solid #333; margin-bottom: 30px; padding-bottom: 10px; }
+        .service-item { border-bottom: 1px dashed #ccc; padding: 15px 0; display: flex; justify-content: space-between; align-items: center; }
+        .service-details b { color: #6c5ce7; font-size: 18px; }
+        .service-details p { margin: 3px 0; color: #555; }
+        
+        .export-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,0.9); padding: 15px 30px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; gap: 15px; }
+        .btn-export { padding: 10px 20px; border-radius: 25px; color: white; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-csv { background: #f39c12; }
+        .btn-excel { background: #27ae60; }
+        .btn-pdf { background: #e74c3c; }
+        .back { display: block; text-align: center; margin-top: 20px; color: #6c5ce7; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="doc-page">
+        <div class="header">
+            <h1>Relatório Geral de Serviços</h1>
+            <p>Gerado em: 07/04/2026</p>
+        </div>
+
+        {% for s in services %}
+        <div class="service-item">
+            <div class="service-details">
+                <b>{{ s.nome }}</b>
+                <p>Categoria: {{ s.categoria }} | Data: {{ s.data }}</p>
+            </div>
+            <div style="font-weight: bold; font-size: 20px; color: #2d3436;">
+                R$ {{ s.preco }}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <a href="/" class="back">← Voltar ao início</a>
+    </div>
+
+    <div class="export-bar">
+        <a href="/export/csv" class="btn-export btn-csv">Exportar CSV</a>
+        <a href="/export/excel" class="btn-export btn-excel">Exportar Excel</a>
+        <a href="/export/pdf" class="btn-export btn-pdf">Exportar PDF</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+    {
+        "id": "37463165-b43b-4cc8-aae8-6496e9ec1438",
+        "destino": "Paris, França",
+        "data": "03/05/2024",
+        "orcamento": "R$ 3.000,00",
+        "atividades": "Passear pelos principais pontos turísticos da cidade e jantar em um bistrô em Montmartre.",
+        "pontos_turisticos": "Torre Eiffel, Arco do Triunfo, Champs-Élysées, Museu do Louvre"
+    },
+    {
+        "id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+        "destino": "Tóquio, Japão",
+        "data": "15/10/2025",
+        "orcamento": "R$ 12.500,00",
+        "atividades": "Explorar a cultura geek em Akihabara, visitar templos históricos e experimentar o autêntico sushi no mercado de Peixes.",
+        "pontos_turisticos": "Cruzamento de Shibuya, Templo Senso-ji, Torre de Tóquio, Akihabara Electric Town"
+    },
+    {
+        "id": "b2c3d4e5-f6a7-4b6c-9d0e-1f2a3b4c5d6e",
+        "destino": "Gramado, Brasil",
+        "data": "20/07/2025",
+        "orcamento": "R$ 4.200,00",
+        "atividades": "Tour pelas fábricas de chocolate, jantar romântico com fondue e passeio pelo centro decorado.",
+        "pontos_turisticos": "Lago Negro, Mini Mundo, Rua Coberta, Snowland"
+    },
+    {
+        "id": "c3d4e5f6-a7b8-4c7d-0e1f-2a3b4c5d6e7f",
+        "destino": "Roma, Itália",
+        "data": "12/09/2025",
+        "orcamento": "R$ 8.900,00",
+        "atividades": "Degustação de vinhos locais, tour gastronômico de massas e exploração de ruínas antigas.",
+        "pontos_turisticos": "Coliseu, Fontana di Trevi, Panteão, Praça de São Pedro"
+    },
+    {
+        "id": "d4e5f6a7-b8c9-4d8e-1f0a-3b4c5d6e7f8g",
+        "destino": "Nova York, EUA",
+        "data": "31/12/2025",
+        "orcamento": "R$ 15.000,00",
+        "atividades": "Assistir à queda da bola na Times Square, patinar no gelo no Central Park e ver um musical da Broadway.",
+        "pontos_turisticos": "Times Square, Estátua da Liberdade, Central Park, Empire State Building"
+    }
+]

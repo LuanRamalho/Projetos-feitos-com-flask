@@ -1,0 +1,35 @@
+{
+    "perfil": {
+        "nome": "Luan Ramalho",
+        "cargo": "Full Stack Developer",
+        "bio": "Desenvolvedor focado em Python, C# e arquiteturas NoSQL.",
+        "redes_sociais": [
+            {
+                "nome": "GitHub",
+                "url": "#"
+            },
+            {
+                "nome": "LinkedIn",
+                "url": "#"
+            },
+            {
+                "nome": "Telegram",
+                "url": "#"
+            }
+        ]
+    },
+    "habilidades": [
+        "Python",
+        "Flask",
+        "C#",
+        "Javascript",
+        "HTML/CSS"
+    ],
+    "projetos": [
+        {
+            "titulo": "Projeto Inicial",
+            "descricao": "Este é um projeto de exemplo carregado do JSON.",
+            "link": "#"
+        }
+    ]
+}

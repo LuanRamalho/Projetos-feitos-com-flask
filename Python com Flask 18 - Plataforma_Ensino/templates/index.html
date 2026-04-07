@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>DevLearn - Plataforma Interativa</title>
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --bg: #f4f7f6;
+            --dark: #2d3436;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; }
+        nav { background: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .container { padding: 2rem; max-width: 1200px; margin: auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease; border-top: 8px solid var(--primary); }
+        .card:hover { transform: translateY(-10px); }
+        .btn { padding: 10px 20px; border-radius: 25px; border: none; cursor: pointer; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-main { background: var(--secondary); color: white; }
+        .btn-main:hover { background: #ff476d; }
+        h1 { color: var(--dark); }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>🚀 DevLearn</h2>
+        <a href="/admin" style="color: white; text-decoration: none; font-weight: bold;">Painel Admin</a>
+    </nav>
+    <div class="container">
+        <h1>Tutoriais Disponíveis</h1>
+        <div class="grid">
+            {% for t in tutorials %}
+            <div class="card" style="border-top-color: {{ t.cor }}">
+                <h3 style="color: {{ t.cor }}">{{ t.titulo }}</h3>
+                <p>{{ t.descricao }}</p>
+                <a href="/tutorial/{{ t.id }}" class="btn btn-main">Começar Agora</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

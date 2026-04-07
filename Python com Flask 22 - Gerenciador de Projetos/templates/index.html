@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Hub - Gestão de Tarefas</title>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent: #fd79a8;
+            --edit: #f1c40f;
+            --dark: #2d3436;
+            --white: #ffffff;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); padding: 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; }
+
+        .controls {
+            background: var(--white); padding: 20px; border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px;
+            display: flex; gap: 10px; flex-wrap: wrap;
+        }
+
+        input, select, button, textarea { padding: 10px; border: 2px solid #dfe6e9; border-radius: 8px; outline: none; font-family: inherit; }
+        button { cursor: pointer; background: var(--primary); color: white; border: none; font-weight: bold; }
+        
+        .btn-search { background: var(--secondary); }
+        .btn-delete { background: var(--accent); color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; font-size: 0.85em; font-weight: bold; }
+        .btn-edit-toggle { background: var(--edit); color: #2d3436; padding: 8px 12px; border-radius: 5px; font-size: 0.85em; font-weight: bold; cursor: pointer; }
+
+        .task-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; }
+        
+        .card { 
+            background: var(--white); 
+            padding: 25px; 
+            border-radius: 12px; 
+            border-left: 8px solid var(--primary); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-header { 
+            align-self: flex-start;
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            font-size: 0.7em; 
+            font-weight: 900; 
+            color: white; 
+            margin-bottom: 15px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pendente { background: #e17055 !important; }      
+        .em_andamento { background: #0984e3 !important; }  
+        .concluido { background: #00b894 !important; }     
+
+        .card h3 { margin: 0 0 12px 0; color: var(--dark); font-size: 1.4em; }
+        .card p { margin: 6px 0; color: #636e72; font-size: 1em; }
+        .card .desc-text { background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9em; font-style: italic; margin-top: 10px; border-left: 3px solid #ccc; }
+        
+        .edit-form { display: none; background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; }
+        .edit-form input, .edit-form textarea { width: 92%; margin-bottom: 10px; display: block; font-size: 0.9em; }
+        .btn-save { background: #2ecc71; width: 100%; margin-top: 5px; }
+        
+        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+        .footer-card { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+
+    </style>
+    <script>
+        function toggleEdit(index) {
+            var form = document.getElementById('edit-form-' + index);
+            var content = document.getElementById('content-' + index);
+            if (form.style.display === 'none' || form.style.display === '') {
+                form.style.display = 'block';
+                content.style.display = 'none';
+            } else {
+                form.style.display = 'none';
+                content.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <header><h1>🚀 Project Hub</h1></header>
+
+    <form class="controls" action="/add" method="POST">
+        <input type="text" name="nome" placeholder="Título da Tarefa" required style="flex-grow: 1;">
+        <input type="text" name="time" placeholder="Equipe" required>
+        <input type="date" name="prazo" required>
+        <select name="status">
+            <option value="pendente">Pendente</option>
+            <option value="em_andamento">Em Andamento</option>
+            <option value="concluido">Concluído</option>
+        </select>
+        <textarea name="descricao" placeholder="Descrição curta da tarefa..." style="width: 100%; margin-top: 10px; height: 60px;"></textarea>
+        <button type="submit" style="width: 100%; margin-top: 5px;">Adicionar Tarefa</button>
+    </form>
+
+    <div class="controls">
+        <form action="/" method="GET" style="display: flex; gap: 10px; width: 100%;">
+            <input type="text" name="busca" value="{{ busca }}" placeholder="Filtrar por título..." style="flex-grow: 1;">
+            <button type="submit" class="btn-search">Filtrar</button>
+            <a href="/"><button type="button" style="background: #b2bec3;">Limpar</button></a>
+        </form>
+    </div>
+
+    <div class="task-grid">
+        {% for tarefa in tarefas %}
+        <div class="card">
+            <div class="status-header {{ tarefa.status }}">
+                {{ tarefa.status.replace('_', ' ') }}
+            </div>
+
+            <div id="content-{{ loop.index0 }}">
+                <h3>{{ tarefa.nome }}</h3>
+                <p>👥 <strong>Time:</strong> {{ tarefa.time }}</p>
+                <p>📅 <strong>Prazo:</strong> {{ tarefa.prazo_formatado }}</p>
+                {% if tarefa.descricao %}
+                <div class="desc-text">{{ tarefa.descricao }}</div>
+                {% endif %}
+            </div>
+            
+            <form id="edit-form-{{ loop.index0 }}" class="edit-form" action="/update_completo/{{ loop.index0 }}" method="POST">
+                <label style="font-size: 0.8em; font-weight: bold;">Título:</label>
+                <input type="text" name="nome_editado" value="{{ tarefa.nome }}" required>
+                
+                <label style="font-size: 0.8em; font-weight: bold;">Equipe:</label>
+                <input type="text" name="time_editado" value="{{ tarefa.time }}" required>
+                
+                <label style="font-size: 0.8em; font-weight: bold;">Data:</label>
+                <input type="date" name="prazo_editado" value="{{ tarefa.prazo }}" required>
+
+                <label style="font-size: 0.8em; font-weight: bold;">Descrição:</label>
+                <textarea name="descricao_editada" style="width: 92%; height: 60px; margin-bottom: 10px;">{{ tarefa.descricao }}</textarea>
+                
+                <button type="submit" class="btn-save">Salvar</button>
+                <button type="button" onclick="toggleEdit({{ loop.index0 }})" style="background:#95a5a6; width: 100%; margin-top: 5px;">Cancelar</button>
+            </form>
+
+            <hr>
+            
+            <div class="footer-card">
+                <form action="/edit_status/{{ loop.index0 }}" method="POST">
+                    <select name="status" onchange="this.form.submit()" style="font-size: 0.85em;">
+                        <option value="pendente" {{ 'selected' if tarefa.status == 'pendente' }}>Pendente</option>
+                        <option value="em_andamento" {{ 'selected' if tarefa.status == 'em_andamento' }}>Em Andamento</option>
+                        <option value="concluido" {{ 'selected' if tarefa.status == 'concluido' }}>Concluído</option>
+                    </select>
+                </form>
+
+                <div>
+                    <span class="btn-edit-toggle" onclick="toggleEdit({{ loop.index0 }})">Editar</span>
+                    <a href="/delete/{{ loop.index0 }}" class="btn-delete" onclick="return confirm('Excluir?')">Excluir</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

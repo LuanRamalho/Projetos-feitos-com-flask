@@ -1,0 +1,104 @@
+[
+    {
+        "id": 1,
+        "titulo": "Introdução ao Python",
+        "descricao": "Aprenda os conceitos básicos da linguagem que mais cresce no mundo.",
+        "conteudo": "Python é uma linguagem de alto nível, interpretada e de tipagem dinâmica. É amplamente usada em Ciência de Dados e Backend.",
+        "pergunta_quiz": [
+            "Qual função usamos para exibir algo na tela?",
+            "Qual o símbolo usado para comentários de uma linha?",
+            "Como se chama a estrutura de repetição que percorre uma lista?"
+        ],
+        "resposta_correta": [
+            "print()",
+            "#",
+            "for"
+        ],
+        "cor": "#6c63ff"
+    },
+    {
+        "id": 2,
+        "titulo": "JavaScript Moderno",
+        "descricao": "Domine a linguagem que dá vida à web e brilha no Frontend.",
+        "conteudo": "O JavaScript permite criar interfaces interativas. Atualmente, o padrão ES6+ trouxe funcionalidades como Arrow Functions e Destructuring.",
+        "pergunta_quiz": [
+            "Qual palavra-chave declara uma variável que não pode ser reatribuída?",
+            "Qual método de array é usado para criar uma nova lista baseada na original?",
+            "Qual o operador de igualdade estrita (valor e tipo)?"
+        ],
+        "resposta_correta": [
+            "const",
+            "map",
+            "==="
+        ],
+        "cor": "#f1c40f"
+    },
+    {
+        "id": 3,
+        "titulo": "Estruturas de Dados",
+        "descricao": "Entenda como organizar informações de forma eficiente no seu código.",
+        "conteudo": "Arrays e Objetos são fundamentais. Enquanto Arrays são listas indexadas, Objetos (ou Dicionários) guardam pares de chave e valor.",
+        "pergunta_quiz": [
+            "Qual o índice do primeiro elemento de um Array?",
+            "Qual estrutura segue a regra LIFO (Last In, First Out)?",
+            "Como se chama uma lista de pares chave-valor em JS?"
+        ],
+        "resposta_correta": [
+            "0",
+            "Pilha",
+            "Objeto"
+        ],
+        "cor": "#2ecc71"
+    },
+    {
+        "id": 4,
+        "titulo": "CSS Flexbox",
+        "descricao": "Aprenda a criar layouts responsivos de maneira simples e elegante.",
+        "conteudo": "O Flexbox é um modelo de layout unidimensional que facilita o alinhamento de itens dentro de um container, independente do tamanho da tela.",
+        "pergunta_quiz": [
+            "Qual propriedade define a direção dos itens no container?",
+            "Qual valor de justify-content espalha itens com espaço igual entre eles?",
+            "Qual propriedade alinha itens no eixo transversal (vertical por padrão)?"
+        ],
+        "resposta_correta": [
+            "flex-direction",
+            "space-between",
+            "align-items"
+        ],
+        "cor": "#3498db"
+    },
+    {
+        "id": 5,
+        "titulo": "Node.js e Backend",
+        "descricao": "Leve seu conhecimento de JavaScript para o lado do servidor.",
+        "conteudo": "O Node.js permite executar JavaScript fora do navegador. Ele é baseado em eventos e ideal para aplicações escaláveis em tempo real.",
+        "pergunta_quiz": [
+            "Qual comando do terminal usamos para iniciar um projeto Node?",
+            "Qual o gerenciador de pacotes padrão do Node?",
+            "Qual objeto global fornece informações sobre o diretório atual?"
+        ],
+        "resposta_correta": [
+            "npm init",
+            "npm",
+            "__dirname"
+        ],
+        "cor": "#e67e22"
+    },
+    {
+        "id": 6,
+        "titulo": "Tags Semânticas HTML5",
+        "descricao": "Melhore o SEO e a acessibilidade do seu site com a estrutura correta.",
+        "conteudo": "Tags como <main>, <article> e <section> ajudam os motores de busca a entender o que é mais importante no seu documento HTML.",
+        "pergunta_quiz": [
+            "Qual tag representa o rodapé de uma página?",
+            "Qual tag define o conteúdo principal de um documento?",
+            "Qual tag é usada para links de navegação?"
+        ],
+        "resposta_correta": [
+            "<footer>",
+            "<main>",
+            "<nav>"
+        ],
+        "cor": "#e74c3c"
+    }
+]

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Funcionários</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background-color: #6c5ce7 !important; }
+        .card { border: none; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .btn-primary { background-color: #00cec9; border: none; }
+        .btn-primary:hover { background-color: #00b894; }
+        .btn-warning { background-color: #fdcb6e; border: none; color: white !important; }
+        .btn-warning:hover { background-color: #f1c40f; }
+        .btn-danger { background-color: #ff7675; border: none; }
+        .table thead { background-color: #74b9ff; color: white; }
+        .badge-salary { background-color: #55efc4; color: #2d3436; font-weight: bold; padding: 8px; }
+        .search-section { background-color: #fab1a0; border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+        .modal-content { border: none; border-radius: 15px; }
+        .modal-header { background-color: #6c5ce7; color: white; border-radius: 15px 15px 0 0; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark mb-4 shadow-sm">
+    <div class="container">
+        <span class="navbar-brand mb-0 h1">🚀 AdminEmpresa JSON</span>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="search-section shadow-sm">
+        <form class="row g-3" method="GET" action="/">
+            <div class="col-md-5">
+                <input type="text" name="nome" class="form-control" placeholder="Buscar por Nome...">
+            </div>
+            <div class="col-md-5">
+                <input type="text" name="cargo" class="form-control" placeholder="Buscar por Cargo...">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-dark w-100">Filtrar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card p-4 mb-4">
+                <h4 class="mb-3" style="color: #6c5ce7;">Novo Funcionário</h4>
+                <form action="/add" method="POST">
+                    <div class="mb-3"><input type="text" name="nome" class="form-control" placeholder="Nome" required></div>
+                    <div class="mb-3"><input type="text" name="funcao" class="form-control" placeholder="Função" required></div>
+                    <div class="mb-3"><input type="number" name="salario" class="form-control" placeholder="Salário" required></div>
+                    <div class="mb-3"><label class="small">Admissão</label><input type="date" name="admissao" class="form-control" required></div>
+                    <div class="mb-3"><label class="small">Demissão (Opcional)</label><input type="date" name="demissao" class="form-control"></div>
+                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+    <div class="card p-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Função</th>
+                        <th>Salário</th>
+                        <th>Admissão</th>
+                        <th>Demissão</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for f in funcionarios %}
+                    <tr>
+                        <td><strong>{{ f.Nome }}</strong></td>
+                        <td>{{ f.Funcao }}</td>
+                        <td><span class="badge badge-salary">R$ {{ f.Salario }}</span></td>
+                        <td>{{ f.DataAdmissao }}</td>
+                        <td>{{ f.DataDemissao if f.DataDemissao else "---" }}</td>
+                        <td class="text-center">
+                            <div class="d-flex gap-1">
+                                <button class="btn btn-sm btn-warning" 
+                                        onclick="preencherModal('{{ f.Nome }}', '{{ f.Funcao }}', '{{ f.Salario }}', '{{ f.DataAdmissao }}', '{{ f.DataDemissao }}')">
+                                    Editar
+                                </button>
+                                <a href="/delete/{{ f.Nome }}" class="btn btn-sm btn-danger" onclick="return confirm('Excluir?')">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Funcionário</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formEditar" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input type="text" name="nome" id="editNome" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Função</label>
+                        <input type="text" name="funcao" id="editFuncao" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Salário</label>
+                        <input type="number" name="salario" id="editSalario" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Data Admissão</label>
+                        <input type="text" name="admissao" id="editAdmissao" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Data Demissão</label>
+                        <input type="text" name="demissao" id="editDemissao" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function preencherModal(nome, funcao, salario, admissao, demissao) {
+        // Define a rota de ação com o nome original para busca no backend
+        document.getElementById('formEditar').action = '/edit/' + nome;
+        
+        // Preenche os campos
+        document.getElementById('editNome').value = nome;
+        document.getElementById('editFuncao').value = funcao;
+        document.getElementById('editSalario').value = salario;
+        document.getElementById('editAdmissao').value = admissao;
+        document.getElementById('editDemissao').value = (demissao !== 'None' && demissao !== 'null') ? demissao : '';
+        
+        // Abre o modal
+        var modal = new bootstrap.Modal(document.getElementById('modalEditar'));
+        modal.show();
+    }
+</script>
+</body>
+</html>

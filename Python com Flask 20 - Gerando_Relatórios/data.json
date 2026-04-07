@@ -1,0 +1,44 @@
+[
+    {
+        "id": "20260407132142",
+        "nome": "Manutenção nos computadores da Empresa",
+        "categoria": "Serviços de Informática",
+        "preco": "200.00",
+        "data": "03/03/2023"
+    },
+    {
+        "id": "20260407133501",
+        "nome": "Limpeza e Recarga de Gás - Ar Condicionado",
+        "categoria": "Manutenção Residencial",
+        "preco": "350.00",
+        "data": "15/01/2026"
+    },
+    {
+        "id": "20260407133502",
+        "nome": "Desenvolvimento de Landing Page",
+        "categoria": "Programação Freelance",
+        "preco": "1200.00",
+        "data": "20/02/2026"
+    },
+    {
+        "id": "20260407133503",
+        "nome": "Manutenção no Site da Empresa",
+        "categoria": "Programação Web",
+        "preco": "350",
+        "data": "16/03/2026"
+    },
+    {
+        "id": "20260407133504",
+        "nome": "Consultoria em Banco de Dados NoSQL",
+        "categoria": "TI e Infraestrutura",
+        "preco": "500.00",
+        "data": "02/04/2026"
+    },
+    {
+        "id": "20260407133505",
+        "nome": "Reparo em Conexões de Rede Estruturada",
+        "categoria": "Serviços de Informática",
+        "preco": "450.00",
+        "data": "05/04/2026"
+    }
+]

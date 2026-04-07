@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tutorial - DevLearn</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        .edit-container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-save { background: #6C63FF; color: white; padding: 15px; border: none; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <a href="/admin">← Cancelar e Voltar</a>
+        <h1>Editar Tutorial #{{ tutorial.id }}</h1>
+        
+        <form action="/admin/update/{{ tutorial.id }}" method="POST">
+            <div class="form-group">
+                <label>Título</label>
+                <input type="text" name="titulo" value="{{ tutorial.titulo }}" required>
+            </div>
+            <div class="form-group">
+                <label>Descrição</label>
+                <input type="text" name="descricao" value="{{ tutorial.descricao }}" required>
+            </div>
+            <div class="form-group">
+                <label>Conteúdo</label>
+                <textarea name="conteudo" rows="6" required>{{ tutorial.conteudo }}</textarea>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 2;">
+                    <label>Pergunta Quiz</label>
+                    <input type="text" name="pergunta_quiz" value="{{ tutorial.pergunta_quiz }}" required>
+                </div>
+                <div style="flex: 1;">
+                    <label>Resposta</label>
+                    <input type="text" name="resposta_correta" value="{{ tutorial.resposta_correta }}" required>
+                </div>
+                <div style="flex: 0.5;">
+                    <label>Cor</label>
+                    <input type="color" name="cor" value="{{ tutorial.cor }}">
+                </div>
+            </div>
+            <button type="submit" class="btn-save">Salvar Alterações ✅</button>
+        </form>
+    </div>
+</body>
+</html>

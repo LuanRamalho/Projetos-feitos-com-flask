@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelPlanner - CRUD Completo</title>
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #00CEC9;
+            --success: #00B894;
+            --danger: #D63031;
+            --warning: #FDCB6E;
+            --dark: #2D3436;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #DFE6E9;
+            margin: 0; padding: 20px;
+        }
+
+        .container { max-width: 1100px; margin: auto; }
+
+        header {
+            text-align: center; padding: 25px; background: var(--primary);
+            color: white; border-radius: 15px; margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card {
+            background: white; padding: 25px; border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); margin-bottom: 25px;
+        }
+
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        input, textarea {
+            width: 100%; padding: 12px; border: 2px solid #EEE;
+            border-radius: 8px; box-sizing: border-box; font-size: 14px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .btn {
+            cursor: pointer; border: none; padding: 10px 18px;
+            border-radius: 8px; font-weight: bold; text-decoration: none;
+            display: inline-block; transition: 0.2s; font-size: 14px;
+        }
+
+        .btn-add { background: var(--success); color: white; width: 100%; margin-top: 10px; }
+        .btn-edit { background: var(--warning); color: var(--dark); }
+        .btn-delete { background: var(--danger); color: white; }
+
+        /* Listagem de Roteiros */
+        .itinerary-list {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;
+        }
+
+        .itinerary-card {
+            background: white; border-left: 8px solid var(--secondary);
+            padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .itinerary-card h3 { margin-top: 0; color: var(--primary); border-bottom: 1px solid #EEE; padding-bottom: 10px; }
+        
+        .info-row { margin: 8px 0; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .label-blue { color: var(--primary); font-weight: bold; }
+        
+        .desc-box { background: #F8F9FA; padding: 10px; border-radius: 5px; margin-top: 10px; font-style: italic; }
+
+        /* Modal */
+        #editModal {
+            display: none; position: fixed; z-index: 100;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: white; margin: 5% auto;
+            padding: 30px; border-radius: 15px; width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>✈️ Sistema de Planejamento de Roteiros</h1>
+        <p>Gerencie seus destinos com CRUD Completo e Banco JSON</p>
+    </header>
+
+    <div class="card">
+        <h2>📍 Novo Roteiro</h2>
+        <form action="/add" method="POST" class="grid-form">
+            <input type="text" name="destino" placeholder="Para onde você vai?" required>
+            <input type="text" name="data" placeholder="Data (DD/MM/YYYY)" required>
+            <input type="text" name="orcamento" placeholder="Orçamento (Ex: R$ 2.000,00)" required>
+            <input type="text" name="pontos_turisticos" placeholder="Pontos Turísticos Principais" required>
+            <textarea name="atividades" placeholder="Descrição de Atividades e Restaurantes..." class="full-width" rows="3"></textarea>
+            <div class="full-width"><button type="submit" class="btn btn-add">🚀 Salvar Roteiro</button></div>
+        </form>
+    </div>
+
+    <div class="itinerary-list">
+        {% for item in itineraries %}
+        <div class="itinerary-card">
+            <h3>{{ item.destino }}</h3>
+            <div class="info-row">📅 <span>{{ item.data }}</span></div>
+            <div class="info-row">💰 <span style="color: var(--success); font-weight: bold;">{{ item.orcamento }}</span></div>
+            
+            <div class="info-row">
+                <span class="label-blue">🏛️ Pontos:</span> 
+                <span>{{ item.pontos_turisticos }}</span>
+            </div>
+
+            <div class="desc-box">
+                "{{ item.atividades }}"
+            </div>
+            
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button class="btn btn-edit" onclick="openEditModal('{{ item.id }}', '{{ item.destino }}', '{{ item.data }}', '{{ item.orcamento }}', '{{ item.pontos_turisticos }}', '{{ item.atividades }}')">Editar</button>
+                <a href="/delete/{{ item.id }}" class="btn btn-delete" onclick="return confirm('Deseja excluir?')">Excluir</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="editModal">
+    <div class="modal-content">
+        <h2>📝 Editar Roteiro</h2>
+        <form id="editForm" method="POST" class="grid-form">
+            <input type="text" name="destino" id="edit_destino" required>
+            <input type="text" name="data" id="edit_data" required>
+            <input type="text" name="orcamento" id="edit_orcamento" required>
+            <input type="text" name="pontos_turisticos" id="edit_pontos" required>
+            <textarea name="atividades" id="edit_atividades" class="full-width" rows="4"></textarea>
+            <div class="full-width">
+                <button type="submit" class="btn btn-add">Atualizar Roteiro</button>
+                <button type="button" class="btn" onclick="closeModal()" style="background:#CCC; margin-top: 5px; width: 100%;">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openEditModal(id, destino, data, orcamento, pontos, atividades) {
+        document.getElementById('editForm').action = '/edit/' + id;
+        document.getElementById('edit_destino').value = destino;
+        document.getElementById('edit_data').value = data;
+        document.getElementById('edit_orcamento').value = orcamento;
+        document.getElementById('edit_pontos').value = pontos;
+        document.getElementById('edit_atividades').value = atividades;
+        document.getElementById('editModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    // Fechar modal ao clicar fora dele
+    window.onclick = function(event) {
+        let modal = document.getElementById('editModal');
+        if (event.target == modal) { modal.style.display = "none"; }
+    }
+</script>
+
+</body>
+</html>

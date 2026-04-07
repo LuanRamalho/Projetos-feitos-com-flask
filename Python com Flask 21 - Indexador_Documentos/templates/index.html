@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indexador Pro - Sua Nuvem Pessoal</title>
+    <style>
+        :root {
+            --bg: #f0f2f5;
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent: #ff7675;
+            --danger: #ff4757;
+            --card: #ffffff;
+            --text: #2d3436;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--card);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        h1 { 
+            color: var(--primary); 
+            text-align: center; 
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        /* Seção de Upload */
+        .upload-section {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input[type="file"] { 
+            flex-grow: 1;
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-main {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            background: #5849c4;
+        }
+
+        /* Busca */
+        .search-box {
+            width: 100%;
+            padding: 18px;
+            border: 3px solid var(--primary);
+            border-radius: 15px;
+            font-size: 16px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--secondary);
+        }
+
+        /* Lista de Documentos */
+        .doc-list { 
+            display: flex; 
+            flex-direction: column;
+            gap: 12px; 
+        }
+
+        .doc-item {
+            padding: 18px;
+            background: #fff;
+            border-left: 10px solid var(--accent);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .doc-item:hover {
+            transform: scale(1.01);
+        }
+
+        .doc-info b { 
+            color: var(--primary); 
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .doc-info small {
+            color: #636e72;
+        }
+
+        .doc-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .btn-delete {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #d63031;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Indexador de Documentos</h1>
+
+    <div class="upload-section">
+        <input type="file" id="fileInput">
+        <button class="btn-main" onclick="uploadFile()">Indexar Agora</button>
+    </div>
+
+    <input type="text" class="search-box" id="searchInput" placeholder="Digite para filtrar seus documentos..." onkeyup="search()">
+
+    <div id="results" class="doc-list">
+        </div>
+</div>
+
+<script>
+    // Função para buscar e listar documentos
+    async function search() {
+        const query = document.getElementById('searchInput').value;
+        const response = await fetch(`/search?q=${query}`);
+        const data = await response.json();
+        
+        const container = document.getElementById('results');
+        container.innerHTML = '';
+
+        data.forEach(doc => {
+            container.innerHTML += `
+                <div class="doc-item">
+                    <div class="doc-info">
+                        <b>${doc.nome}</b>
+                        <small>Data: ${doc.data_indexacao} | Tamanho: ${doc.tamanho}</small>
+                    </div>
+                    <div class="doc-actions">
+                        <span class="badge">${doc.extensao}</span>
+                        <button class="btn-delete" onclick="deleteDoc(${doc.id})">EXCLUIR</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Função para upload
+    async function uploadFile() {
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files[0]) {
+            alert("Por favor, selecione um arquivo primeiro.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        const response = await fetch('/upload', { 
+            method: 'POST', 
+            body: formData 
+        });
+
+        if (response.ok) {
+            fileInput.value = ''; // Limpa o campo
+            search(); // Recarrega a lista
+        } else {
+            alert("Erro ao enviar arquivo.");
+        }
+    }
+
+    // Função para excluir documento
+    async function deleteDoc(id) {
+        if (!confirm("Deseja realmente excluir este documento da sua lista?")) return;
+
+        const response = await fetch(`/delete/${id}`, { 
+            method: 'DELETE' 
+        });
+
+        if (response.ok) {
+            search(); // Atualiza a lista removendo o item
+        } else {
+            alert("Erro ao excluir o arquivo.");
+        }
+    }
+
+    // Carregar a lista assim que a página abrir
+    window.onload = search;
+</script>
+
+</body>
+</html>

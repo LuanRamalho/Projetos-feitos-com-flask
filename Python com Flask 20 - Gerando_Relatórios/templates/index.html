@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Serviços</title>
+    <style>
+        /* Estilos Base */
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 850px; }
+        
+        /* Formulário */
+        h2 { color: #333; border-left: 6px solid #6c5ce7; padding-left: 15px; margin-bottom: 25px; }
+        input { width: 100%; padding: 12px; margin-bottom: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; }
+        input:focus { border-color: #6c5ce7; outline: none; }
+        
+        /* Botões Principais */
+        .btn { padding: 12px 20px; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; text-align: center; transition: 0.3s; }
+        .btn-save { background: #00b894; color: white; width: 100%; margin-bottom: 10px; }
+        .btn-update { background: #0984e3; color: white; width: 100%; margin-bottom: 10px; }
+        .btn-report { background: #6c5ce7; color: white; width: 95%; margin-top: 10px; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* Estilo dos Cards (Substituindo a Tabela) */
+        .card-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: #fff; border: 1px solid #eee; border-radius: 15px; padding: 20px; position: relative; border-top: 5px solid #6c5ce7; transition: 0.3s; }
+        .card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .card-title { font-size: 18px; font-weight: bold; color: #2d3436; margin-bottom: 10px; display: block; }
+        .card-info { font-size: 14px; color: #636e72; margin: 5px 0; }
+        .card-price { color: #00b894; font-weight: bold; font-size: 16px; margin-top: 10px; display: block; }
+        
+        .card-actions { margin-top: 15px; display: flex; gap: 10px; }
+        .btn-edit { background: #e1f5fe; color: #01579b; font-size: 12px; flex: 1; }
+        .btn-del { background: #ffebee; color: #c62828; font-size: 12px; flex: 1; }
+        
+        .badge-edit { background: #fff9db; color: #f59f00; padding: 8px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; border: 1px solid #ffe066; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📝 Gerenciador de Serviços</h2>
+
+        {% if edit_item %}
+            <div class="badge-edit">📌 Editando agora: <b>{{ edit_item.nome }}</b></div>
+            <form action="/update/{{ edit_item.id }}" method="POST">
+        {% else %}
+            <form action="/add" method="POST">
+        {% endif %}
+            
+            <input type="text" name="nome" placeholder="Nome do Serviço" value="{{ edit_item.nome if edit_item else '' }}" required>
+            <input type="text" name="categoria" placeholder="Categoria" value="{{ edit_item.categoria if edit_item else '' }}" required>
+            <input type="text" name="preco" placeholder="Preço (R$)" value="{{ edit_item.preco if edit_item else '' }}" required>
+            <input type="text" name="data" placeholder="Data (DD/MM/YYYY)" value="{{ edit_item.data if edit_item else '' }}" required>
+            
+            {% if edit_item %}
+                <button type="submit" class="btn btn-update">Salvar Alterações</button>
+                <a href="/" style="display:block; text-align:center; margin-top:5px; color:#b2bec3; font-size: 13px;">Cancelar</a>
+            {% else %}
+                <button type="submit" class="btn btn-save">Cadastrar Serviço</button>
+            {% endif %}
+        </form>
+
+        <a href="/report" class="btn btn-report">Gerar Relatório de Exportação</a>
+
+        <div class="card-container">
+            {% for s in services %}
+            <div class="card">
+                <span class="card-title">{{ s.nome }}</span>
+                <p class="card-info"><b>📁 Cat:</b> {{ s.categoria }}</p>
+                <p class="card-info"><b>📅 Data:</b> {{ s.data }}</p>
+                <span class="card-price">R$ {{ s.preco }}</span>
+                
+                <div class="card-actions">
+                    <a href="/edit/{{ s.id }}" class="btn btn-edit">Editar</a>
+                    <a href="/delete/{{ s.id }}" class="btn btn-del" onclick="return confirm('Excluir este serviço?')">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
