@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Depósito de Bebidas - Estoque</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #2f3542; color: white; padding: 40px; }
+        .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .search-box { display: flex; gap: 10px; }
+        .search-box input { padding: 10px; border-radius: 5px; border: none; width: 250px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            color: #2f3542;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 10px solid #ffa502;
+            position: relative;
+        }
+        .card h3 { margin-top: 0; color: #ff4757; }
+        .card p { margin: 5px 0; font-size: 14px; }
+        .card .qty { font-weight: bold; font-size: 18px; color: #2ed573; }
+        
+        .btn-del {
+            background-color: #ff6b81;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-back { color: #ffa502; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header-nav">
+        <a href="/" class="btn-back">← Voltar ao Cadastro</a>
+        <form class="search-box" action="/estoque" method="GET">
+            <input type="text" name="search" placeholder="Buscar por nome ou fabricante...">
+            <button type="submit" style="padding: 10px; border-radius: 5px; cursor: pointer;">🔍</button>
+        </form>
+    </div>
+
+    <h2>📦 Itens no Estoque</h2>
+    
+    <div class="grid">
+        {% for bebida in bebidas %}
+        <div class="card">
+            <h3>{{ bebida.nome }}</h3>
+            <p><strong>Fabricante:</strong> {{ bebida.fabricante }}</p>
+            <p class="qty">Estoque: {{ bebida.quantidade }} un</p>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="{{ url_for('editar_form', nome=bebida.nome, fabricante=bebida.fabricante) }}" 
+                style="background-color: #2ed573; color: white; text-decoration: none; padding: 5px 15px; border-radius: 5px; font-size: 14px;">
+                Editar
+                </a>
+
+                <form action="/deletar" method="POST" style="margin: 0;">
+                    <input type="hidden" name="nome" value="{{ bebida.nome }}">
+                    <input type="hidden" name="fabricante" value="{{ bebida.fabricante }}">
+                    <button type="submit" class="btn-del" style="margin: 0;">Remover</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

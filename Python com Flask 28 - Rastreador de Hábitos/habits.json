@@ -1,0 +1,14 @@
+{
+    "Jogar Videogame": {
+        "description": "Eu sou nerd e amo jogos de RPG",
+        "start_date": "03/03/2023",
+        "end_date": "12/03/2023",
+        "manual_completed": 7
+    },
+    "Estudar Matemática": {
+        "description": "Estudar para a prova de matemática",
+        "start_date": "12/04/2024",
+        "end_date": "20/04/2024",
+        "manual_completed": 4
+    }
+}

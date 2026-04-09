@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Sonho - DreamLog</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #f0f2f5;
+            --paper: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: #2d3436;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: var(--paper);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 8px solid var(--primary);
+        }
+
+        h2 { color: var(--primary); text-align: center; margin-bottom: 25px; }
+
+        label { font-weight: bold; display: block; margin-top: 15px; color: #636e72; }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn-save { background: var(--primary); color: white; }
+        .btn-cancel { background: #dfe6e9; color: #636e72; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>📝 Editar Registro</h2>
+            <form method="POST">
+                <label>Título do Sonho:</label>
+                <input type="text" name="titulo" value="{{ sonho.titulo }}" required>
+
+                <label>Data (DD/MM/YYYY):</label>
+                <input type="text" name="data" value="{{ sonho.data }}" required>
+
+                <label>Categoria:</label>
+                <select name="categoria">
+                    <option value="Lúcido" {% if sonho.categoria == 'Lúcido' %}selected{% endif %}>Lúcido</option>
+                    <option value="Pesadelo" {% if sonho.categoria == 'Pesadelo' %}selected{% endif %}>Pesadelo</option>
+                    <option value="Comum" {% if sonho.categoria == 'Comum' %}selected{% endif %}>Comum</option>
+                    <option value="Premonitório" {% if sonho.categoria == 'Premonitório' %}selected{% endif %}>Premonitório</option>
+                </select>
+
+                <label>Descrição:</label>
+                <textarea name="descricao" rows="6" required>{{ sonho.descricao }}</textarea>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-save">Salvar Alterações</button>
+                    <a href="/" class="btn btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

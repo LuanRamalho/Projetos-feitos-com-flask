@@ -1,0 +1,152 @@
+[
+    {
+        "nome": "Pepsi",
+        "fabricante": "Pepsico",
+        "quantidade": 48
+    },
+    {
+        "nome": "Coca-Cola",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 120
+    },
+    {
+        "nome": "Guaraná Antarctica",
+        "fabricante": "Ambev",
+        "quantidade": 85
+    },
+    {
+        "nome": "Fanta Laranja",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 60
+    },
+    {
+        "nome": "Heineken 330ml",
+        "fabricante": "Heineken NV",
+        "quantidade": 200
+    },
+    {
+        "nome": "Brahma Chopp",
+        "fabricante": "Ambev",
+        "quantidade": 150
+    },
+    {
+        "nome": "Red Bull Energy",
+        "fabricante": "Red Bull GmbH",
+        "quantidade": 45
+    },
+    {
+        "nome": "Suco de Maçã",
+        "fabricante": "Turma da Mônica",
+        "quantidade": 30
+    },
+    {
+        "nome": "Mate Leão",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 90
+    },
+    {
+        "nome": "Monster Energy",
+        "fabricante": "Monster Beverage",
+        "quantidade": 40
+    },
+    {
+        "nome": "Água Mineral Crystal",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 300
+    },
+    {
+        "nome": "Sprite",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 75
+    },
+    {
+        "nome": "Skol Lata",
+        "fabricante": "Ambev",
+        "quantidade": 180
+    },
+    {
+        "nome": "Gatorade Uva",
+        "fabricante": "Pepsico",
+        "quantidade": 55
+    },
+    {
+        "nome": "Itubaína Retrô",
+        "fabricante": "Heineken",
+        "quantidade": 42
+    },
+    {
+        "nome": "Mineirinho 2L",
+        "fabricante": "Mineirinho",
+        "quantidade": 25
+    },
+    {
+        "nome": "Eisenbahn Pilsen",
+        "fabricante": "Heineken",
+        "quantidade": 64
+    },
+    {
+        "nome": "Guaraná Jesus",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 15
+    },
+    {
+        "nome": "Stella Artois",
+        "fabricante": "Ambev",
+        "quantidade": 110
+    },
+    {
+        "nome": "Colorado Indica",
+        "fabricante": "Ambev",
+        "quantidade": 24
+    },
+    {
+        "nome": "H2OH! Limão",
+        "fabricante": "Pepsico",
+        "quantidade": 50
+    },
+    {
+        "nome": "Del Valle Laranja",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 35
+    },
+    {
+        "nome": "Antarctica Original",
+        "fabricante": "Ambev",
+        "quantidade": 95
+    },
+    {
+        "nome": "Schweppes Tonic",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 40
+    },
+    {
+        "nome": "Toddynho",
+        "fabricante": "Pepsico",
+        "quantidade": 100
+    },
+    {
+        "nome": "Água de Coco",
+        "fabricante": "Obrigado",
+        "quantidade": 28
+    },
+    {
+        "nome": "Powerade Blue",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 33
+    },
+    {
+        "nome": "Budweiser",
+        "fabricante": "Ambev",
+        "quantidade": 140
+    },
+    {
+        "nome": "Sukita Laranja",
+        "fabricante": "Ambev",
+        "quantidade": 45
+    },
+    {
+        "nome": "Kuat 2L",
+        "fabricante": "Coca-Cola Co.",
+        "quantidade": 20
+    }
+]

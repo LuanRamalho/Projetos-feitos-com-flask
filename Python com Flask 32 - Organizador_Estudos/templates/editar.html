@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Matéria</title>
+    <style>
+        body { font-family: sans-serif; background: #F7FFF7; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 400px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn { width: 100%; padding: 12px; border: none; background: #4ECDC4; color: white; font-weight: bold; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Editar Matéria</h2>
+        <form action="/editar/{{ materia.materia }}" method="POST">
+            <label>Nome:</label>
+            <input type="text" name="materia" value="{{ materia.materia }}" required>
+            <label>Total (HH/MM):</label>
+            <input type="text" name="horas_totais" value="{{ materia.horas_totais }}" pattern="\d{2}:\d{2}" required>
+            <label>Cumprido (HH/MM):</label>
+            <input type="text" name="horas_cumpridas" value="{{ materia.horas_cumpridas }}" pattern="\d{2}:\d{2}" required>
+            <button type="submit" class="btn">Atualizar Dados</button>
+            <p style="text-align: center;"><a href="/gerenciar" style="color: #666; font-size: 14px;">Cancelar</a></p>
+        </form>
+    </div>
+</body>
+</html>

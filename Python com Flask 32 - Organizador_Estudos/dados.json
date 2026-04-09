@@ -1,0 +1,22 @@
+[
+    {
+        "materia": "História",
+        "horas_totais": "10:35",
+        "horas_cumpridas": "05:35"
+    },
+    {
+        "materia": "Geografia",
+        "horas_totais": "12:00",
+        "horas_cumpridas": "07:22"
+    },
+    {
+        "materia": "Matemática",
+        "horas_totais": "35:00",
+        "horas_cumpridas": "13:32"
+    },
+    {
+        "materia": "Biologia",
+        "horas_totais": "25:00",
+        "horas_cumpridas": "13:44"
+    }
+]

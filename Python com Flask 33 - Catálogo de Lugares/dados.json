@@ -1,0 +1,144 @@
+[
+    {
+        "cidade": "Londres",
+        "pais": "Inglaterra",
+        "pontos": [
+            {
+                "nome": "Big Ben",
+                "status": "Visitado"
+            },
+            {
+                "nome": "London Eye",
+                "status": "Desejado"
+            }
+        ]
+    },
+    {
+        "cidade": "Rio de Janeiro",
+        "pais": "Brasil",
+        "pontos": [
+            {
+                "nome": "Cristo Redentor",
+                "status": "Visitado"
+            },
+            {
+                "nome": "Pão de Açúcar",
+                "status": "Visitado"
+            }
+        ]
+    },
+    {
+        "cidade": "Tóquio",
+        "pais": "Japão",
+        "pontos": [
+            {
+                "nome": "Shibuya Crossing",
+                "status": "Desejado"
+            },
+            {
+                "nome": "Torre de Tóquio",
+                "status": "Desejado"
+            }
+        ]
+    },
+    {
+        "cidade": "Paris",
+        "pais": "França",
+        "pontos": [
+            {
+                "nome": "Torre Eiffel",
+                "status": "Visitado"
+            },
+            {
+                "nome": "Museu do Louvre",
+                "status": "Desejado"
+            }
+        ]
+    },
+    {
+        "cidade": "Roma",
+        "pais": "Itália",
+        "pontos": [
+            {
+                "nome": "Coliseu",
+                "status": "Visitado"
+            },
+            {
+                "nome": "Fontana di Trevi",
+                "status": "Visitado"
+            }
+        ]
+    },
+    {
+        "cidade": "Nova York",
+        "pais": "EUA",
+        "pontos": [
+            {
+                "nome": "Estátua da Liberdade",
+                "status": "Desejado"
+            },
+            {
+                "nome": "Times Square",
+                "status": "Visitado"
+            }
+        ]
+    },
+    {
+        "cidade": "Cairo",
+        "pais": "Egito",
+        "pontos": [
+            {
+                "nome": "Pirâmides de Gizé",
+                "status": "Desejado"
+            }
+        ]
+    },
+    {
+        "cidade": "Lisboa",
+        "pais": "Portugal",
+        "pontos": [
+            {
+                "nome": "Torre de Belém",
+                "status": "Visitado"
+            },
+            {
+                "nome": "Bairro Alto",
+                "status": "Visitado"
+            }
+        ]
+    },
+    {
+        "cidade": "Sydney",
+        "pais": "Austrália",
+        "pontos": [
+            {
+                "nome": "Opera House",
+                "status": "Desejado"
+            }
+        ]
+    },
+    {
+        "cidade": "Berlim",
+        "pais": "Alemanha",
+        "pontos": [
+            {
+                "nome": "Portão de Brandemburgo",
+                "status": "Visitado"
+            },
+            {
+                "nome": "Muro de Berlim",
+                "status": "Visitado"
+            }
+        ]
+    },
+    {
+        "cidade": "Machu Picchu",
+        "pais": "Peru",
+        "pontos": [
+            {
+                "nome": "Templo do Sol",
+                "status": "Desejado"
+            }
+        ]
+    }
+]

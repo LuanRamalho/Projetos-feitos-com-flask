@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Músicas Favoritas</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #f0f2f5;
+            --text: #2d3436;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6c5ce7 0%, #00cec9 100%);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            background: var(--bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        input,
+        textarea {
+            padding: 12px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-full {
+            flex: 1 1 100%;
+        }
+
+        .input-half {
+            flex: 1 1 48%;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .music-card {
+            background: var(--white);
+            border-left: 8px solid var(--accent);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .music-header {
+            display: flex;
+            justify-content: space-between;
+            /* Empurra o texto para a esquerda e botões para a direita */
+            align-items: flex-start;
+            /* Mantém os botões no topo se o texto crescer */
+            gap: 15px;
+            /* Garante uma distância mínima entre texto e botões */
+        }
+
+        .music-info {
+            flex: 1; /* Faz com que o texto ocupe apenas o espaço disponível, sem empurrar os botões */
+            min-width: 0; /* Previne que o texto quebre o layout em nomes muito grandes */
+        }
+
+        .music-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #636e72;
+        }
+
+        .actions a {
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .btn-edit {
+            color: #f39c12;
+            cursor: pointer;
+        }
+
+        .delete {
+            color: #d63031;
+        }
+
+        .anotacao-box {
+            font-style: italic;
+            color: #2d3436;
+            background: #ffeaa7;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .edit-form {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-top: 1px dashed var(--primary);
+            background: #fdfdfd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎵 Meu Catálogo Musical</h1>
+
+        <form action="/" method="GET" class="search-bar">
+            <input type="text" name="search" placeholder="Buscar música pelo nome..." class="input-full">
+            <button type="submit">Buscar</button>
+        </form>
+
+        <div class="form-section">
+            <h3>Adicionar Nova Música</h3>
+            <form action="/add" method="POST" class="form-group">
+                <input type="text" name="nome" placeholder="Nome da Música" class="input-half" required>
+                <input type="text" name="artista" placeholder="Artista" class="input-half" required>
+                <input type="text" name="album" placeholder="Álbum" class="input-half">
+                <textarea name="anotacoes" placeholder="Anotações pessoais..." class="input-full"></textarea>
+                <button type="submit" style="width: 100%;">Salvar na Coleção</button>
+            </form>
+        </div>
+
+        <div class="playlist">
+            {% for musica in musicas %}
+            <div class="music-card">
+                <div class="music-header">
+                    <div class="music-info">
+                        <h3>{{ musica.nome }}</h3>
+                        <p><strong>Artista:</strong> {{ musica.artista }} | <strong>Álbum:</strong> {{ musica.album }}</p>
+                        {% if musica.anotacoes %}
+                            <div class="anotacao-box">{{ musica.anotacoes }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="actions" style="white-space: nowrap;"> <a href="javascript:void(0)" class="btn-edit" onclick="toggleEdit('edit-{{ loop.index0 }}')">Editar</a>
+                        <a href="/delete/{{ loop.index0 }}" class="delete" onclick="return confirm('Excluir?')">Excluir</a>
+                    </div>
+                </div>
+
+                <div id="edit-{{ loop.index0 }}" class="edit-form">
+                    </div>
+            </div>
+            {% else %}
+            <p style="text-align: center;">Nenhuma música encontrada no catálogo.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function toggleEdit(id) {
+            var form = document.getElementById(id);
+            if (form.style.display === 'block') {
+                form.style.display = 'none';
+            } else {
+                form.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Bebida</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 350px; border-top: 8px solid #2ed573; }
+        h2 { color: #2f3542; text-align: center; }
+        label { display: block; margin-top: 10px; font-weight: bold; color: #57606f; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 2px solid #eccc68; border-radius: 8px; box-sizing: border-box; }
+        .btn-update { width: 100%; padding: 12px; border: none; border-radius: 8px; color: white; background-color: #2ed573; cursor: pointer; margin-top: 20px; font-size: 16px; }
+        .btn-update:hover { background-color: #26af60; }
+        .cancel { display: block; text-align: center; margin-top: 15px; color: #ff4757; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✏️ Editar Bebida</h2>
+        <form action="/atualizar" method="POST">
+            <input type="hidden" name="old_nome" value="{{ item.nome }}">
+            <input type="hidden" name="old_fabricante" value="{{ item.fabricante }}">
+
+            <label>Nome</label>
+            <input type="text" name="nome" value="{{ item.nome }}" required>
+
+            <label>Fabricante</label>
+            <input type="text" name="fabricante" value="{{ item.fabricante }}" required>
+
+            <label>Quantidade</label>
+            <input type="number" name="quantidade" value="{{ item.quantidade }}" required>
+
+            <button type="submit" class="btn-update">Salvar Alterações</button>
+            <a href="/estoque" class="cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

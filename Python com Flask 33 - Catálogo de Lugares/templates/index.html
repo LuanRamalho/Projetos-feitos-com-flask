@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Viagens</title>
+    </head>
+<style>
+    :root {
+        --primary: #6C5CE7;
+        --secondary: #00CEC9;
+        --danger: #FF7675;
+        --warning: #FDCB6E;
+        --bg: #F0F2F5;
+        --card: #FFFFFF;
+        --text: #2D3436;
+    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+    .container { max-width: 900px; margin: auto; }
+    .header { text-align: center; margin-bottom: 30px; }
+    .card { background: var(--card); border-radius: 15px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; border-left: 8px solid var(--primary); }
+    .btn { border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; transition: 0.3s; text-decoration: none; display: inline-block; }
+    .btn-add { background: var(--secondary); }
+    .btn-edit { background: var(--warning); color: #2d3436; }
+    .btn-del { background: var(--danger); }
+    .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+    input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex: 1; }
+    .city-link { font-size: 1.5rem; font-weight: bold; color: var(--primary); text-decoration: none; }
+    .city-link:hover { text-decoration: underline; }
+    .badge { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; }
+    .badge-visitado { background: #55efc4; color: #00b894; }
+    .badge-desejado { background: #fab1a0; color: #d63031; }
+</style>
+<body>
+    <div class="container">
+        <div class="header"><h1>🌎 Catálogo de Lugares</h1></div>
+
+        <form method="GET" class="input-group">
+            <input type="text" name="busca" placeholder="Buscar por cidade ou país..." value="{{ busca }}">
+            <button type="submit" class="btn btn-add">🔍 Buscar</button>
+        </form>
+
+        <div class="card" style="border-left-color: var(--secondary);">
+            <h3>Adicionar Novo Destino</h3>
+            <form action="/adicionar_cidade" method="POST" class="input-group">
+                <input type="text" name="cidade" placeholder="Nome da Cidade" required>
+                <input type="text" name="pais" placeholder="País" required>
+                <button type="submit" class="btn btn-add">Cadastrar</button>
+            </form>
+        </div>
+
+        {% for c in cidades %}
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <a href="/cidade/{{ c.cidade }}" class="city-link">{{ c.cidade }}</a>
+                    <p style="margin: 5px 0;">📍 {{ c.pais }}</p>
+                </div>
+                <div>
+                    <button class="btn btn-edit" onclick="toggleEdit('{{ loop.index }}')">Editar</button>
+                    <a href="/excluir_cidade/{{ c.cidade }}" class="btn btn-del" onclick="return confirm('Excluir?')">Excluir</a>
+                </div>
+            </div>
+            
+            <form id="edit-{{ loop.index }}" action="/editar_cidade/{{ c.cidade }}" method="POST" style="display: none; margin-top: 15px;" class="input-group">
+                <input type="text" name="cidade" value="{{ c.cidade }}">
+                <input type="text" name="pais" value="{{ c.pais }}">
+                <button type="submit" class="btn btn-add">Salvar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function toggleEdit(id) {
+            const form = document.getElementById('edit-' + id);
+            form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        }
+    </script>
+</body>
+</html>

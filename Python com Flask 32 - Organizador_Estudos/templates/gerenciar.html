@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Matérias</title>
+    <style>
+        :root { --bg: #F7FFF7; --primary: #4ECDC4; --secondary: #FF6B6B; --dark: #1A535C; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); margin: 0; }
+        nav { background: var(--dark); padding: 20px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        .container { max-width: 900px; margin: 40px auto; background: white; padding: 20px; border-radius: 12px; }
+        input[type="text"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; text-decoration: none; display: inline-block; }
+        .btn-add { background: var(--primary); width: 100%; }
+        .btn-edit { background: #FFE66D; color: #1A535C; }
+        .btn-del { background: var(--secondary); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        td, th { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Dashboard</a>
+        <a href="/gerenciar">Gerenciar</a>
+    </nav>
+    <div class="container">
+        <h2>➕ Cadastrar Matéria</h2>
+        <form action="/gerenciar" method="POST">
+            <input type="text" name="materia" placeholder="Nome da Matéria" required>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" name="horas_totais" placeholder="Total (HH:MM)" pattern="\d{2}:\d{2}" required>
+                <input type="text" name="horas_cumpridas" placeholder="Cumprido (HH:MM)" pattern="\d{2}:\d{2}" required>
+            </div>
+            <button type="submit" class="btn btn-add">Salvar no JSON</button>
+        </form>
+
+        <hr>
+        <h2>🔍 Buscar e Listar</h2>
+        <form method="GET" action="/gerenciar">
+            <input type="text" name="busca" placeholder="Filtrar por nome..." value="{{ busca }}">
+            <button type="submit" class="btn" style="background: var(--dark);">Buscar</button>
+        </form>
+
+        <table>
+            <thead><tr><th>Matéria</th><th>Ações</th></tr></thead>
+            <tbody>
+                {% for item in dados %}
+                <tr>
+                    <td>{{ item.materia }}</td>
+                    <td style="display: flex; gap: 5px;">
+                        <a href="/editar/{{ item.materia }}" class="btn btn-edit">Editar</a>
+                        <form action="/excluir/{{ item.materia }}" method="POST">
+                            <button class="btn btn-del">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

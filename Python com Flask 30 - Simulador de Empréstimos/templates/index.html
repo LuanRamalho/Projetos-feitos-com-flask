@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Pro - Empréstimos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --danger: #ff7675;
+            --success: #55efc4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--primary); font-size: 2.5rem; }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dfe6e9;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { border-color: var(--primary); outline: none; }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .btn-delete { background: var(--danger); margin-top: 10px; }
+
+        /* Estilo da Tabela e Gráfico */
+        .result-summary {
+            display: flex;
+            justify-content: space-between;
+            background: var(--success);
+            padding: 15px;
+            border-radius: 10px;
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th { background: var(--primary); color: white; }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        .history-list {
+            margin-top: 20px;
+        }
+
+        .history-item {
+            background: #fff;
+            padding: 15px;
+            border-left: 5px solid var(--secondary);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Simulador de Empréstimos 💸</h1>
+        <p>Calcule, compare e salve suas simulações de financiamento.</p>
+    </header>
+
+    <div class="grid-layout">
+        <aside>
+            <div class="card">
+                <h3>Nova Simulação</h3>
+                <div class="form-group">
+                    <label>Nome da Simulação</label>
+                    <input type="text" id="nome" placeholder="Ex: Casa Própria">
+                </div>
+                <div class="form-group">
+                    <label>Valor do Empréstimo (R$)</label>
+                    <input type="number" id="valor" placeholder="50000">
+                </div>
+                <div class="form-group">
+                    <label>Taxa de Juros Mensal (%)</label>
+                    <input type="number" step="0.01" id="taxa" placeholder="1.5">
+                </div>
+                <div class="form-group">
+                    <label>Prazo (Meses)</label>
+                    <input type="number" id="prazo" placeholder="12">
+                </div>
+                <button onclick="calcular()">Simular e Salvar</button>
+            </div>
+
+            <div class="card">
+                <h3>Comparações Salvas</h3>
+                <div id="historico" class="history-list">
+                    </div>
+            </div>
+        </aside>
+
+        <main>
+            <div class="card" id="resultado-card" style="display:none;">
+                <div class="result-summary">
+                    <div><strong>Parcela:</strong> <span id="res-parcela"></span></div>
+                    <div><strong>Total Juros:</strong> <span id="res-juros"></span></div>
+                    <div><strong>Total Pago:</strong> <span id="res-total"></span></div>
+                </div>
+
+                <h3>Gráfico de Amortização</h3>
+                <div class="chart-container">
+                    <canvas id="amortizacaoChart"></canvas>
+                </div>
+
+                <h3>Evolução da Dívida</h3>
+                <div class="chart-container">
+                    <canvas id="evolucaoChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    let amortChart, evoluChart;
+
+    async function calcular() {
+        const payload = {
+            nome: document.getElementById('nome').value,
+            valor: document.getElementById('valor').value,
+            taxa: document.getElementById('taxa').value,
+            prazo: document.getElementById('prazo').value
+        };
+
+        if(!payload.nome || !payload.valor) return alert("Preencha todos os campos!");
+
+        const response = await fetch('/api/simular', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        exibirResultado(data);
+        carregarHistorico();
+    }
+
+    function exibirResultado(data) {
+        document.getElementById('resultado-card').style.display = 'block';
+        document.getElementById('res-parcela').innerText = `R$ ${data.valor_parcela}`;
+        document.getElementById('res-juros').innerText = `R$ ${data.total_juros}`;
+        document.getElementById('res-total').innerText = `R$ ${data.total_pago}`;
+
+        const meses = data.tabela.map(t => `Mês ${t.mes}`);
+        const amortizacoes = data.tabela.map(t => t.amortizacao);
+        const juros = data.tabela.map(t => t.juros);
+        const saldos = data.tabela.map(t => t.saldo);
+
+        // Resetar Gráficos se já existirem
+        if(amortChart) amortChart.destroy();
+        if(evoluChart) evoluChart.destroy();
+
+        // Gráfico 1: Juros vs Amortização
+        amortChart = new Chart(document.getElementById('amortizacaoChart'), {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [
+                    { label: 'Amortização', data: amortizacoes, backgroundColor: '#00cec9' },
+                    { label: 'Juros', data: juros, backgroundColor: '#ff7675' }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true } } }
+        });
+
+        // Gráfico 2: Evolução do Saldo Devedor
+        evoluChart = new Chart(document.getElementById('evolucaoChart'), {
+            type: 'line',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Saldo Devedor',
+                    data: saldos,
+                    borderColor: '#6c5ce7',
+                    fill: true,
+                    backgroundColor: 'rgba(108, 92, 231, 0.1)'
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    }
+
+    async function carregarHistorico() {
+        const response = await fetch('/api/historico');
+        const lista = await response.json();
+        const container = document.getElementById('historico');
+        container.innerHTML = '';
+
+        lista.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'history-item';
+            div.innerHTML = `
+                <div>
+                    <strong>${item.nome}</strong><br>
+                    <small>R$ ${item.valor_principal} a ${item.taxa_mensal}%</small>
+                </div>
+                <div>
+                    <button onclick='exibirResultado(${JSON.stringify(item)})' style="width: auto; padding: 5px 10px; margin-right: 5px; background: var(--secondary)">👁️</button>
+                    <button onclick="deletar('${item.nome}')" style="width: auto; padding: 5px 10px; background: var(--danger)">🗑️</button>
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    async function deletar(nome) {
+        await fetch(`/api/deletar/${nome}`, { method: 'DELETE' });
+        carregarHistorico();
+    }
+
+    // Inicialização
+    carregarHistorico();
+</script>
+
+</body>
+</html>

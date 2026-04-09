@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Livros | Simulador</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #F7F9FC;
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --dark: #2D3436;
+            --light: #FFFFFF;
+            --yellow: #FFD166;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark);
+            margin: 0; 
+            padding: 20px;
+        }
+
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+        }
+
+        h1 { 
+            color: var(--primary); 
+            text-align: center; 
+        }
+
+        .card {
+            background: var(--light); 
+            padding: 20px;
+            border-radius: 12px; 
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Inputs e Formulários */
+        input[type="text"] {
+            padding: 12px; 
+            border: 2px solid #EEE;
+            border-radius: 8px; 
+            font-size: 16px; 
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input[type="text"]:focus { 
+            border-color: var(--secondary); 
+        }
+
+        button {
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 8px;
+            cursor: pointer; 
+            font-weight: bold; 
+            color: var(--light);
+            font-size: 14px; 
+            transition: 0.2s;
+        }
+
+        .btn-add { background-color: var(--secondary); min-width: 100px; font-size: 16px; }
+        .btn-edit { background-color: var(--yellow); color: var(--dark); }
+        .btn-del { background-color: var(--primary); }
+        .btn-cancel { background-color: #DDD; color: var(--dark); }
+
+        /* Ícone de Lápis */
+        .btn-icon {
+            background: none; 
+            border: none; 
+            font-size: 18px;
+            cursor: pointer; 
+            padding: 5px; 
+            transition: transform 0.2s;
+        }
+
+        .btn-icon:hover { 
+            transform: scale(1.2); 
+        }
+
+        /* Lista de Livros */
+        .book-list { 
+            list-style: none; 
+            padding: 0; 
+        }
+
+        .book-item {
+            background: var(--light); 
+            margin-bottom: 10px; 
+            padding: 15px;
+            border-radius: 8px; 
+            border-left: 6px solid var(--secondary);
+            transition: 0.3s;
+        }
+
+        /* Área de Exibição (Título à esquerda, Ações à direita) */
+        .book-info-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .book-title {
+            font-size: 18px; 
+            font-weight: bold; 
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .book-title:hover { 
+            color: var(--primary); 
+        }
+
+        /* Grupo de Botões (Lápis + Excluir) */
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        /* Formulário de Edição (Oculto por padrão) */
+        .edit-container {
+            display: none; 
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Gráfico */
+        .chart-container { 
+            width: 100%; 
+            max-width: 900px; /* Ajuste este valor para a largura que achar melhor */
+            height: 300px; 
+            margin: 40px auto 0 auto; /* Centraliza e mantém o distanciamento do topo */
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Tempo de Leitura</h1>
+        
+        <div class="card">
+            <form action="{{ url_for('adicionar') }}" method="POST" style="display: flex; gap: 10px;">
+                <input type="text" name="titulo" placeholder="Nome do novo livro..." required style="flex-grow: 1;">
+                <button type="submit" class="btn-add">Adicionar</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <input type="text" id="inputBusca" onkeyup="filtrarLivros()" placeholder="Buscar livro pelo nome..." value="{{ busca }}" style="width: 100%; box-sizing: border-box;">
+        </div>
+
+            <ul class="book-list">
+                {% for chave, livro in livros.items() %}
+                <li class="book-item" id="item-{{ loop.index }}">
+                    
+                    <div id="display-{{ loop.index }}" class="book-info-display">
+                        <a href="{{ url_for('visualizar_livro', titulo=livro.titulo) }}" class="book-title">{{ livro.titulo }}</a>
+                        
+                        <div class="actions">
+                            <button class="btn-icon" onclick="toggleEdit('{{ loop.index }}')" title="Editar nome">✏️</button>
+                            
+                            <form action="{{ url_for('excluir', titulo=livro.titulo) }}" method="POST" style="margin: 0;" onsubmit="return confirm('Deseja realmente excluir este livro?')">
+                                <button type="submit" class="btn-del">Excluir</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <form id="form-{{ loop.index }}" class="edit-container" action="{{ url_for('editar_index', titulo_antigo=livro.titulo) }}" method="POST">
+                        <input type="text" name="novo_titulo" value="{{ livro.titulo }}" required style="flex-grow: 1; padding: 10px;">
+                        <div class="actions">
+                            <button type="submit" class="btn-edit">Salvar</button>
+                            <button type="button" class="btn-cancel" onclick="toggleEdit('{{ loop.index }}')">Cancelar</button>
+                        </div>
+                    </form>
+
+                </li>
+                {% else %}
+                <p style="text-align: center; color: #888; grid-column: 1 / -1;">Nenhum livro encontrado.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 style="text-align:center;">Estatísticas Gerais (Páginas Lidas)</h2>
+            <div class="chart-container">
+                <canvas id="geralChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para alternar entre visualização e edição
+        function toggleEdit(id) {
+            const displayDiv = document.getElementById('display-' + id);
+            const editForm = document.getElementById('form-' + id);
+            
+            if (displayDiv.style.display === 'none') {
+                displayDiv.style.display = 'flex';
+                editForm.style.display = 'none';
+            } else {
+                displayDiv.style.display = 'none';
+                editForm.style.display = 'flex';
+            }
+        }
+
+        function filtrarLivros() {
+            // Pega o que foi digitado
+            let input = document.getElementById('inputBusca').value.toLowerCase();
+            // Pega todos os itens da lista
+            let itens = document.getElementsByClassName('book-item');
+
+            for (let i = 0; i < itens.length; i++) {
+                // Encontra o título dentro de cada item
+                let titulo = itens[i].querySelector('.book-title').innerText.toLowerCase();
+                
+                // Se o título contiver o texto da busca, mantém visível, senão esconde
+                if (titulo.includes(input)) {
+                    itens[i].style.display = "";
+                } else {
+                    itens[i].style.display = "none";
+                }
+            }
+        }
+
+        // Configuração do Chart.js
+        const livrosData = {{ livros | tojson | safe }};
+        const labels = Object.values(livrosData).map(l => l.titulo);
+        const lidas = Object.values(livrosData).map(l => l.paginas_lidas);
+
+        const ctx = document.getElementById('geralChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Páginas Lidas',
+                    data: lidas,
+                    backgroundColor: '#4ECDC4',
+                    borderRadius: 5
+                }]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastreador de Água</title>
+    <style>
+        :root {
+            --bg: #f1f2f6;
+            --primary: #1e90ff;
+            --primary-hover: #3742fa;
+            --success: #2ed573;
+            --success-hover: #26de81;
+            --danger: #ff4757;
+            --danger-hover: #ff6b81;
+            --warning: #ffa502;
+            --text-dark: #2f3542;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1, h2 { color: var(--primary); text-align: center; }
+
+        .container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dfe4ea;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+        
+        input:focus { border-color: var(--primary); }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: var(--primary-hover); }
+
+        .btn-graph {
+            background: var(--success);
+            margin-top: 10px;
+        }
+        .btn-graph:hover { background: var(--success-hover); }
+
+        .record-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .record-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .actions { display: flex; gap: 8px; }
+
+        .btn-edit, .btn-delete {
+            padding: 8px 12px;
+            width: auto;
+            font-size: 14px;
+        }
+
+        .btn-edit { background: var(--warning); }
+        .btn-delete { background: var(--danger); }
+        .btn-delete:hover { background: var(--danger-hover); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>💧 Hidratação Diária</h1>
+        <form action="/salvar" method="POST">
+            <div class="form-group">
+                <label for="data">Data (DD/MM/YYYY):</label>
+                <input type="text" id="data" name="data" placeholder="Ex: 25/12/2026" pattern="\d{2}/\d{2}/\d{4}" required>
+            </div>
+            <div class="form-group">
+                <label for="litros">Litros Consumidos:</label>
+                <input type="number" step="0.1" id="litros" name="litros" placeholder="Ex: 2.5" required>
+            </div>
+            <button type="submit" id="btn-submit">Salvar Registro</button>
+        </form>
+
+        <button class="btn-graph" onclick="window.location.href='/dashboard'">📊 Ver Gráficos de Consumo</button>
+    </div>
+
+    <div class="container">
+        <h2>Histórico de Registros</h2>
+        <ul class="record-list">
+            {% for data_reg, litros in dados.items() %}
+            <li class="record-item">
+                <span><strong>{{ data_reg }}</strong>: {{ litros }} L</span>
+                <div class="actions">
+                    <button type="button" class="btn-edit" onclick="editarRegistro('{{ data_reg }}', {{ litros }})">✏️</button>
+                    
+                    <form action="/deletar" method="POST" style="margin: 0;">
+                        <input type="hidden" name="data" value="{{ data_reg }}">
+                        <button type="submit" class="btn-delete">🗑️</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        // Função simples em JS para puxar os dados para o formulário de Update
+        function editarRegistro(data, litros) {
+            document.getElementById('data').value = data;
+            document.getElementById('litros').value = litros;
+            document.getElementById('btn-submit').innerText = "Atualizar Registro";
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

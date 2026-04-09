@@ -1,0 +1,14 @@
+{
+    "Harry Potter": {
+        "titulo": "Harry Potter",
+        "total_paginas": 1365,
+        "paginas_lidas": 32,
+        "ritmo_diario": 55
+    },
+    "A Escrava Isaura": {
+        "titulo": "A Escrava Isaura",
+        "total_paginas": 135,
+        "paginas_lidas": 33,
+        "ritmo_diario": 30
+    }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos de Consumo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #f1f2f6;
+            --primary: #1e90ff;
+            --text-dark: #2f3542;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 { color: var(--primary); }
+
+        .btn-back {
+            background: #747d8c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-back:hover { background: #57606f; }
+
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="btn-back">⬅ Voltar ao Diário</a>
+
+    <div class="container">
+        <h1>📊 Consumo ao Longo do Tempo</h1>
+        <canvas id="graficoAgua"></canvas>
+    </div>
+
+    <script>
+        // Função para formatar a string DD/MM/YYYY em um objeto Date do JS para ordenação
+        function parseDate(dataStr) {
+            const [dia, mes, ano] = dataStr.split('/');
+            return new Date(ano, mes - 1, dia);
+        }
+
+        // Buscar dados do backend via Fetch API
+        fetch('/api/dados')
+            .then(response => response.json())
+            .then(dados => {
+                // Extrai as chaves (datas) e ordena cronologicamente
+                const datasOrdenadas = Object.keys(dados).sort((a, b) => parseDate(a) - parseDate(b));
+                
+                // Mapeia os valores correspondentes às datas ordenadas
+                const litrosOrdenados = datasOrdenadas.map(data => dados[data]);
+
+                // Configuração do Chart.js
+                const ctx = document.getElementById('graficoAgua').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Pode trocar para 'line' se preferir uma linha contínua
+                    data: {
+                        labels: datasOrdenadas,
+                        datasets: [{
+                            label: 'Litros Consumidos',
+                            data: litrosOrdenados,
+                            backgroundColor: '#1e90ff',
+                            borderColor: '#3742fa',
+                            borderWidth: 2,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Litros (L)'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Dias / Meses'
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>

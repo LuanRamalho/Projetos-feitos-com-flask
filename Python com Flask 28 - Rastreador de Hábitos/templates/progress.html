@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Meu Progresso</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Progresso </h1>
+        <nav>
+            <a href="{{ url_for('index') }}" class="nav-link">Voltar</a>
+        </nav>
+
+        {% for habit in habits %}
+        <div class="card habit-card" 
+             data-name="{{ habit.name }}"
+             data-start="{{ habit.start_date }}" 
+             data-end="{{ habit.end_date }}" 
+             data-completed="{{ habit.completed }}">
+            
+            <h3 style="margin-bottom: 15px;">{{ habit.name }}</h3>
+            
+            <div style="height: 50px; margin-bottom: 10px;">
+                <canvas id="chart-{{ loop.index }}"></canvas>
+            </div>
+            
+            <p id="text-{{ loop.index }}" style="font-size: 0.9em; color: #666;">
+                Calculando dias...
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function parseDate(str) {
+            const [day, month, year] = str.split('/');
+            return new Date(year, month - 1, day);
+        }
+
+        document.querySelectorAll('.habit-card').forEach((card, index) => {
+            const id = index + 1;
+            const start = parseDate(card.dataset.start);
+            const end = parseDate(card.dataset.end);
+            const completed = parseInt(card.dataset.completed);
+
+            // Cálculo matemático dos dias
+            const diffTime = Math.abs(end - start);
+            const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            const remaining = Math.max(totalDays - completed, 0);
+            
+            // Cálculo da porcentagem para o Tooltip
+            const percentage = totalDays > 0 ? ((completed / totalDays) * 100).toFixed(2) : 0;
+
+            // Atualiza o texto abaixo do gráfico
+            document.getElementById(`text-${id}`).innerHTML = 
+                `<strong>${completed}</strong> de <strong>${totalDays}</strong> dias concluídos`;
+
+            // Inicialização do gráfico Chart.js
+            const ctx = document.getElementById(`chart-${id}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [''], 
+                    datasets: [{
+                        label: 'Concluído',
+                        data: [completed],
+                        backgroundColor: '#4facfe',
+                        borderRadius: 5,
+                    }, {
+                        label: 'Restante',
+                        data: [remaining],
+                        backgroundColor: '#e0e0e0',
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Barra horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                // Exibe a porcentagem ao passar o mouse
+                                label: function(context) {
+                                    if (context.datasetIndex === 0) {
+                                        return `Progresso: ${percentage}%`;
+                                    } else {
+                                        const remPerc = (100 - parseFloat(percentage)).toFixed(2);
+                                        return `Faltam: ${remPerc}%`;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            display: false,
+                            max: totalDays 
+                        },
+                        y: {
+                            stacked: true,
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

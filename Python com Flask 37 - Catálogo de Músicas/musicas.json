@@ -1,0 +1,62 @@
+[
+    {
+        "nome": "Johnny B. Goode",
+        "artista": "Chuck Berry",
+        "album": "single não pertencente a álbum",
+        "anotacoes": "Música super clássica, que vale a pena ouvir."
+    },
+    {
+        "nome": "Hey Jude",
+        "artista": "The Beatles",
+        "album": "single não pertencente a álbum",
+        "anotacoes": "Uma grande música dos beatle que é fantástica."
+    },
+    {
+        "nome": "Hotel California",
+        "artista": "Eagles",
+        "album": "Hotel California",
+        "anotacoes": "Um grande clássico que marcou a geração dos anos 1970."
+    },
+    {
+        "nome": "What's Going On",
+        "artista": "Marvin Gaye",
+        "album": "What's Going On",
+        "anotacoes": "Música super marcante na década de 1970."
+    },
+    {
+        "nome": "One",
+        "artista": "U2",
+        "album": "Achtung Baby",
+        "anotacoes": "U2 é uma das melhores bandas de rock que existe. Só tem músicas fantásticas."
+    },
+    {
+        "nome": "Like a Rolling Stone",
+        "artista": "Bob Dylan",
+        "album": "Highway 61 Revisited",
+        "anotacoes": "Essa música é clássica e foi marcante nessa época."
+    },
+    {
+        "nome": "Imagine",
+        "artista": "John Lennon",
+        "album": "Imagine",
+        "anotacoes": "Essa música é belíssima. Vale a pena ouvir."
+    },
+    {
+        "nome": "Smells Like Teen Spirit",
+        "artista": "Nirvana",
+        "album": "Nevermind",
+        "anotacoes": "Essa música foi marcante na juventude nos anos 1990."
+    },
+    {
+        "nome": "Billie Jean",
+        "artista": "Michael Jackson",
+        "album": "Thriller",
+        "anotacoes": "Michael Jackson é top. O Rei do pop. Essa música rendeu um dos melhores clipes musicais da história."
+    },
+    {
+        "nome": "Bohemian Rhapsody",
+        "artista": "Queen",
+        "album": "A Night at the Opera",
+        "anotacoes": "Essa música é clássica. Ela é top, muito bem cantada pelo Fred Mercury."
+    }
+]

@@ -1,0 +1,44 @@
+[
+    {
+        "doador": "João Silva",
+        "item": "Cesta Básica",
+        "quantidade": "1",
+        "data": "09/04/2026",
+        "impacto": "Alimenta 4 pessoas"
+    },
+    {
+        "doador": "Maria Oliveira",
+        "item": "Roupas de Inverno",
+        "quantidade": "15",
+        "data": "08/04/2026",
+        "impacto": "Proteção térmica para famílias desabrigadas"
+    },
+    {
+        "doador": "Ricardo Santos",
+        "item": "Leite em Pó",
+        "quantidade": "12",
+        "data": "07/04/2026",
+        "impacto": "Suporte nutricional para 12 crianças"
+    },
+    {
+        "doador": "Ana Souza",
+        "item": "Kit de Higiene",
+        "quantidade": "20",
+        "data": "07/04/2026",
+        "impacto": "Prevenção de doenças e asseio pessoal"
+    },
+    {
+        "doador": "Beatriz Ferreira",
+        "item": "Cobertores",
+        "quantidade": "5",
+        "data": "06/04/2026",
+        "impacto": "Auxílio a pessoas em situação de rua"
+    },
+    {
+        "doador": "Carlos Mendes",
+        "item": "Brinquedos",
+        "quantidade": "10",
+        "data": "05/04/2026",
+        "impacto": "Ações de lazer para creches comunitárias"
+    }
+]

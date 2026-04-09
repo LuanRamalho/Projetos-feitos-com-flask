@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Biscoito</title>
+    <style>
+        /* Reutilizando o estilo do index.html */
+        :root { --primary: #FF6B6B; --secondary: #4ECDC4; --bg: #F7FFF7; --dark: #2F2F2F; --warning: #FFE66D; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 2rem; border-radius: 15px; box-shadow: 10px 10px 0px var(--warning); width: 400px; border: 3px solid var(--dark); }
+        h2 { text-align: center; color: var(--dark); text-transform: uppercase; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
+        input { width: 100%; padding: 10px; border: 2px solid var(--dark); border-radius: 8px; box-sizing: border-box; }
+        .btn-save { width: 100%; padding: 12px; background: var(--warning); border: 2px solid var(--dark); border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn-cancel { display: block; text-align: center; margin-top: 10px; color: var(--dark); text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✏️ Editar Biscoito</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Nome:</label>
+                <input type="text" name="nome" value="{{ biscoito.nome }}" required>
+            </div>
+            <div class="form-group">
+                <label>Fabricante:</label>
+                <input type="text" name="fabricante" value="{{ biscoito.fabricante }}" required>
+            </div>
+            <div class="form-group">
+                <label>Quantidade:</label>
+                <input type="number" name="quantidade" value="{{ biscoito.quantidade }}" required min="0">
+            </div>
+            <button type="submit" class="btn-save">Salvar Alterações</button>
+            <a href="/estoque" class="btn-cancel">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

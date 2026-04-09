@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>DreamLog - Diário de Sonhos</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --bg: #f0f2f5;
+            --paper: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: #2d3436;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--paper);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .stat-tag {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover { opacity: 0.8; }
+        .btn-danger { background: #ff7675; }
+
+        /* Estilo Documento */
+        .dream-doc {
+            border-left: 5px solid var(--accent);
+            padding: 20px;
+            margin-top: 15px;
+            background: #fff;
+            position: relative;
+        }
+
+        .dream-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            background: #dfe6e9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌙 DreamLog</h1>
+            <p>Seu repositório de sonhos subconscientes</p>
+        </header>
+
+        <div class="card">
+            <h3>Top Categorias:</h3>
+            <div class="stats-bar">
+                {% for cat, count in stats %}
+                <span class="stat-tag">{{ cat }}: {{ count }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Registrar Novo Sonho</h3>
+            <form action="/adicionar" method="POST">
+                <input type="text" name="titulo" placeholder="Título do Sonho" required>
+                <input type="text" name="data" placeholder="Data (DD/MM/YYYY)" required>
+                <select name="categoria">
+                    <option value="Lúcido">Lúcido</option>
+                    <option value="Pesadelo">Pesadelo</option>
+                    <option value="Comum">Comum</option>
+                    <option value="Premonitório">Premonitório</option>
+                </select>
+                <textarea name="descricao" rows="4" placeholder="O que aconteceu no sonho?" required></textarea>
+                <button type="submit" class="btn">Guardar Sonho</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Buscar no Diário</h3>
+            <form method="GET" style="display: flex; gap: 10px;">
+                <input type="text" name="nome" placeholder="Buscar por título...">
+                <input type="text" name="categoria" placeholder="Categoria...">
+                <button type="submit" class="btn">Filtrar</button>
+            </form>
+        </div>
+
+        {% for sonho in sonhos %}
+        <div class="dream-doc">
+            <div class="dream-header">
+                <strong>{{ sonho.titulo }}</strong>
+                <span>{{ sonho.data }}</span>
+            </div>
+            <p><span class="tag">{{ sonho.categoria }}</span></p>
+            <p>{{ sonho.descricao }}</p>
+            <div style="text-align: right;">
+                <a href="/editar/{{ sonho.titulo }}" class="btn" style="background: var(--secondary);">Editar</a>
+                <a href="/excluir/{{ sonho.titulo }}" class="btn btn-danger" onclick="return confirm('Excluir este sonho?')">Excluir</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

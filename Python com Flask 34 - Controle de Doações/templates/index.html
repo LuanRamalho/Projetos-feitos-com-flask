@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Doações - Impacto Real (Cards)</title>
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --secondary: #50E3C2;
+            --accent: #F5A623;
+            --danger: #FF5A5F;
+            --dark: #2C3E50;
+            --light: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #E9ECEF;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--primary); margin: 0; }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-pdf { background-color: var(--accent); color: white; }
+        .btn-add { background-color: var(--secondary); color: white; }
+        .btn-edit { background-color: var(--primary); color: white; }
+        .btn-delete { background-color: var(--danger); color: white; }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        .search-box {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"], input[type="number"], textarea {
+            padding: 10px;
+            border: 2px solid #DDD;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* --- Novo Layout de Cards --- */
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%; /* Garante que o container use 100% da área branca */
+        }
+
+        .donation-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            /* Ajuste para 3 cards por linha ocupando todo o espaço */
+            flex: 1 1 calc(33.333% - 20px); 
+            min-width: 280px; /* Impede que o card fique muito esmagado */
+            max-width: calc(33.333% - 14px); /* Limita para manter 3 por linha */
+            padding: 20px;
+            box-sizing: border-box; /* Garante que o padding não aumente o card */
+            transition: 0.3s;
+            position: relative;
+            border: 1px solid #EEE;
+        }
+
+        .donation-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
+
+        .card-item-title {
+            color: var(--primary);
+            font-size: 1.3em;
+            margin: 0 0 15px 0;
+            border-bottom: 2px solid #EEE;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-detail-group { margin-bottom: 10px; }
+        .card-detail-label { font-weight: bold; color: var(--dark); margin-right: 5px; }
+        .card-detail-value { color: #555; }
+
+        .card-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            border-top: 1px solid #EEE;
+            padding-top: 15px;
+        }
+
+       /* Ajuste para telas médias (3 cards por linha) */
+        @media (max-width: 900px) {
+            .donation-card {
+                flex: 1 1 calc(50% - 20px);
+                max-width: calc(50% - 10px);
+            }
+        }
+
+        /* Ajuste para telas pequenas (1 card por linha) */
+        @media (max-width: 600px) {
+            .donation-card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            width: 50%;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎁 DonationControl Cards</h1>
+        <a href="{{ url_for('generate_pdf') }}" class="btn btn-pdf">📄 Gerar Relatório PDF (Cards)</a>
+    </header>
+
+    <section>
+        <h3>Cadastrar Nova Doação</h3>
+        <form action="{{ url_for('add_donation') }}" method="POST" class="form-grid">
+            <input type="text" name="doador" placeholder="Nome do Doador" required>
+            <input type="text" name="item" placeholder="Item (Ex: Cesta Básica)" required>
+            <input type="number" name="quantidade" placeholder="Quantidade" required>
+            <input type="text" name="impacto" placeholder="Impacto (Ex: Alimenta 4 pessoas)">
+            <button type="submit" class="btn btn-add">Registrar Doação</button>
+        </form>
+    </section>
+
+    <div class="search-box">
+        <form action="/" method="GET" style="display: flex; gap: 10px; width: 100%;">
+            <input type="text" name="search" placeholder="Buscar por item..." value="{{ search_query }}" style="flex-grow: 1;">
+            <button type="submit" class="btn btn-edit">🔍 Pesquisar</button>
+            <a href="/" class="btn btn-delete">Limpar</a>
+        </form>
+    </div>
+
+    <div class="cards-container">
+        {% for d in donations %}
+        <div class="donation-card">
+            <h3 class="card-item-title">🎁 {{ d.item }}</h3>
+            
+            <div class="card-detail-group">
+                <span class="card-detail-label">Doador:</span>
+                <span class="card-detail-value">{{ d.doador }}</span>
+            </div>
+            <div class="card-detail-group">
+                <span class="card-detail-label">Quantidade:</span>
+                <span class="card-detail-value">{{ d.quantidade }}</span>
+            </div>
+            <div class="card-detail-group">
+                <span class="card-detail-label">Impacto:</span>
+                <span class="card-detail-value">{{ d.impacto }}</span>
+            </div>
+            <div class="card-detail-group">
+                <span class="card-detail-label">Data:</span>
+                <span class="card-detail-value">{{ d.data }}</span>
+            </div>
+
+            <div class="card-actions">
+                <button onclick="openEditModal('{{ d.item }}', '{{ d.doador }}', '{{ d.quantidade }}', '{{ d.impacto }}')" class="btn btn-edit" style="padding: 5px 10px; font-size: 0.8em;">Editar</button>
+                <a href="{{ url_for('delete_donation', item_name=d.item) }}" class="btn btn-delete" style="padding: 5px 10px; font-size: 0.8em;">Excluir</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h2>Editar Doação</h2>
+        <form action="{{ url_for('edit_donation') }}" method="POST">
+            <input type="hidden" name="original_item" id="original_item">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" name="doador" id="edit_doador" placeholder="Doador">
+                <input type="text" name="item" id="edit_item" placeholder="Item">
+                <input type="number" name="quantidade" id="edit_quantidade" placeholder="Quantidade">
+                <input type="text" name="impacto" id="edit_impacto" placeholder="Impacto">
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-add">Salvar Alterações</button>
+                    <button type="button" onclick="closeModal()" class="btn btn-delete">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openEditModal(item, doador, qtd, impacto) {
+        document.getElementById('editModal').style.display = 'block';
+        document.getElementById('original_item').value = item;
+        document.getElementById('edit_item').value = item;
+        document.getElementById('edit_doador').value = doador;
+        document.getElementById('edit_quantidade').value = qtd;
+        document.getElementById('edit_impacto').value = impacto;
+    }
+
+    function closeModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+[
+    {
+        "nome": "Biscoito Maizena",
+        "fabricante": "Piraquê",
+        "quantidade": 33
+    },
+    {
+        "nome": "Bono Chocolate",
+        "fabricante": "Nestlé",
+        "quantidade": 50
+    },
+    {
+        "nome": "Passatempo Recheado",
+        "fabricante": "Nestlé",
+        "quantidade": 120
+    },
+    {
+        "nome": "Trakinas Meio a Meio",
+        "fabricante": "Mondelēz",
+        "quantidade": 85
+    },
+    {
+        "nome": "Biscoito de Polvilho",
+        "fabricante": "Granado",
+        "quantidade": 20
+    },
+    {
+        "nome": "Club Social Original",
+        "fabricante": "Mondelēz",
+        "quantidade": 200
+    },
+    {
+        "nome": "Biscoito Maria",
+        "fabricante": "Vitarella",
+        "quantidade": 45
+    },
+    {
+        "nome": "Negresco",
+        "fabricante": "Nestlé",
+        "quantidade": 60
+    },
+    {
+        "nome": "Biscoito de Leite",
+        "fabricante": "Itamaraty",
+        "quantidade": 30
+    },
+    {
+        "nome": "Waffer de Morango",
+        "fabricante": "Bauducco",
+        "quantidade": 75
+    },
+    {
+        "nome": "Rosquinhas de Coco",
+        "fabricante": "Mabel",
+        "quantidade": 40
+    },
+    {
+        "nome": "Cookies Original",
+        "fabricante": "Toddy",
+        "quantidade": 95
+    },
+    {
+        "nome": "Cream Cracker",
+        "fabricante": "Piraquê",
+        "quantidade": 110
+    },
+    {
+        "nome": "Pit Stop Original",
+        "fabricante": "Marilan",
+        "quantidade": 150
+    },
+    {
+        "nome": "Biscoito Champagne",
+        "fabricante": "Bauducco",
+        "quantidade": 15
+    },
+    {
+        "nome": "Amanteigado de Chocolate",
+        "fabricante": "Piraquê",
+        "quantidade": 55
+    },
+    {
+        "nome": "Waffer de Limão",
+        "fabricante": "Vitarella",
+        "quantidade": 40
+    },
+    {
+        "nome": "Biscoito Água e Sal",
+        "fabricante": "Marilan",
+        "quantidade": 80
+    },
+    {
+        "nome": "Tortinhas de Chocolate",
+        "fabricante": "Marilan",
+        "quantidade": 65
+    },
+    {
+        "nome": "Pão de Mel",
+        "fabricante": "Bauducco",
+        "quantidade": 25
+    }
+]

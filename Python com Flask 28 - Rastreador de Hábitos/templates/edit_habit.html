@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Editar Hábito</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>✏️ Editar Hábito: {{ name }}</h2>
+            <form method="POST">
+                <label>Nome do Hábito:</label>
+                <input type="text" name="name" value="{{ name }}" required>
+                
+                <label>Descrição:</label>
+                <textarea name="description" rows="3">{{ habit.description }}</textarea>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div>
+                        <label>Data Inicial (DD/MM/YYYY):</label>
+                        <input type="text" name="start_date" value="{{ habit.start_date }}" required>
+                    </div>
+                    <div>
+                        <label>Data Final (DD/MM/YYYY):</label>
+                        <input type="text" name="end_date" value="{{ habit.end_date }}" required>
+                    </div>
+                </div>
+                
+                <label>Dias já concluídos:</label>
+                <input type="number" name="manual_completed" value="{{ habit.manual_completed }}" min="0">
+                
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn" style="background: var(--primary); flex: 1;">Salvar Alterações</button>
+                    <a href="{{ url_for('index') }}" class="btn" style="background: #95a5a6; text-decoration: none; text-align: center; flex: 1;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

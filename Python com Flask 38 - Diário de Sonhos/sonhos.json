@@ -1,0 +1,92 @@
+[
+    {
+        "titulo": "Trabalhar em uma empresa multinacional",
+        "data": "03/01/2023",
+        "categoria": "Comum",
+        "descricao": "Eu sonhei que estava fazendo tarefas em uma empresa multinacional."
+    },
+    {
+        "titulo": "Voo sobre a Baía de Guanabara",
+        "data": "15/02/2026",
+        "categoria": "Lúcido",
+        "descricao": "Percebi que estava sonhando e decidi voar do Cristo Redentor até Niterói. A sensação do vento era muito real."
+    },
+    {
+        "titulo": "Bug no Código Infinito",
+        "data": "10/03/2026",
+        "categoria": "Pesadelo",
+        "descricao": "Eu tentava corrigir um erro em um arquivo JSON, mas sempre que eu salvava, o arquivo se transformava em código binário que escorria pela tela."
+    },
+    {
+        "titulo": "Encontro com a Turma da Mônica",
+        "data": "22/03/2026",
+        "categoria": "Comum",
+        "descricao": "Estava caminhando pelo Bairro do Limoeiro e conversando com o Cebolinha sobre um plano infalível para debugar um software."
+    },
+    {
+        "titulo": "A Prova Final de Lógica",
+        "data": "05/04/2026",
+        "categoria": "Pesadelo",
+        "descricao": "Sonhei que voltava aos tempos de faculdade e tinha que resolver uma tabela-verdade gigante em 5 minutos."
+    },
+    {
+        "titulo": "Viagem para Marte",
+        "data": "07/04/2026",
+        "categoria": "Premonitório",
+        "descricao": "Viajava em uma nave da SpaceX e via a Terra ficando pequena. O céu de Marte era rosa."
+    },
+    {
+        "titulo": "O Computador Retrô Mágico",
+        "data": "08/04/2026",
+        "categoria": "Lúcido",
+        "descricao": "Encontrei um PC antigo que rodava qualquer jogo apenas com o pensamento. Programei um clone de Pong em segundos."
+    },
+    {
+        "titulo": "Escalando montanhas de gelo",
+        "data": "12/04/2026",
+        "categoria": "Comum",
+        "descricao": "Subia uma montanha muito alta e, no topo, havia uma biblioteca cheia de gibis raros."
+    },
+    {
+        "titulo": "Invasão de Space Invaders",
+        "data": "15/04/2026",
+        "categoria": "Pesadelo",
+        "descricao": "Pixels gigantes caíam do céu no meio do Rio de Janeiro e eu precisava usar um teclado para atirar neles."
+    },
+    {
+        "titulo": "Jantar em Londres",
+        "data": "18/04/2026",
+        "categoria": "Comum",
+        "descricao": "Comia um prato típico em um restaurante chique enquanto discutia arquitetura de Micro-frameworks com estranhos."
+    },
+    {
+        "titulo": "O Labirinto 3D Real",
+        "data": "20/04/2026",
+        "categoria": "Lúcido",
+        "descricao": "Eu estava dentro do protetor de tela do Windows 95, mas conseguia atravessar as paredes e ver o código por trás delas."
+    },
+    {
+        "titulo": "Chuva de Moedas Antigas",
+        "data": "25/04/2026",
+        "categoria": "Premonitório",
+        "descricao": "Começava a chover moedas de ouro no meu quintal. Eu tentava pegar todas com um balde furado."
+    },
+    {
+        "titulo": "A Floresta de Neon",
+        "data": "01/05/2026",
+        "categoria": "Comum",
+        "descricao": "As árvores brilhavam em cores vibrantes de Flat Design, alternando entre roxo e ciano."
+    },
+    {
+        "titulo": "Esqueci o Deploy",
+        "data": "03/05/2026",
+        "categoria": "Pesadelo",
+        "descricao": "O cliente ligava cobrando o sistema e eu percebia que tinha apagado o servidor sem querer."
+    },
+    {
+        "titulo": "Conversa com um Robô",
+        "data": "05/05/2026",
+        "categoria": "Lúcido",
+        "descricao": "Um robô me explicava como as APIs do futuro seriam conectadas diretamente ao pensamento humano."
+    }
+]

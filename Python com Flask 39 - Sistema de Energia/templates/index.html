@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Control - Relatórios do Sistema</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --danger: #f43f5e;
+            --bg: #f1f5f9;
+            --doc-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            background: var(--doc-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #64748b;
+        }
+
+        input {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        /* Grid de Documentos */
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .document-card {
+            background: var(--doc-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 8px solid var(--secondary);
+            transition: transform 0.2s;
+        }
+
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .doc-date { font-weight: bold; color: #475569; }
+
+        .doc-label {
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .value { float: right; font-weight: bold; }
+
+        .saldo-box {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .positivo { background-color: #dcfce7; color: var(--success); }
+        .negativo { background-color: #fee2e2; color: var(--danger); }
+
+        /* NOVA DIV ACTIONS */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #e2e8f0;
+        }
+
+        .btn-edit {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-delete {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .btn-edit:hover { color: var(--secondary); }
+        .btn-delete:hover { color: var(--danger); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>⚡ Central de Geração de Energia</h1>
+        <p>Monitoramento Urbano de MWh</p>
+    </header>
+
+    <div class="form-section">
+        <form action="/add" method="POST" class="form-group">
+            <div class="input-box">
+                <label>Geração (MWh)</label>
+                <input type="number" step="0.01" name="gerado" placeholder="Ex: 500.50" required>
+            </div>
+            <div class="input-box">
+                <label>Consumo (MWh)</label>
+                <input type="number" step="0.01" name="consumido" placeholder="Ex: 420.00" required>
+            </div>
+            <div class="input-box">
+                <label>Data</label>
+                <input type="text" name="data" placeholder="DD/MM/YYYY" pattern="\d{2}/\d{2}/\d{4}" required>
+            </div>
+            <button type="submit">Salvar Registro</button>
+        </form>
+    </div>
+
+    <div class="document-grid">
+        {% for reg in registros %}
+        <div class="document-card">
+            <div class="doc-header">
+                <span class="doc-label">Documento #{{ reg.id }}</span>
+                <span class="doc-date">{{ reg.data }}</span>
+            </div>
+            
+            <div class="doc-body">
+                <p><span class="doc-label">Produção:</span> <span class="value">{{ reg.gerado }} MWh</span></p>
+                <p><span class="doc-label">Consumo:</span> <span class="value">{{ reg.consumido }} MWh</span></p>
+                
+                <div class="saldo-box {{ 'positivo' if reg.saldo >= 0 else 'negativo' }}">
+                    SALDO: {{ reg.saldo }} MWh
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="/edit/{{ reg.id }}" class="btn-edit">Editar Dados</a>
+                <a href="/delete/{{ reg.id }}" class="btn-delete" onclick="return confirm('Deseja excluir este documento?')">Excluir</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

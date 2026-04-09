@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Registro</title>
+    <style>
+        body { font-family: sans-serif; background: #f1f5f9; display: flex; justify-content: center; padding: 50px; }
+        .edit-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 400px; border-top: 8px solid #6366f1; }
+        h2 { color: #6366f1; margin-top: 0; }
+        .field { margin-bottom: 15px; display: flex; flex-direction: column; }
+        label { font-size: 0.8rem; font-weight: bold; color: #64748b; margin-bottom: 5px; }
+        input { padding: 10px; border: 2px solid #e2e8f0; border-radius: 6px; }
+        .btns { display: flex; gap: 10px; margin-top: 20px; }
+        .save { background: #6366f1; color: white; border: none; padding: 10px; flex: 2; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .cancel { background: #e2e8f0; color: #475569; text-decoration: none; padding: 10px; flex: 1; border-radius: 6px; text-align: center; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="edit-card">
+        <h2>Editar Documento #{{ reg.id }}</h2>
+        <form method="POST">
+            <div class="field">
+                <label>Geração (MWh)</label>
+                <input type="number" step="0.01" name="gerado" value="{{ reg.gerado }}" required>
+            </div>
+            <div class="field">
+                <label>Consumo (MWh)</label>
+                <input type="number" step="0.01" name="consumido" value="{{ reg.consumido }}" required>
+            </div>
+            <div class="field">
+                <label>Data</label>
+                <input type="text" name="data" value="{{ reg.data }}" pattern="\d{2}/\d{2}/\d{4}" required>
+            </div>
+            <div class="btns">
+                <button type="submit" class="save">Salvar Alterações</button>
+                <a href="/" class="cancel">Voltar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

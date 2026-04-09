@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Adicionar Hábito</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Criar Novo Hábito</h2>
+            <form method="POST">
+                <input type="text" name="name" placeholder="Nome do Hábito (ex: Beber Água)" required>
+                <textarea name="description" placeholder="Descrição"></textarea>
+                <input type="text" name="start_date" placeholder="Data Inicial (DD/MM/YYYY)" required>
+                <input type="text" name="end_date" placeholder="Data Final (DD/MM/YYYY)" required>
+                <button type="submit" class="btn" style="background: var(--primary); width: 100%;">Salvar Hábito</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

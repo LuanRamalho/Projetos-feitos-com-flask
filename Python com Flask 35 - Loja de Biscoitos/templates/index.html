@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Master - Cadastro</title>
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --bg: #F7FFF7;
+            --dark: #2F2F2F;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 10px 10px 0px var(--secondary);
+            width: 100%;
+            max-width: 400px;
+            border: 3px solid var(--dark);
+        }
+
+        h2 { text-align: center; color: var(--primary); text-transform: uppercase; }
+
+        .form-group { margin-bottom: 1.5rem; }
+
+        label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--dark);
+            border-radius: 8px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--primary); }
+
+        .btn-group { display: flex; gap: 10px; }
+
+        button, .link-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+            text-decoration: none;
+            text-align: center;
+            border: 2px solid var(--dark);
+        }
+
+        .btn-add { background: var(--primary); color: white; }
+        .btn-view { background: var(--secondary); color: var(--dark); }
+
+        button:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px var(--dark); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🍪 Cadastro de Biscoitos</h2>
+        <form action="/cadastrar" method="POST">
+            <div class="form-group">
+                <label>Nome do Biscoito:</label>
+                <input type="text" name="nome" required placeholder="Ex: Recheado de Chocolate">
+            </div>
+            <div class="form-group">
+                <label>Fabricante:</label>
+                <input type="text" name="fabricante" required placeholder="Ex: Nestlé">
+            </div>
+            <div class="form-group">
+                <label>Quantidade em Estoque:</label>
+                <input type="number" name="quantidade" required min="0">
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn-add">Salvar</button>
+                <a href="/estoque" class="link-btn btn-view">Ver Estoque</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

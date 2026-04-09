@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Meus Hábitos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Rastreador de Hábitos</h1>
+        <nav>
+            <a href="{{ url_for('index') }}" class="nav-link">Início</a>
+            <a href="{{ url_for('add_habit') }}" class="nav-link">Novo Hábito</a>
+            <a href="{{ url_for('progress') }}" class="nav-link" style="background: var(--secondary);">Ver Progresso</a>
+        </nav>
+
+        {% if not habits %}
+            <div class="card">
+                <p>Nenhum hábito cadastrado ainda. Comece criando um novo!</p>
+            </div>
+        {% endif %}
+
+        {% for name, info in habits.items() %}
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h3 style="margin-top: 0; color: var(--primary);">{{ name }}</h3>
+                    <p>{{ info.description }}</p>
+                    <small>📅 Período: <strong>{{ info.start_date }}</strong> até <strong>{{ info.end_date }}</strong></small>
+                </div>
+                <div style="display: flex; gap: 5px;">
+                    <a href="{{ url_for('edit_habit', name=name) }}" class="btn" style="background: #f1c40f; padding: 5px 10px; font-size: 12px;">Editar</a>
+                    <a href="{{ url_for('delete_habit', name=name) }}" class="btn" style="background: var(--accent); padding: 5px 10px; font-size: 12px;" onclick="return confirm('Tem certeza?')">Excluir</a>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ddd;">
+                <form action="{{ url_for('update_progress', name=name) }}" method="POST" style="display: flex; gap: 10px; align-items: center;">
+                    <label>Dias Concluídos:</label>
+                    <input type="number" name="completed_count" value="{{ info.get('manual_completed', 0) }}" style="width: 80px; margin: 0; padding: 5px;" min="0">
+                    <button type="submit" class="btn btn-complete">Atualizar</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

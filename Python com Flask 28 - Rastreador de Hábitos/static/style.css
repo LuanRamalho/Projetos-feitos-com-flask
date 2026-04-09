@@ -1,0 +1,90 @@
+:root {
+    --primary: #6c5ce7;
+    --secondary: #00cec9;
+    --bg: #f0f2f5;
+    --card: #ffffff;
+    --text: #2d3436;
+    --accent: #ff7675;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    background: var(--primary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.nav-link:hover { transform: scale(1.05); }
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-complete { background: var(--secondary); }
+.btn-pending { background: var(--accent); }
+
+/* Barra de Progresso Customizada */
+.progress-container {
+    background: #dfe6e9;
+    border-radius: 20px;
+    height: 25px;
+    width: 100%;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
