@@ -1,0 +1,35 @@
+{
+    "perfil": {
+        "nome": "Luan Ramalho",
+        "cargo": "Full Stack Developer",
+        "bio": "Desenvolvedor full stack, focado em Python, Java, C#, projetos SQL, NoSQL e projetos web.",
+        "redes_sociais": [
+            {
+                "nome": "GitHub",
+                "url": "https://github.com/LuanRamalho"
+            },
+            {
+                "nome": "LinkedIn",
+                "url": "https://www.linkedin.com/in/luan-ramalho-b7ba31138/"
+            },
+            {
+                "nome": "Instagram",
+                "url": "https://www.instagram.com/luan.da.silva.ramalho/"
+            },
+            {
+                "nome": "Facebook",
+                "url": "https://www.facebook.com/Luan.Ramalho.TI"
+            }
+        ]
+    },
+    "habilidades": [
+        "Python", "C/C++", "Java", "Flask", "Django", "Node.js", "Express.js", "Jquery", "SQL", "C#", "Javascript", "HTML/CSS"
+    ],
+    "projetos": [
+        {
+            "titulo": "Projeto Inicial",
+            "descricao": "Este é um projeto de exemplo carregado do JSON.",
+            "link": "https://github.com/LuanRamalho/Projetos-feitos-com-flask/tree/main/Python%20com%20Flask%2022%20-%20Gerenciador%20de%20Projetos"
+        }
+    ]
+}

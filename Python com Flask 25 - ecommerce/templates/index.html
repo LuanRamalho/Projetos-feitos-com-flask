@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Virtual</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #00cec9;
+            --accent: #ff7675;
+            --bg: #f0f2f5;
+            --text: #2d3436;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        h1 { color: var(--primary); margin-bottom: 10px; }
+
+        .admin-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .admin-btn:hover { transform: scale(1.05); background: #00b894; }
+
+        /* Layout Horizontal dos Produtos */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex; /* Alinhamento horizontal */
+            align-items: center;
+            gap: 25px;
+            transition: 0.3s;
+            border-left: 8px solid var(--primary);
+        }
+
+        .card:hover { transform: translateX(10px); }
+
+        .card img { 
+            width: 180px; 
+            height: 140px; 
+            object-fit: contain; 
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+
+        .info { flex: 1; text-align: left; }
+        .info h3 { margin: 0 0 10px 0; color: #333; }
+        .info p { font-size: 14px; color: #636e72; line-height: 1.4; }
+        
+        .price-tag {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Carrinho Estilizado */
+        .carrinho { 
+            position: sticky;
+            bottom: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px; 
+            padding: 25px; 
+            background: white; 
+            border-radius: 15px; 
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--accent);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            align-items: center;
+            gap: 15px;
+        }
+
+        .carrinho h2 { margin: 0; color: var(--accent); grid-column: 1 / -1; }
+
+        .pago-input {
+            padding: 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            width: 120px;
+        }
+
+        .check-box {
+            transform: scale(1.5);
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .card { flex-direction: column; text-align: center; }
+            .info { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>E-commerce Minimalista</h1>
+        <a href="/admin" class="admin-btn">⚙️ Painel Admin</a>
+    </header>
+
+    <div class="container">
+        {% for produto in produtos %}
+        <div class="card">
+            <img src="{{ produto.url_imagem }}" alt="{{ produto.nome }}">
+            <div class="info">
+                <h3>{{ produto.nome }}</h3>
+                <p>{{ produto.descricao }}</p>
+                <span class="price-tag">R$ {{ "%.2f"|format(produto.preco) }}</span>
+            </div>
+            <div>
+                <input type="checkbox" class="produto-check check-box" data-preco="{{ produto.preco }}">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="carrinho">
+        <h2>Seu Carrinho</h2>
+        <div>
+            Total: <br>
+            <strong style="font-size: 1.5rem;">R$ <span id="total-valor">0.00</span></strong>
+        </div>
+        
+        <div>
+            Valor Pago: <br>
+            <input type="number" id="valor-pago" class="pago-input" step="0.01" placeholder="0.00">
+        </div>
+        
+        <div>
+            Troco: <br>
+            <strong style="color: #00b894; font-size: 1.5rem;">R$ <span id="troco-valor">0.00</span></strong>
+        </div>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.produto-check');
+        const totalDisplay = document.getElementById('total-valor');
+        const pagoInput = document.getElementById('valor-pago');
+        const trocoDisplay = document.getElementById('troco-valor');
+
+        function calcularTudo() {
+            let total = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    total += parseFloat(cb.getAttribute('data-preco')) || 0;
+                }
+            });
+            
+            totalDisplay.innerText = total.toFixed(2);
+
+            let pago = parseFloat(pagoInput.value) || 0;
+            let troco = pago - total;
+            
+            trocoDisplay.innerText = (pago > 0 && troco > 0) ? troco.toFixed(2) : "0.00";
+        }
+
+        checkboxes.forEach(cb => cb.addEventListener('change', calcularTudo));
+        pagoInput.addEventListener('input', calcularTudo);
+    </script>
+</body>
+</html>

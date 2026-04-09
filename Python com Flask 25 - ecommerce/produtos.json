@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nome": "Mouse sem fio recarreg\u00e1vel",
+        "descricao": "Seus gastos com pilhas acabaram ! Bateria interna recarreg\u00e1vel via cabo USB  O novo mouse sem fio, recarreg\u00e1vel, com design luminoso e sofisticado, conta com clique silencioso, design anat\u00f4mico, confort\u00e1vel e bateria interna recarreg\u00e1vel via cabo USB.  S\u00e3o 3 op\u00e7\u00f5es de sensibilidades DPI para que voc\u00ea possa ajustar a velocidade ideal do cursor no seu notebook ou computador.   - Bateria interna recarreg\u00e1vel e embutida - Transmissor sem fio 2.4g - Mini receptor USB - N\u00e3o precisa instalar qualquer driver ou programa - Apenas 2 horas para recarga da bateria - Leve e compacto - Luzes RGB Discretos e que mudam gradativamente - Bot\u00e3o central do controle da velocidade do cursor   / Especifica\u00e7\u00f5es:  - Peso aproximado 70 gramas - 4 Bot\u00f5es - Alcance de aproximadamente 10 metros - Resolu\u00e7\u00e3o 600, 800, 1200 DPI - Compat\u00edvel com a maioria dos sistemas: Windows XP/Vista/7/8/10/11 ; MAC OSX V10.4X-10.5X - Tamanho de 5,5cm x 11,5cm  / Itens Inclusos:  - 1 Mouse Sem Fio Recarreg\u00e1vel - 1 Mini Receptor Usb - 1 Cabo Micro Usb Para Recarga",
+        "preco": 25.0,
+        "url_imagem": "https://http2.mlstatic.com/D_Q_NP_2X_996715-MLA108742618612_032026-F.webp"
+    },
+    {
+        "id": 2,
+        "nome": "Teclado Semi Mec\u00e2nico Gamer",
+        "descricao": "Tecnologia e Precis\u00e3o: Teclado membrana com resposta t\u00e1til \u00e1gil para jogabilidade otimizada Design e Ergonomia: Formato ergon\u00f4mico em ABS, projetado para conforto em longas sess\u00f5es de uso Conectividade: Conex\u00e3o USB com ampla compatibilidade, garantindo conex\u00e3o est\u00e1vel via cabo Recursos Especiais: Ilumina\u00e7\u00e3o LED Rainbow personaliz\u00e1vel, adicionando estilo e individualidade ao setup",
+        "preco": 28.0,
+        "url_imagem": "https://www.kabum.com.br/conteudo/descricao/416203/img/PART3.jpg"
+    },
+    {
+        "id": 3,
+        "nome": "Mini Teclado Com Touchpad Com Led Usb Android Console e Tv",
+        "descricao": "Nome da marca\tMINI\r\nDescri\u00e7\u00e3o do teclado\tMultim\u00eddia\r\nUsos recomendados do produto\tjogos\r\nComponentes inclu\u00eddos\tMini teclado sem fio, Manual, Bateria de l\u00edtio, Receptor USB wireless 2.4ghz\r\nFabricante\tWILL & LOLA CAPAS E ACESSORIOS LTDA\r\nUPC\t644824441825\r\nPeso do item\t100 Gramas\r\nRanking dos mais vendidos\t\r\nN\u00ba 520 em Computadores e Inform\u00e1tica (Conhe\u00e7a o Top 100 na categoria Computadores e Inform\u00e1tica)\r\nN\u00ba 16 em Teclados de Computador",
+        "preco": 22.5,
+        "url_imagem": "https://m.media-amazon.com/images/I/6161XsFytXL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+        "id": 4,
+        "nome": "Hub Usb 4 Portas Usb 3.0 5 Gbps Extensor Adaptador Usb 3.0 Computador Pc Notebook",
+        "descricao": "Plug and play em Windows, Linux, iOS e macOS conecta e compartilha rapidamente dados sem instala\u00e7\u00f5es complexas.\r\n\r\nCabo de 15 cm facilita o uso conveniente em espa\u00e7os reduzidos, evitar embolamentos e manter a organiza\u00e7\u00e3o.\r\n\r\nConex\u00e3o USB 3.0 garante transfer\u00eancia de at\u00e9 5 Gbps, ideal para transferir arquivos grandes em pouco tempo.\r\n\r\nCompat\u00edvel com Xbox Series S para ampliar conectividade facilmente com seus dispositivos de entretenimento preferidos.",
+        "preco": 19.14,
+        "url_imagem": "https://http2.mlstatic.com/D_Q_NP_2X_904417-MLA100015741086_122025-F.webp"
+    },
+    {
+        "id": 5,
+        "nome": "Cabo Sata Usb 3.0 Ssd Hd Externo Alta Velocidade Pc Gamer",
+        "descricao": "Com o cabo adaptador USB 3.0 para SATA III (SSD e HD 2.5\") ficou muito simples conectar o SSD ou o HD 2.5\" em computadores, notebooks e outros dispositivos atrav\u00e9s da conex\u00e3o USB.\r\n\r\nCom esse adaptador n\u00e3o h\u00e1 a necessidade de um case, proporcionando mais liberdade e praticidade.\r\n\r\nA interface de conex\u00e3o USB 3.0 (tamb\u00e9m compat\u00edvel com dispositivos USB 2.0) aumenta ainda mais a velocidade. \u00c9 poss\u00edvel transmitir e receber dados ao mesmo tempo, oferecendo taxas de transfer\u00eancia ultrarr\u00e1pidas de at\u00e9 10 Gb/s.",
+        "preco": 25.7,
+        "url_imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_789275-MLB104328524400_012026-F.webp"
+    }
+]
