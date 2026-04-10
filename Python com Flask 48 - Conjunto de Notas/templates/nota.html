@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ nota.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+</head>
+<body>
+    <div class="editor-container">
+        <header>
+            <a href="/">← Voltar</a>
+            <h1>{{ nota.titulo }}</h1>
+            <p>Adicionada em: {{ nota.data }}</p>
+        </header>
+
+        <div class="toolbar-editor">
+            <input type="color" onchange="format('foreColor', this.value)" title="Cor">
+            
+            <select id="fontFamilySelector"></select>
+
+            <button onmousedown="event.preventDefault(); format('bold')"><b>B</b></button>
+            <button onmousedown="event.preventDefault(); format('italic')"><i>I</i></button>
+            <button onmousedown="event.preventDefault(); format('underline')"><u>U</u></button>
+            <button onmousedown="event.preventDefault(); format('strikeThrough')"><s>S</s></button>
+            <button onmousedown="event.preventDefault(); format('superscript')">x²</button>
+            <button onmousedown="event.preventDefault(); format('subscript')">x₂</button>
+
+            <button onmousedown="event.preventDefault(); format('justifyLeft')">⬅</button>
+            <button onmousedown="event.preventDefault(); format('justifyCenter')">↔</button>
+            <button onmousedown="event.preventDefault(); format('justifyRight')">➡</button>
+            <button onmousedown="event.preventDefault(); format('justifyFull')">≡</button>
+
+            <button onmousedown="event.preventDefault(); format('insertUnorderedList')">• Lista</button>
+            <button onmousedown="event.preventDefault(); format('insertOrderedList')">1. Lista</button>
+
+            <button onmousedown="event.preventDefault(); changeSize(1)">A+</button>
+            <button onmousedown="event.preventDefault(); changeSize(-1)">A-</button>
+            
+            <button onclick="saveNote('{{ nota.id }}')" class="btn-save">Salvar Conteúdo</button>
+        </div>
+
+        <div id="editor" contenteditable="true" class="textarea-rich">
+            {{ nota.conteudo | safe }}
+        </div>
+
+    <script src="{{ url_for('static', filename='/editor.js') }}"></script>
+</body>
+</html>

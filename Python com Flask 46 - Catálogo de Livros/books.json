@@ -1,0 +1,1212 @@
+[
+    {
+        "author": "George R. R. Martin",
+        "title": "As Crônicas de Gelo e Fogo",
+        "year": 1996
+    },
+    {
+        "author": "Laura Ingalls Wilder",
+        "title": "O Pequeno Fazendeiro",
+        "year": 1933
+    },
+    {
+        "author": "Antoine de Saint-Exupéry",
+        "title": "O Pequeno Príncipe",
+        "year": 1943
+    },
+    {
+        "author": "Liev Tolstói",
+        "title": "Guerra e Paz",
+        "year": 1869
+    },
+    {
+        "author": "J. K. Rowling",
+        "title": "Harry Potter",
+        "year": 1997
+    },
+    {
+        "author": "William Shakespeare",
+        "title": "Romeu e Julieta",
+        "year": 1597
+    },
+    {
+        "author": "Lewis Carroll",
+        "title": "Alice no País das Maravilhas",
+        "year": 1865
+    },
+    {
+        "author": "José Mauro de Vasconcelos",
+        "title": "Meu Pé de Laranja Lima",
+        "year": 1968
+    },
+    {
+        "author": "Hans Christian Andersen",
+        "title": "O Patinho Feio",
+        "year": 1843
+    },
+    {
+        "author": "J. R. R. Tolkien",
+        "title": "O Hobbit",
+        "year": 1937
+    },
+    {
+        "author": "Roald Dahl",
+        "title": "A Fantástica Fábrica de Chocolate",
+        "year": 1964
+    },
+    {
+        "author": "Roald Dahl",
+        "title": "Matilda",
+        "year": 1988
+    },
+    {
+        "author": "Frank Herbert",
+        "title": "Duna",
+        "year": 1965
+    },
+    {
+        "author": "George R. R. Martin",
+        "title": "As Crônicas de Fogo e Sangue",
+        "year": 2018
+    },
+    {
+        "author": "C. S. Lewis",
+        "title": "As Crônicas de Nárnia",
+        "year": 1950
+    },
+    {
+        "author": "George Orwell",
+        "title": "1984",
+        "year": 1949
+    },
+    {
+        "author": "Miguel de Cervantes",
+        "title": "Dom Quixote de la Mancha",
+        "year": 1605
+    },
+    {
+        "author": "Jane Austen",
+        "title": "Orgulho e Preconceito",
+        "year": 1813
+    },
+    {
+        "author": "Victor Hugo",
+        "title": "Os Miseráveis",
+        "year": 1862
+    },
+    {
+        "author": "Machado de Assis",
+        "title": "Dom Casmurro",
+        "year": 1899
+    },
+    {
+        "author": "William P. Young",
+        "title": "A Cabana",
+        "year": 2007
+    },
+    {
+        "author": "Machado de Assis",
+        "title": "Memórias Póstumas de Brás Cubas",
+        "year": 1881
+    },
+    {
+        "author": "Ferenc Molnár",
+        "title": "Os Meninos da Rua Paulo",
+        "year": 1906
+    },
+    {
+        "author": "C. S. Lewis",
+        "title": "Cristianismo Puro e Simples",
+        "year": 1952
+    },
+    {
+        "author": "John Bellairs",
+        "title": "O Mistério do Relógio na Parede",
+        "year": 1973
+    },
+    {
+        "author": "Cristina Jimenez",
+        "title": "Os Donos do Mundo",
+        "year": 2012
+    },
+    {
+        "author": "A. J. Barros",
+        "title": "O Enigma de Compostela",
+        "year": 2013
+    },
+    {
+        "author": "Emily Brontë",
+        "title": "O Morro dos Ventos Uivantes",
+        "year": 1847
+    },
+    {
+        "author": "Margaret Mitchell",
+        "title": "E o Vento Levou",
+        "year": 1936
+    },
+    {
+        "author": "Ruth Rocha",
+        "title": "Marcelo, Martelo e Marmelo",
+        "year": 1976
+    },
+    {
+        "author": "Ziraldo",
+        "title": "O Menino Maluquinho",
+        "year": 1980
+    },
+    {
+        "author": "Eric Carle",
+        "title": "Uma Lagarta Muito Comilona",
+        "year": 1969
+    },
+    {
+        "author": "Monteiro Lobato",
+        "title": "Reinações de Narizinho",
+        "year": 1931
+    },
+    {
+        "author": "C. S. Lewis",
+        "title": "O Leão, a Feiticeira e o Guarda-Roupa",
+        "year": 1950
+    },
+    {
+        "author": "Pedro Bandeira",
+        "title": "Papo de Sapato",
+        "year": 2002
+    },
+    {
+        "author": "Vinicius de Moraes",
+        "title": "A Arca de Noé",
+        "year": 1970
+    },
+    {
+        "author": "J. M. Barrie",
+        "title": "Peter Pan e Wendy",
+        "year": 1911
+    },
+    {
+        "author": "Beatrix Potter",
+        "title": "A História de Pedro Coelho",
+        "year": 1902
+    },
+    {
+        "author": "Jacob Grimm, Wilhelm Grimm",
+        "title": "Contos de Grimm",
+        "year": 1812
+    },
+    {
+        "author": "Monteiro Lobato",
+        "title": "O Sítio do Picapau Amarelo",
+        "year": 1920
+    },
+    {
+        "author": "William Kamkwamba",
+        "title": "O Menino que Descobriu o Vento",
+        "year": 2009
+    },
+    {
+        "author": "Frances Hodgson Burnett",
+        "title": "O Jardim Secreto",
+        "year": 1911
+    },
+    {
+        "author": "Moacyr Scliar",
+        "title": "Mistério da Casa Verde",
+        "year": 1977
+    },
+    {
+        "author": "J. R. R. Tolkien",
+        "title": "A Sociedade do Anel",
+        "year": 1954
+    },
+    {
+        "author": "J. R. R. Tolkien",
+        "title": "As Duas Torres",
+        "year": 1954
+    },
+    {
+        "author": "J. R. R. Tolkien",
+        "title": "O Retorno do Rei",
+        "year": 1955
+    },
+    {
+        "author": "Gabriel García Márquez",
+        "title": "Cem Anos de Solidão",
+        "year": 1967
+    },
+    {
+        "author": "Gabriel García Márquez",
+        "title": "O Amor nos Tempos do Cólera",
+        "year": 1985
+    },
+    {
+        "author": "Paulo Coelho",
+        "title": "O Alquimista",
+        "year": 1988
+    },
+    {
+        "author": "Harper Lee",
+        "title": "O Sol é Para Todos",
+        "year": 1960
+    },
+    {
+        "author": "Fiódor Dostoiévski",
+        "title": "Crime e Castigo",
+        "year": 1866
+    },
+    {
+        "author": "Fiódor Dostoiévski",
+        "title": "Os Irmãos Karamazov",
+        "year": 1880
+    },
+    {
+        "author": "Franz Kafka",
+        "title": "A Metamorfose",
+        "year": 1915
+    },
+    {
+        "author": "Franz Kafka",
+        "title": "O Processo",
+        "year": 1925
+    },
+    {
+        "author": "José Saramago",
+        "title": "Ensaio Sobre a Cegueira",
+        "year": 1995
+    },
+    {
+        "author": "José Saramago",
+        "title": "O Evangelho Segundo Jesus Cristo",
+        "year": 1991
+    },
+    {
+        "author": "João Guimarães Rosa",
+        "title": "Grande Sertão: Veredas",
+        "year": 1956
+    },
+    {
+        "author": "Jorge Amado",
+        "title": "Capitães da Areia",
+        "year": 1937
+    },
+    {
+        "author": "Jorge Amado",
+        "title": "Gabriela, Cravo e Canela",
+        "year": 1958
+    },
+    {
+        "author": "Clarice Lispector",
+        "title": "A Hora da Estrela",
+        "year": 1977
+    },
+    {
+        "author": "Clarice Lispector",
+        "title": "Perto do Coração Selvagem",
+        "year": 1943
+    },
+    {
+        "author": "Aluísio Azevedo",
+        "title": "O Cortiço",
+        "year": 1890
+    },
+    {
+        "author": "José de Alencar",
+        "title": "Iracema",
+        "year": 1865
+    },
+    {
+        "author": "José de Alencar",
+        "title": "O Guarani",
+        "year": 1857
+    },
+    {
+        "author": "Oscar Wilde",
+        "title": "O Retrato de Dorian Gray",
+        "year": 1890
+    },
+    {
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "year": 1851
+    },
+    {
+        "author": "Mary Shelley",
+        "title": "Frankenstein",
+        "year": 1818
+    },
+    {
+        "author": "Bram Stoker",
+        "title": "Drácula",
+        "year": 1897
+    },
+    {
+        "author": "Agatha Christie",
+        "title": "Assassinato no Expresso do Oriente",
+        "year": 1934
+    },
+    {
+        "author": "Agatha Christie",
+        "title": "E Não Sobrou Nenhum",
+        "year": 1939
+    },
+    {
+        "author": "Arthur Conan Doyle",
+        "title": "O Cão dos Baskerville",
+        "year": 1902
+    },
+    {
+        "author": "Arthur Conan Doyle",
+        "title": "Um Estudo em Vermelho",
+        "year": 1887
+    },
+    {
+        "author": "Stephen King",
+        "title": "It: A Coisa",
+        "year": 1986
+    },
+    {
+        "author": "Stephen King",
+        "title": "O Iluminado",
+        "year": 1977
+    },
+    {
+        "author": "Ray Bradbury",
+        "title": "Fahrenheit 451",
+        "year": 1953
+    },
+    {
+        "author": "Aldous Huxley",
+        "title": "Admirável Mundo Novo",
+        "year": 1932
+    },
+    {
+        "author": "Douglas Adams",
+        "title": "O Guia do Mochileiro das Galáxias",
+        "year": 1979
+    },
+    {
+        "author": "Douglas Adams",
+        "title": "O Restaurante no Fim do Universo",
+        "year": 1980
+    },
+    {
+        "author": "William Gibson",
+        "title": "Neuromancer",
+        "year": 1984
+    },
+    {
+        "author": "Isaac Asimov",
+        "title": "Fundação",
+        "year": 1951
+    },
+    {
+        "author": "Isaac Asimov",
+        "title": "Eu, Robô",
+        "year": 1950
+    },
+    {
+        "author": "Umberto Eco",
+        "title": "O Nome da Rosa",
+        "year": 1980
+    },
+    {
+        "author": "James Joyce",
+        "title": "Ulisses",
+        "year": 1922
+    },
+    {
+        "author": "Marcel Proust",
+        "title": "No Caminho de Swann",
+        "year": 1913
+    },
+    {
+        "author": "Albert Camus",
+        "title": "O Estrangeiro",
+        "year": 1942
+    },
+    {
+        "author": "Albert Camus",
+        "title": "A Peste",
+        "year": 1947
+    },
+    {
+        "author": "F. Scott Fitzgerald",
+        "title": "O Grande Gatsby",
+        "year": 1925
+    },
+    {
+        "author": "J.D. Salinger",
+        "title": "O Apanhador no Campo de Centeio",
+        "year": 1951
+    },
+    {
+        "author": "John Steinbeck",
+        "title": "As Vinhas da Ira",
+        "year": 1939
+    },
+    {
+        "author": "John Steinbeck",
+        "title": "Ratos e Homens",
+        "year": 1937
+    },
+    {
+        "author": "Vladimir Nabokov",
+        "title": "Lolita",
+        "year": 1955
+    },
+    {
+        "author": "Gustave Flaubert",
+        "title": "Madame Bovary",
+        "year": 1856
+    },
+    {
+        "author": "Liev Tolstói",
+        "title": "Anna Karenina",
+        "year": 1877
+    },
+    {
+        "author": "Liev Tolstói",
+        "title": "A Morte de Ivan Ilitch",
+        "year": 1886
+    },
+    {
+        "author": "Edgar Allan Poe",
+        "title": "O Corvo e Outros Contos",
+        "year": 1845
+    },
+    {
+        "author": "Dante Alighieri",
+        "title": "A Divina Comédia",
+        "year": 1320
+    },
+    {
+        "author": "Homero",
+        "title": "Ilíada",
+        "year": -750
+    },
+    {
+        "author": "Homero",
+        "title": "Odisseia",
+        "year": -720
+    },
+    {
+        "author": "Sófocles",
+        "title": "Édipo Rei",
+        "year": -429
+    },
+    {
+        "author": "Goethe",
+        "title": "Fausto",
+        "year": 1808
+    },
+    {
+        "author": "Friedrich Nietzsche",
+        "title": "Assim Falou Zaratustra",
+        "year": 1883
+    },
+    {
+        "author": "Friedrich Nietzsche",
+        "title": "Além do Bem e do Mal",
+        "year": 1886
+    },
+    {
+        "author": "Nicolau Maquiavel",
+        "title": "O Príncipe",
+        "year": 1532
+    },
+    {
+        "author": "Aristóteles",
+        "title": "Ética a Nicômaco",
+        "year": -350
+    },
+    {
+        "author": "Yuval Noah Harari",
+        "title": "Sapiens: Uma Breve História da Humanidade",
+        "year": 2011
+    },
+    {
+        "author": "Yuval Noah Harari",
+        "title": "Homo Deus",
+        "year": 2015
+    },
+    {
+        "author": "Carl Sagan",
+        "title": "Cosmos",
+        "year": 1980
+    },
+    {
+        "author": "Carl Sagan",
+        "title": "O Mundo Assombrado pelos Demônios",
+        "year": 1995
+    },
+    {
+        "author": "Stephen Hawking",
+        "title": "Uma Breve História do Tempo",
+        "year": 1988
+    },
+    {
+        "author": "Richard Dawkins",
+        "title": "O Gene Egoísta",
+        "year": 1976
+    },
+    {
+        "author": "Jared Diamond",
+        "title": "Armas, Germes e Aço",
+        "year": 1997
+    },
+    {
+        "author": "Anne Frank",
+        "title": "O Diário de Anne Frank",
+        "year": 1947
+    },
+    {
+        "author": "Sun Tzu",
+        "title": "A Arte da Guerra",
+        "year": -500
+    },
+    {
+        "author": "Dan Brown",
+        "title": "O Código Da Vinci",
+        "year": 2003
+    },
+    {
+        "author": "Dan Brown",
+        "title": "Anjos e Demônios",
+        "year": 2000
+    },
+    {
+        "author": "John Boyne",
+        "title": "O Menino do Pijama Listrado",
+        "year": 2006
+    },
+    {
+        "author": "Markus Zusak",
+        "title": "A Menina que Roubava Livros",
+        "year": 2005
+    },
+    {
+        "author": "Khaled Hosseini",
+        "title": "O Caçador de Pipas",
+        "year": 2003
+    },
+    {
+        "author": "Eça de Queirós",
+        "title": "Os Maias",
+        "year": 1888
+    },
+    {
+        "author": "Eça de Queirós",
+        "title": "O Crime do Padre Amaro",
+        "year": 1875
+    },
+    {
+        "author": "George Orwell",
+        "title": "A Revolução dos Bichos",
+        "year": 1945
+    },
+    {
+        "author": "Anthony Burgess",
+        "title": "Laranja Mecânica",
+        "year": 1962
+    },
+    {
+        "author": "Chuck Palahniuk",
+        "title": "Clube da Luta",
+        "year": 1996
+    },
+    {
+        "author": "Neil Gaiman",
+        "title": "American Gods",
+        "year": 2001
+    },
+    {
+        "author": "Neil Gaiman",
+        "title": "Coraline",
+        "year": 2002
+    },
+    {
+        "author": "Neil Gaiman",
+        "title": "O Oceano no Fim do Caminho",
+        "year": 2013
+    },
+    {
+        "author": "J. K. Rowling",
+        "title": "Harry Potter e a Câmara Secreta",
+        "year": 1998
+    },
+    {
+        "author": "J. K. Rowling",
+        "title": "Harry Potter e o Prisioneiro de Azkaban",
+        "year": 1999
+    },
+    {
+        "author": "George R. R. Martin",
+        "title": "A Fúria dos Reis",
+        "year": 1998
+    },
+    {
+        "author": "George R. R. Martin",
+        "title": "A Tormenta de Espadas",
+        "year": 2000
+    },
+    {
+        "author": "Ernest Hemingway",
+        "title": "O Velho e o Mar",
+        "year": 1952
+    },
+    {
+        "author": "Ernest Hemingway",
+        "title": "Por Quem os Sinos Dobram",
+        "year": 1940
+    },
+    {
+        "author": "Jonathan Swift",
+        "title": "As Viagens de Gulliver",
+        "year": 1726
+    },
+    {
+        "author": "Daniel Defoe",
+        "title": "Robinson Crusoé",
+        "year": 1719
+    },
+    {
+        "author": "Oscar Wilde",
+        "title": "A Importância de ser Prudente",
+        "year": 1895
+    },
+    {
+        "author": "Machado de Assis",
+        "title": "Quincas Borba",
+        "year": 1891
+    },
+    {
+        "author": "Machado de Assis",
+        "title": "O Alienista",
+        "year": 1882
+    },
+    {
+        "author": "Stendhal",
+        "title": "O Vermelho e o Negro",
+        "year": 1830
+    },
+    {
+        "author": "Charles Dickens",
+        "title": "Oliver Twist",
+        "year": 1837
+    },
+    {
+        "author": "Charles Dickens",
+        "title": "Grandes Esperanças",
+        "year": 1861
+    },
+    {
+        "author": "Virginia Woolf",
+        "title": "Mrs Dalloway",
+        "year": 1925
+    },
+    {
+        "author": "Virginia Woolf",
+        "title": "Ao Farol",
+        "year": 1927
+    },
+    {
+        "author": "Graciliano Ramos",
+        "title": "Vidas Secas",
+        "year": 1938
+    },
+    {
+        "author": "Ariano Suassuna",
+        "title": "Auto da Compadecida",
+        "year": 1955
+    },
+    {
+        "author": "Lima Barreto",
+        "title": "Triste Fim de Policarpo Quaresma",
+        "year": 1911
+    },
+    {
+        "author": "Érico Veríssimo",
+        "title": "Olhai os Lírios do Campo",
+        "year": 1938
+    },
+    {
+        "author": "Nelson Rodrigues",
+        "title": "Vestido de Noiva",
+        "year": 1943
+    },
+    {
+        "author": "Itamar Vieira Junior",
+        "title": "Torto Arado",
+        "year": 2019
+    },
+    {
+        "author": "Jefferson Tenório",
+        "title": "O Avesso da Pele",
+        "year": 2020
+    },
+    {
+        "author": "Lygia Fagundes Telles",
+        "title": "As Meninas",
+        "year": 1973
+    },
+    {
+        "author": "Raduan Nassar",
+        "title": "Lavoura Arcaica",
+        "year": 1975
+    },
+    {
+        "author": "Milton Hatoum",
+        "title": "Dois Irmãos",
+        "year": 2000
+    },
+    {
+        "author": "Rachel de Queiroz",
+        "title": "O Quinze",
+        "year": 1930
+    },
+    {
+        "author": "Mário de Andrade",
+        "title": "Macunaíma",
+        "year": 1928
+    },
+    {
+        "author": "Oswald de Andrade",
+        "title": "O Rei da Vela",
+        "year": 1937
+    },
+    {
+        "author": "Hilda Hilst",
+        "title": "A Obscena Senhora D",
+        "year": 1982
+    },
+    {
+        "author": "Alexandre Dumas",
+        "title": "O Conde de Monte Cristo",
+        "year": 1844
+    },
+    {
+        "author": "Alexandre Dumas",
+        "title": "Os Três Mosqueteiros",
+        "year": 1844
+    },
+    {
+        "author": "Jules Verne",
+        "title": "Vinte Mil Léguas Submarinas",
+        "year": 1870
+    },
+    {
+        "author": "Jules Verne",
+        "title": "Viagem ao Centro da Terra",
+        "year": 1864
+    },
+    {
+        "author": "Jules Verne",
+        "title": "A Volta ao Mundo em Oitenta Dias",
+        "year": 1873
+    },
+    {
+        "author": "Mark Twain",
+        "title": "As Aventuras de Tom Sawyer",
+        "year": 1876
+    },
+    {
+        "author": "Mark Twain",
+        "title": "O Príncipe e o Mendigo",
+        "year": 1881
+    },
+    {
+        "author": "Robert Louis Stevenson",
+        "title": "A Ilha do Tesouro",
+        "year": 1883
+    },
+    {
+        "author": "Robert Louis Stevenson",
+        "title": "O Médico e o Monstro",
+        "year": 1886
+    },
+    {
+        "author": "H. G. Wells",
+        "title": "A Máquina do Tempo",
+        "year": 1895
+    },
+    {
+        "author": "H. G. Wells",
+        "title": "A Guerra dos Mundos",
+        "year": 1898
+    },
+    {
+        "author": "Charlotte Brontë",
+        "title": "Jane Eyre",
+        "year": 1847
+    },
+    {
+        "author": "Jane Austen",
+        "title": "Razão e Sensibilidade",
+        "year": 1811
+    },
+    {
+        "author": "Jane Austen",
+        "title": "Emma",
+        "year": 1815
+    },
+    {
+        "author": "Louisa May Alcott",
+        "title": "Mulherzinhas",
+        "year": 1868
+    },
+    {
+        "author": "Lucy Maud Montgomery",
+        "title": "Anne de Green Gables",
+        "year": 1908
+    },
+    {
+        "author": "Jack London",
+        "title": "O Chamado da Floresta",
+        "year": 1903
+    },
+    {
+        "author": "Lewis Carroll",
+        "title": "Através do Espelho",
+        "year": 1871
+    },
+    {
+        "author": "Hermann Hesse",
+        "title": "Sidarta",
+        "year": 1922
+    },
+    {
+        "author": "Hermann Hesse",
+        "title": "O Lobo da Estepe",
+        "year": 1927
+    },
+    {
+        "author": "Thomas Mann",
+        "title": "A Montanha Mágica",
+        "year": 1924
+    },
+    {
+        "author": "Jorge Luis Borges",
+        "title": "Ficções",
+        "year": 1944
+    },
+    {
+        "author": "Julio Cortázar",
+        "title": "O Jogo da Amarelinha",
+        "year": 1963
+    },
+    {
+        "author": "Isabel Allende",
+        "title": "A Casa dos Espíritos",
+        "year": 1982
+    },
+    {
+        "author": "Mario Vargas Llosa",
+        "title": "A Cidade e os Cachorros",
+        "year": 1963
+    },
+    {
+        "author": "Salman Rushdie",
+        "title": "Os Filhos da Meia-Noite",
+        "year": 1981
+    },
+    {
+        "author": "Kazuo Ishiguro",
+        "title": "Os Vestígios do Dia",
+        "year": 1989
+    },
+    {
+        "author": "Kazuo Ishiguro",
+        "title": "Não Me Abandone Jamais",
+        "year": 2005
+    },
+    {
+        "author": "Haruki Murakami",
+        "title": "Norwegian Wood",
+        "year": 1987
+    },
+    {
+        "author": "Haruki Murakami",
+        "title": "Kafka à Beira-Mar",
+        "year": 2002
+    },
+    {
+        "author": "Chimamanda Ngozi Adichie",
+        "title": "Hibisco Roxo",
+        "year": 2003
+    },
+    {
+        "author": "Chimamanda Ngozi Adichie",
+        "title": "Americanah",
+        "year": 2013
+    },
+    {
+        "author": "Margaret Atwood",
+        "title": "O Conto da Aia",
+        "year": 1985
+    },
+    {
+        "author": "Toni Morrison",
+        "title": "Amada",
+        "year": 1887
+    },
+    {
+        "author": "Alice Walker",
+        "title": "A Cor Púrpura",
+        "year": 1982
+    },
+    {
+        "author": "Cormac McCarthy",
+        "title": "A Estrada",
+        "year": 2006
+    },
+    {
+        "author": "Philip K. Dick",
+        "title": "O Homem do Castelo Alto",
+        "year": 1962
+    },
+    {
+        "author": "Philip K. Dick",
+        "title": "Androides Sonham com Ovelhas Elétricas?",
+        "year": 1968
+    },
+    {
+        "author": "Ursula K. Le Guin",
+        "title": "A Mão Esquerda da Escuridão",
+        "year": 1969
+    },
+    {
+        "author": "Frank Herbert",
+        "title": "Messias de Duna",
+        "year": 1969
+    },
+    {
+        "author": "Arthur C. Clarke",
+        "title": "2001: Uma Odisseia no Espaço",
+        "year": 1968
+    },
+    {
+        "author": "Arthur C. Clarke",
+        "title": "O Fim da Infância",
+        "year": 1953
+    },
+    {
+        "author": "William Golding",
+        "title": "O Senhor das Moscas",
+        "year": 1954
+    },
+    {
+        "author": "Ken Follett",
+        "title": "Os Pilares da Terra",
+        "year": 1989
+    },
+    {
+        "author": "Umberto Eco",
+        "title": "O Pêndulo de Foucault",
+        "year": 1988
+    },
+    {
+        "author": "Patrick Süskind",
+        "title": "O Perfume",
+        "year": 1985
+    },
+    {
+        "author": "Gillian Flynn",
+        "title": "Garota Exemplar",
+        "year": 2012
+    },
+    {
+        "author": "Paula Hawkins",
+        "title": "A Garota no Trem",
+        "year": 2015
+    },
+    {
+        "author": "Stieg Larsson",
+        "title": "Os Homens que Não Amavam as Mulheres",
+        "year": 2005
+    },
+    {
+        "author": "Carlos Ruiz Zafón",
+        "title": "A Sombra do Vento",
+        "year": 2001
+    },
+    {
+        "author": "Yuval Noah Harari",
+        "title": "21 Lições para o Século 21",
+        "year": 2018
+    },
+    {
+        "author": "Daniel Kahneman",
+        "title": "Rápido e Devagar",
+        "year": 2011
+    },
+    {
+        "author": "Charles Duhigg",
+        "title": "O Poder do Hábito",
+        "year": 2012
+    },
+    {
+        "author": "James Clear",
+        "title": "Hábitos Atômicos",
+        "year": 2018
+    },
+    {
+        "author": "Viktor Frankl",
+        "title": "Em Busca de Sentido",
+        "year": 1946
+    },
+    {
+        "author": "Marcus Aurelius",
+        "title": "Meditações",
+        "year": 180
+    },
+    {
+        "author": "Sêneca",
+        "title": "Sobre a Brevidade da Vida",
+        "year": 55
+    },
+    {
+        "author": "Miyamoto Musashi",
+        "title": "O Livro dos Cinco Anéis",
+        "year": 1645
+    },
+    {
+        "author": "Carl Jung",
+        "title": "O Homem e Seus Símbolos",
+        "year": 1964
+    },
+    {
+        "author": "Sigmund Freud",
+        "title": "A Interpretação dos Sonhos",
+        "year": 1899
+    },
+    {
+        "author": "Fiódor Dostoiévski",
+        "title": "O Idiota",
+        "year": 1868
+    },
+    {
+        "author": "Fiódor Dostoiévski",
+        "title": "Memórias do Subsolo",
+        "year": 1864
+    },
+    {
+        "author": "Liev Tolstói",
+        "title": "Ressurreição",
+        "year": 1899
+    },
+    {
+        "author": "Clarice Lispector",
+        "title": "Laços de Família",
+        "year": 1960
+    },
+    {
+        "author": "Jorge Amado",
+        "title": "Dona Flor e Seus Dois Maridos",
+        "year": 1966
+    },
+    {
+        "author": "Aluísio Azevedo",
+        "title": "Casa de Pensão",
+        "year": 1884
+    },
+    {
+        "author": "Eça de Queirós",
+        "title": "A Relíquia",
+        "year": 1887
+    },
+    {
+        "author": "Gustave Flaubert",
+        "title": "A Educação Sentimental",
+        "year": 1869
+    },
+    {
+        "author": "Stendhal",
+        "title": "A Cartuxa de Parma",
+        "year": 1839
+    },
+    {
+        "author": "Virginia Woolf",
+        "title": "Orlando",
+        "year": 1928
+    },
+    {
+        "author": "Virginia Woolf",
+        "title": "Um Teto Todo Seu",
+        "year": 1929
+    },
+    {
+        "author": "Marcel Proust",
+        "title": "À Sombra das Moças em Flor",
+        "year": 1919
+    },
+    {
+        "author": "Albert Camus",
+        "title": "O Mito de Sísifo",
+        "year": 1942
+    },
+    {
+        "author": "Jean-Paul Sartre",
+        "title": "A Náusea",
+        "year": 1938
+    },
+    {
+        "author": "Franz Kafka",
+        "title": "O Castelo",
+        "year": 1926
+    },
+    {
+        "author": "Antoine de Saint-Exupéry",
+        "title": "Terra dos Homens",
+        "year": 1939
+    },
+    {
+        "author": "Khalil Gibran",
+        "title": "O Profeta",
+        "year": 1923
+    },
+    {
+        "author": "Herman Melville",
+        "title": "Bartleby, o Escrivão",
+        "year": 1853
+    },
+    {
+        "author": "Edgar Allan Poe",
+        "title": "A Queda da Casa de Usher",
+        "year": 1839
+    },
+    {
+        "author": "Agatha Christie",
+        "title": "Morte no Nilo",
+        "year": 1937
+    },
+    {
+        "author": "Arthur Conan Doyle",
+        "title": "O Signo dos Quatro",
+        "year": 1890
+    },
+    {
+        "author": "Stephen King",
+        "title": "Misery: Louca Obsessão",
+        "year": 1987
+    },
+    {
+        "author": "Neil Gaiman",
+        "title": "Stardust",
+        "year": 1999
+    },
+    {
+        "author": "Douglas Adams",
+        "title": "A Vida, o Universo e Tudo Mais",
+        "year": 1982
+    },
+    {
+        "author": "Isaac Asimov",
+        "title": "O Fim da Eternidade",
+        "year": 1955
+    },
+    {
+        "author": "Dan Brown",
+        "title": "O Símbolo Perdido",
+        "year": 2009
+    }
+]

@@ -1,0 +1,1731 @@
+[
+    {
+        "titulo": "Cascão",
+        "volume": "1",
+        "edicao": "298",
+        "paginas": "36",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Mônica",
+        "volume": "2",
+        "edicao": "150",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Cebolinha",
+        "volume": "1",
+        "edicao": "45",
+        "paginas": "80",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Tio Patinhas",
+        "volume": "1",
+        "edicao": "600",
+        "paginas": "120",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Homem-Aranha",
+        "volume": "3",
+        "edicao": "12",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Batman: O Cavaleiro das Trevas",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "220",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Tex",
+        "volume": "1",
+        "edicao": "500",
+        "paginas": "114",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Naruto",
+        "volume": "1",
+        "edicao": "72",
+        "paginas": "190",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Dragon Ball Z",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Conrad"
+    },
+    {
+        "titulo": "X-Men",
+        "volume": "2",
+        "edicao": "100",
+        "paginas": "148",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Chico Bento",
+        "volume": "1",
+        "edicao": "320",
+        "paginas": "50",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Superman",
+        "volume": "4",
+        "edicao": "5",
+        "paginas": "64",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Turma da Mônica Jovem",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "130",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Pato Donald",
+        "volume": "1",
+        "edicao": "2450",
+        "paginas": "48",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Spawn",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Sandman",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "240",
+        "editora": "Vertigo"
+    },
+    {
+        "titulo": "One Piece",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "208",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Zagor",
+        "volume": "1",
+        "edicao": "150",
+        "paginas": "96",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Ken Parker",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "98",
+        "editora": "CLUQ"
+    },
+    {
+        "titulo": "Mickey Mouse",
+        "volume": "1",
+        "edicao": "800",
+        "paginas": "50",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "The Walking Dead",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "HQM"
+    },
+    {
+        "titulo": "V de Vingança",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "296",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Watchmen",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "416",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Turma da Arrepiada",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Zé Carioca",
+        "volume": "1",
+        "edicao": "2000",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Wolverine",
+        "volume": "2",
+        "edicao": "50",
+        "paginas": "100",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Lanterna Verde",
+        "volume": "1",
+        "edicao": "25",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Cebolinha",
+        "volume": "2",
+        "edicao": "10",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Cascão",
+        "volume": "2",
+        "edicao": "5",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Magali",
+        "volume": "1",
+        "edicao": "400",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Chico Bento",
+        "volume": "2",
+        "edicao": "15",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Franjinha",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Bidu",
+        "volume": "1",
+        "edicao": "20",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Anjinho",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Astronauta",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Piteco",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "50",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Horácio",
+        "volume": "1",
+        "edicao": "3",
+        "paginas": "48",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Penadinho",
+        "volume": "1",
+        "edicao": "8",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Tina",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Papa-Capim",
+        "volume": "1",
+        "edicao": "2",
+        "paginas": "32",
+        "editora": "Globo"
+    },
+    {
+        "titulo": "Mônica Geração 12",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "96",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Capitão América",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Homem de Ferro",
+        "volume": "2",
+        "edicao": "25",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Thor",
+        "volume": "1",
+        "edicao": "50",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Hulk",
+        "volume": "1",
+        "edicao": "150",
+        "paginas": "64",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Vingadores",
+        "volume": "3",
+        "edicao": "1",
+        "paginas": "84",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Pantera Negra",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Doutor Estranho",
+        "volume": "1",
+        "edicao": "15",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Guardiões da Galáxia",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Deadpool",
+        "volume": "2",
+        "edicao": "12",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Quarteto Fantástico",
+        "volume": "1",
+        "edicao": "200",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Demolidor",
+        "volume": "1",
+        "edicao": "80",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Justiceiro",
+        "volume": "1",
+        "edicao": "30",
+        "paginas": "64",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Surfista Prateado",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Mulher-Hulk",
+        "volume": "1",
+        "edicao": "4",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Motoqueiro Fantasma",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Mulher-Maravilha",
+        "volume": "2",
+        "edicao": "50",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Flash",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "52",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Aquaman",
+        "volume": "1",
+        "edicao": "20",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Cyborg",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Shazam",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "52",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Liga da Justiça",
+        "volume": "4",
+        "edicao": "1",
+        "paginas": "84",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Esquadrão Suicida",
+        "volume": "1",
+        "edicao": "15",
+        "paginas": "68",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Asa Noturna",
+        "volume": "1",
+        "edicao": "25",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Batgirl",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Arqueiro Verde",
+        "volume": "1",
+        "edicao": "40",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Robin",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Constantine",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Coringa",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "64",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Harley Quinn",
+        "volume": "1",
+        "edicao": "20",
+        "paginas": "52",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Novos Titãs",
+        "volume": "1",
+        "edicao": "50",
+        "paginas": "64",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Lobo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Bleach",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "190",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Death Note",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "200",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Fullmetal Alchemist",
+        "volume": "1",
+        "edicao": "27",
+        "paginas": "190",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Hunter x Hunter",
+        "volume": "1",
+        "edicao": "36",
+        "paginas": "200",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Yu Yu Hakusho",
+        "volume": "1",
+        "edicao": "19",
+        "paginas": "200",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Saint Seiya",
+        "volume": "1",
+        "edicao": "28",
+        "paginas": "180",
+        "editora": "Conrad"
+    },
+    {
+        "titulo": "My Hero Academia",
+        "volume": "1",
+        "edicao": "30",
+        "paginas": "192",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Demon Slayer",
+        "volume": "1",
+        "edicao": "23",
+        "paginas": "192",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Jujutsu Kaisen",
+        "volume": "1",
+        "edicao": "15",
+        "paginas": "192",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Attack on Titan",
+        "volume": "1",
+        "edicao": "34",
+        "paginas": "192",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Akira",
+        "volume": "1",
+        "edicao": "6",
+        "paginas": "350",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Ghost in the Shell",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "350",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Vagabond",
+        "volume": "1",
+        "edicao": "37",
+        "paginas": "220",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Berserk",
+        "volume": "1",
+        "edicao": "40",
+        "paginas": "230",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Slam Dunk",
+        "volume": "1",
+        "edicao": "31",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Rurouni Kenshin",
+        "volume": "1",
+        "edicao": "28",
+        "paginas": "200",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "InuYasha",
+        "volume": "1",
+        "edicao": "56",
+        "paginas": "190",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Sailor Moon",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "240",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Cardcaptor Sakura",
+        "volume": "1",
+        "edicao": "12",
+        "paginas": "180",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Mister No",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "96",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Dylan Dog",
+        "volume": "1",
+        "edicao": "40",
+        "paginas": "100",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Nathan Never",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "96",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Julia",
+        "volume": "1",
+        "edicao": "15",
+        "paginas": "130",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Mágico Vento",
+        "volume": "1",
+        "edicao": "20",
+        "paginas": "100",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Dampyr",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "96",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Recruta Zero",
+        "volume": "1",
+        "edicao": "300",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Luluzinha",
+        "volume": "1",
+        "edicao": "150",
+        "paginas": "48",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Bolinha",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "48",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Gasparzinho",
+        "volume": "1",
+        "edicao": "80",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Riquinho",
+        "volume": "1",
+        "edicao": "90",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Brasileirinho",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Bloch"
+    },
+    {
+        "titulo": "Almanaque Disney",
+        "volume": "1",
+        "edicao": "370",
+        "paginas": "80",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Margarida",
+        "volume": "1",
+        "edicao": "200",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Minnie",
+        "volume": "1",
+        "edicao": "150",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Pateta",
+        "volume": "1",
+        "edicao": "180",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Tio Patinhas Especial",
+        "volume": "1",
+        "edicao": "50",
+        "paginas": "160",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Os Sobrinhos do Capitão",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "32",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Flash Gordon",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "64",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Fantasma",
+        "volume": "2",
+        "edicao": "500",
+        "paginas": "32",
+        "editora": "RGE"
+    },
+    {
+        "titulo": "Mandrake",
+        "volume": "1",
+        "edicao": "120",
+        "paginas": "32",
+        "editora": "RGE"
+    },
+    {
+        "titulo": "Principe Valente",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Hellboy",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "150",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Sin City",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "300 de Esparta",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Preacher",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Y: O Último Homem",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "180",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Fábulas",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Kick-Ass",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Saga",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Invencível",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "300",
+        "editora": "HQM"
+    },
+    {
+        "titulo": "Bone",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "140",
+        "editora": "Via Lettera"
+    },
+    {
+        "titulo": "Scott Pilgrim",
+        "volume": "1",
+        "edicao": "3",
+        "paginas": "200",
+        "editora": "Quadrinhos na Cia"
+    },
+    {
+        "titulo": "Um Sábado Qualquer",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Independente"
+    },
+    {
+        "titulo": "Turma do Pererê",
+        "volume": "1",
+        "edicao": "50",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "O Menino Maluquinho",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Akira",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "360",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "A Piada Mortal",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Arqueiro Verde: Ano Um",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "As Aventuras de Tintim",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "64",
+        "editora": "Companhia das Letras"
+    },
+    {
+        "titulo": "Asterix o Gaulês",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "48",
+        "editora": "Record"
+    },
+    {
+        "titulo": "Banzai!",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "100",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Batman: Ano Um",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Batman: O Longo Dia das Bruxas",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "400",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Berserk",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "240",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Black Hammer",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "184",
+        "editora": "Intrínseca"
+    },
+    {
+        "titulo": "Blade Runner 2019",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "128",
+        "editora": "NewPOP"
+    },
+    {
+        "titulo": "Blueberry",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Viação"
+    },
+    {
+        "titulo": "Cavaleiro da Lua",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "136",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Clow Cards",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "180",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "Comanche",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "56",
+        "editora": "RGE"
+    },
+    {
+        "titulo": "Conan, o Bárbaro",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "84",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Crise nas Infinitas Terras",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "400",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Cuidado com o He-Man",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Daytripper",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "256",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Defensores",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "68",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Do Inferno",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "576",
+        "editora": "Veneta"
+    },
+    {
+        "titulo": "Doutor Estranho: O Juramento",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "128",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Era de Apocalypse",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Estranhos no Paraíso",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "180",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Gen Pés Descalços",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "350",
+        "editora": "Conrad"
+    },
+    {
+        "titulo": "Guerra Civil",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "208",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Guerreiros das Sombras",
+        "volume": "1",
+        "edicao": "3",
+        "paginas": "52",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Homem-Animal",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "240",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Incal",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "312",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Justice",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Kingdom Come: O Reino do Amanhã",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "232",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Krypton",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Lucky Luke",
+        "volume": "1",
+        "edicao": "10",
+        "paginas": "48",
+        "editora": "Zarabatana"
+    },
+    {
+        "titulo": "Maus",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "296",
+        "editora": "Quadrinhos na Cia"
+    },
+    {
+        "titulo": "Mestre do Kung Fu",
+        "volume": "1",
+        "edicao": "20",
+        "paginas": "68",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Monstro do Pântano",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Mulher-Maravilha: Sangue",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Nausicaä do Vale do Vento",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "1000",
+        "editora": "JBC"
+    },
+    {
+        "titulo": "New X-Men",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "O Corvo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "272",
+        "editora": "Darkside"
+    },
+    {
+        "titulo": "O Eternauta",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "350",
+        "editora": "Martins Fontes"
+    },
+    {
+        "titulo": "O Inescrupuloso Homem-Aranha",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "RGE"
+    },
+    {
+        "titulo": "O Pacificador",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Ebal"
+    },
+    {
+        "titulo": "Os Invisíveis",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "220",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Os Mortos-Vivos",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "HQM"
+    },
+    {
+        "titulo": "Persepolis",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "352",
+        "editora": "Quadrinhos na Cia"
+    },
+    {
+        "titulo": "Planetary",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Preacher: Caminho para o Texas",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Promethea",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "180",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Santuário",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Conrad"
+    },
+    {
+        "titulo": "Shazam!: A Sociedade Monstro do Mal",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Sleeper",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Spawn: O Soldado do Inferno",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Spirit",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "100",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Superman: Entre a Foice e o Martelo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Sweet Tooth",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "128",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "The Boys",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "152",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "V de Vingança (Edição de Luxo)",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "296",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Vampirella",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "100",
+        "editora": "Opera Graphica"
+    },
+    {
+        "titulo": "Wolverine: Origin",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "A Castanheira",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "192",
+        "editora": "8Inverso"
+    },
+    {
+        "titulo": "A Liga Extraordinária",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "192",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "A Saga do Monstro do Pântano",
+        "volume": "2",
+        "edicao": "1",
+        "paginas": "224",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Almanaque do Pato Donald",
+        "volume": "1",
+        "edicao": "100",
+        "paginas": "80",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Animal Man (Jeff Lemire)",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Arqueiro Verde: A Ascensão de Arqueiro",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Astro City",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Batman: Silêncio",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "320",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Batman: Veneno",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "140",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Bidu: Caminhos",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Blueberry: O Cavalo de Ferro",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "52",
+        "editora": "Meridional"
+    },
+    {
+        "titulo": "Capa e Espada",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "48",
+        "editora": "Independente"
+    },
+    {
+        "titulo": "Capitão América: A Sentinela da Liberdade",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "100",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Cebolinha: Recuperação",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "96",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Chico Bento: Arvorada",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "96",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Comichões e Coceiras",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Conan, o Cimério",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Coringa: Advogado do Diabo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "96",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Criminal",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "128",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Demolidor: Revelado",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Descender",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Intrínseca"
+    },
+    {
+        "titulo": "Diomedes: A Trilogia do Acidente",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "432",
+        "editora": "Quadrinhos na Cia"
+    },
+    {
+        "titulo": "Disney Especial: Os Insetos",
+        "volume": "1",
+        "edicao": "55",
+        "paginas": "180",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Drácula de Bram Stoker",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Darkside"
+    },
+    {
+        "titulo": "Ed o Urso Polar",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "NewPOP"
+    },
+    {
+        "titulo": "Esquadrão Supremo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "350",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Estação Onze",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "300",
+        "editora": "Intrínseca"
+    },
+    {
+        "titulo": "Fênix Negra",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Flash: O Retorno de Barry Allen",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "180",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Gavião Arqueiro: Minha Vida como uma Arma",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "136",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "He-Man e os Mestres do Universo",
+        "volume": "1",
+        "edicao": "5",
+        "paginas": "32",
+        "editora": "Abril"
+    },
+    {
+        "titulo": "Hellblazer: Origens",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Homem-Aranha: A Última Caçada de Kraven",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Homem-Formiga: Mundo Pequeno",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "120",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Justiceiro: Bem-Vindo de Volta, Frank",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "288",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Kingdom Come (Edição Definitiva)",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "340",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Lazarus",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Locke & Key",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Geektopia"
+    },
+    {
+        "titulo": "Lone Wolf & Cub (Lobo Solitário)",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "300",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Mandrake: O Mundo do Espelho",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "64",
+        "editora": "L&PM"
+    },
+    {
+        "titulo": "Marvels",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "230",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Metabarões",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "550",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Monstress",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "190",
+        "editora": "Pixel"
+    },
+    {
+        "titulo": "Mulher-Maravilha: Terra Um",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "O árabe do Futuro",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "160",
+        "editora": "Intrínseca"
+    },
+    {
+        "titulo": "O Escultor",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "496",
+        "editora": "Marsupial"
+    },
+    {
+        "titulo": "O Homem que Ri",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "100",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "O Mundo de Edena",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "400",
+        "editora": "Nemo"
+    },
+    {
+        "titulo": "Os Leões de Bagdá",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "136",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Paper Girls",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "Planeta Hulk",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "400",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Pyongyang: Uma Viagem à Coreia do Norte",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "184",
+        "editora": "Zarabatana"
+    },
+    {
+        "titulo": "Retalhos",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "592",
+        "editora": "Quadrinhos na Cia"
+    },
+    {
+        "titulo": "Sexta-Feira 13",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "144",
+        "editora": "NewPOP"
+    },
+    {
+        "titulo": "Superman: Identidade Secreta",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "200",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Tex: O Vale do Terror",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "240",
+        "editora": "Mythos"
+    },
+    {
+        "titulo": "Turma da Mônica: Lições",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "80",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Umbrella Academy: Suíte do Apocalipse",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "192",
+        "editora": "Devir"
+    },
+    {
+        "titulo": "We3: Instinto de Sobrevivência",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "104",
+        "editora": "Panini"
+    },
+    {
+        "titulo": "Y: O Último Homem - Edição de Luxo",
+        "volume": "1",
+        "edicao": "1",
+        "paginas": "256",
+        "editora": "Panini"
+    }
+]

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Estacionamento - Clientes</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 20px; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; text-align: center; }
+        .form-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { padding: 10px; border: 2px solid #3498db; border-radius: 5px; flex-grow: 1; }
+        button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; color: white; font-weight: bold; }
+        .btn-add { background: #27ae60; }
+        .btn-edit { background: #f1c40f; color: black; }
+        .btn-del { background: #e74c3c; }
+        .cliente-card { 
+            display: flex; justify-content: space-between; align-items: center;
+            background: #ecf0f1; margin: 10px 0; padding: 15px; border-radius: 8px;
+            transition: 0.3s; border-left: 5px solid #3498db;
+        }
+        .nome-clicavel { cursor: pointer; font-size: 1.2em; font-weight: bold; color: #2980b9; flex-grow: 1; }
+        .nome-clicavel:hover { color: #d35400; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 Gestão de Clientes</h1>
+        <div class="form-group">
+            <input type="text" id="busca" placeholder="Buscar por nome..." oninput="carregarClientes()">
+        </div>
+        <div class="form-group">
+            <input type="text" id="nomeCliente" placeholder="Nome do novo cliente">
+            <button class="btn-add" onclick="adicionarCliente()">Adicionar</button>
+        </div>
+        <div id="listaClientes"></div>
+    </div>
+
+    <script>
+        async function carregarClientes() {
+            const busca = document.getElementById('busca').value.toLowerCase();
+            const res = await fetch('/api/clientes');
+            const clientes = await res.json();
+            const lista = document.getElementById('listaClientes');
+            lista.innerHTML = '';
+
+            clientes.filter(c => c.nome.toLowerCase().includes(busca)).forEach(c => {
+                lista.innerHTML += `
+                    <div class="cliente-card">
+                        <span class="nome-clicavel" onclick="location.href='/cliente/${c.id}'">${c.nome}</span>
+                        <div>
+                            <button class="btn-edit" onclick="editarCliente('${c.id}', '${c.nome}')">Editar</button>
+                            <button class="btn-del" onclick="deletarCliente('${c.id}')">Excluir</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        async function adicionarCliente() {
+            const nome = document.getElementById('nomeCliente').value;
+            await fetch('/api/clientes', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({nome})
+            });
+            document.getElementById('nomeCliente').value = '';
+            carregarClientes();
+        }
+
+        async function deletarCliente(id) {
+            if(confirm("Deseja excluir?")) {
+                await fetch(`/api/clientes/${id}`, { method: 'DELETE' });
+                carregarClientes();
+            }
+        }
+
+        async function editarCliente(id, nomeAntigo) {
+            const novoNome = prompt("Novo nome:", nomeAntigo);
+            if(novoNome) {
+                await fetch(`/api/clientes/${id}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({nome: novoNome})
+                });
+                carregarClientes();
+            }
+        }
+
+        carregarClientes();
+    </script>
+</body>
+</html>

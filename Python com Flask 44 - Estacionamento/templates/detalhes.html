@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do Estacionamento</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #e8f4f8; margin: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        h2 { color: #8e44ad; text-align: center; }
+        .grid-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        input, select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; }
+        .btn-save { background: #8e44ad; width: 100%; grid-column: span 2; font-size: 1.1em; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #333; }
+        .total-destaque { font-weight: bold; color: #27ae60; }
+        .search-box { margin-bottom: 15px; width: 100%; background: #fffbe6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="location.href='/'">⬅ Voltar</button>
+        <h2 id="tituloCliente">Registros de Estacionamento</h2>
+
+        <input type="text" id="buscaData" class="search-box" placeholder="Filtrar por Data/Hora (DD/MM/YYYY)..." oninput="renderizarTabela()">
+
+        <div class="grid-inputs">
+            <select id="tipo">
+                <option value="Carro">Carro 🚗</option>
+                <option value="Moto">Moto 🏍️</option>
+            </select>
+            <input type="number" id="valor_unidade" placeholder="Valor/Hora (R$)">
+            <input type="text" id="data_hora" placeholder="DD/MM/YYYY - HH:MM">
+            <input type="number" id="horas" placeholder="Qtd. Horas">
+            <button class="btn-save" onclick="salvarRegistro()">Salvar Registro</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Entrada</th>
+                    <th>Horas</th>
+                    <th>Preço Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const clienteId = "{{ cliente_id }}";
+        let registrosLocais = [];
+        let editandoRegId = null; // Variável para controlar se estamos editando
+
+        async function carregarDados() {
+            const res = await fetch(`/api/estacionamento/${clienteId}`);
+            const data = await res.json();
+            document.getElementById('tituloCliente').innerText = `Cliente: ${data.nome}`;
+            registrosLocais = data.registros;
+            renderizarTabela();
+        }
+
+        function renderizarTabela() {
+            const busca = document.getElementById('buscaData').value;
+            const corpo = document.getElementById('corpoTabela');
+            corpo.innerHTML = '';
+
+            registrosLocais.filter(r => r.data_hora.includes(busca)).forEach(r => {
+                corpo.innerHTML += `
+                    <tr>
+                        <td>${r.tipo}</td>
+                        <td>${r.data_hora}</td>
+                        <td>${r.horas}h</td>
+                        <td class="total-destaque">R$ ${r.total.toFixed(2)}</td>
+                        <td>
+                            <button style="background:#f1c40f" onclick="prepararEdicao('${r.reg_id}')">✏️</button>
+                            <button style="background:#e74c3c; color:white" onclick="deletarReg('${r.reg_id}')">🗑️</button>
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        // Função que coloca os dados de volta nas caixas de texto
+        function prepararEdicao(regId) {
+            const reg = registrosLocais.find(r => r.reg_id === regId);
+            if (reg) {
+                document.getElementById('tipo').value = reg.tipo;
+                document.getElementById('valor_unidade').value = reg.valor_unidade;
+                document.getElementById('data_hora').value = reg.data_hora;
+                document.getElementById('horas').value = reg.horas;
+                
+                editandoRegId = regId;
+                const btn = document.querySelector('.btn-save');
+                btn.innerText = "Atualizar Registro";
+                btn.style.background = "#f39c12"; // Cor de alerta para edição
+            }
+        }
+
+        async function salvarRegistro() {
+            const payload = {
+                tipo: document.getElementById('tipo').value,
+                valor_unidade: document.getElementById('valor_unidade').value,
+                data_hora: document.getElementById('data_hora').value,
+                horas: document.getElementById('horas').value
+            };
+
+            let url = `/api/estacionamento/${clienteId}`;
+            let metodo = 'POST';
+
+            // Se estiver editando, muda para PUT e aponta para o ID do registro
+            if (editandoRegId) {
+                url += `/${editandoRegId}`;
+                metodo = 'PUT';
+            }
+
+            await fetch(url, {
+                method: metodo,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
+
+            // Limpa o formulário e reseta o estado de edição
+            limparFormulario();
+            carregarDados();
+        }
+
+        function limparFormulario() {
+            document.getElementById('valor_unidade').value = '';
+            document.getElementById('data_hora').value = '';
+            document.getElementById('horas').value = '';
+            editandoRegId = null;
+            const btn = document.querySelector('.btn-save');
+            btn.innerText = "Salvar Registro";
+            btn.style.background = "#8e44ad";
+        }
+
+        async function deletarReg(regId) {
+            if(confirm("Deseja excluir este registro?")) {
+                await fetch(`/api/estacionamento/${clienteId}/${regId}`, { method: 'DELETE' });
+                carregarDados();
+            }
+        }
+
+        carregarDados();
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Confeitaria Doce Sabor</title>
+    <style>
+        :root {
+            --rosa-claro: #ffe4e1;
+            --rosa-forte: #ff69b4;
+            --marrom-chocolate: #5c4033;
+            --amarelo-creme: #fffacd;
+            --branco: #ffffff;
+            --sucesso: #28a745;
+            --perigo: #dc3545;
+            --alerta: #ffc107;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--rosa-claro);
+            color: var(--marrom-chocolate);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--rosa-forte);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Estilos do Formulário e Buscas */
+        .painel {
+            background-color: var(--branco);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-top: 5px solid var(--rosa-forte);
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group textarea {
+            flex: 1 1 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--rosa-forte);
+            box-shadow: 0 0 5px var(--rosa-forte);
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            color: var(--branco);
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-salvar { background-color: var(--sucesso); }
+        .btn-editar { background-color: var(--alerta); color: var(--marrom-chocolate); }
+        .btn-excluir { background-color: var(--perigo); }
+        
+        /* Barra de Busca */
+        .busca-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background-color: var(--amarelo-creme);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed var(--marrom-chocolate);
+        }
+
+        .busca-container input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--marrom-chocolate);
+        }
+
+        /* Estilos da Exibição (Documento Comum) */
+        #lista-bolos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card-bolo {
+            background-color: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .card-bolo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .card-conteudo {
+            padding: 15px;
+        }
+
+        .card-titulo {
+            margin: 0 0 10px 0;
+            color: var(--rosa-forte);
+            font-size: 1.5em;
+        }
+
+        .tag-tipo {
+            background-color: var(--marrom-chocolate);
+            color: var(--branco);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .card-preco {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--sucesso);
+            margin: 10px 0;
+        }
+
+        .card-acoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .card-acoes button {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🍰 Confeitaria Doce Sabor</h1>
+
+        <div class="painel">
+            <h2 id="form-titulo">Adicionar Novo Bolo</h2>
+            <form id="form-bolo">
+                <input type="hidden" id="bolo-id">
+                <div class="form-group">
+                    <input type="text" id="nome" placeholder="Nome do Bolo" required>
+                    <input type="text" id="tipo" placeholder="Tipo (ex: Festa, Vegano, Caseiro)" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="descricao" placeholder="Descrição do bolo..." rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="url" id="link" placeholder="Link da Imagem (URL)">
+                    <input type="number" id="preco" placeholder="Preço (R$)" step="0.01" required>
+                </div>
+                <button type="submit" class="btn-salvar" id="btn-submit">Salvar Bolo</button>
+                <button type="button" class="btn-editar" style="display:none;" id="btn-cancelar" onclick="limparFormulario()">Cancelar</button>
+            </form>
+        </div>
+
+        <div class="busca-container">
+            <input type="text" id="busca-nome" placeholder="Buscar por Nome do Bolo...">
+            <input type="text" id="busca-tipo" placeholder="Buscar por Tipo de Bolo...">
+        </div>
+
+        <div id="lista-bolos">
+            </div>
+    </div>
+
+    <script>
+        let bolosGerais = []; // Armazena os dados em memória para a busca local
+
+        // Executa ao carregar a página
+        window.onload = carregarBolos;
+
+        // --- Operações CRUD com a API ---
+
+        async function carregarBolos() {
+            try {
+                const response = await fetch('/api/bolos');
+                bolosGerais = await response.json();
+                renderizarBolos(bolosGerais);
+            } catch (error) {
+                console.error("Erro ao carregar os bolos:", error);
+            }
+        }
+
+        document.getElementById('form-bolo').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const id = document.getElementById('bolo-id').value;
+            const boloData = {
+                nome: document.getElementById('nome').value,
+                tipo: document.getElementById('tipo').value,
+                descricao: document.getElementById('descricao').value,
+                link: document.getElementById('link').value || 'https://via.placeholder.com/300x200?text=Bolo+Delicioso',
+                preco: parseFloat(document.getElementById('preco').value)
+            };
+
+            const url = id ? `/api/bolos/${id}` : '/api/bolos';
+            const method = id ? 'PUT' : 'POST';
+
+            await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(boloData)
+            });
+
+            limparFormulario();
+            carregarBolos();
+        });
+
+        async function deletarBolo(id) {
+            if(confirm("Tem certeza que deseja excluir este bolo?")) {
+                await fetch(`/api/bolos/${id}`, { method: 'DELETE' });
+                carregarBolos();
+            }
+        }
+
+        function editarBolo(id) {
+            const bolo = bolosGerais.find(b => b.id === id);
+            if(bolo) {
+                document.getElementById('bolo-id').value = bolo.id;
+                document.getElementById('nome').value = bolo.nome;
+                document.getElementById('tipo').value = bolo.tipo;
+                document.getElementById('descricao').value = bolo.descricao;
+                document.getElementById('link').value = bolo.link;
+                document.getElementById('preco').value = bolo.preco;
+                
+                document.getElementById('form-titulo').innerText = "Editar Bolo";
+                document.getElementById('btn-submit').innerText = "Atualizar Bolo";
+                document.getElementById('btn-cancelar').style.display = "inline-block";
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // --- Renderização e Lógica de Busca ---
+
+        function renderizarBolos(lista) {
+            const container = document.getElementById('lista-bolos');
+            container.innerHTML = '';
+
+            if (lista.length === 0) {
+                container.innerHTML = '<p style="text-align:center; grid-column: 1 / -1;">Nenhum bolo encontrado.</p>';
+                return;
+            }
+
+            lista.forEach(bolo => {
+                const precoFormatado = bolo.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                
+                const card = document.createElement('div');
+                card.className = 'card-bolo';
+                card.innerHTML = `
+                    <img src="${bolo.link}" alt="${bolo.nome}" class="card-img" onerror="this.src='https://via.placeholder.com/300x200?text=Sem+Imagem'">
+                    <div class="card-conteudo">
+                        <h3 class="card-titulo">${bolo.nome}</h3>
+                        <span class="tag-tipo">${bolo.tipo}</span>
+                        <p>${bolo.descricao}</p>
+                        <div class="card-preco">${precoFormatado}</div>
+                        
+                        <div class="card-acoes">
+                            <button class="btn-editar" onclick="editarBolo('${bolo.id}')">Editar</button>
+                            <button class="btn-excluir" onclick="deletarBolo('${bolo.id}')">Excluir</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Eventos de Busca no Frontend (Template HTML via Script)
+        document.getElementById('busca-nome').addEventListener('input', filtrarBolos);
+        document.getElementById('busca-tipo').addEventListener('input', filtrarBolos);
+
+        function filtrarBolos() {
+            const termoNome = document.getElementById('busca-nome').value.toLowerCase();
+            const termoTipo = document.getElementById('busca-tipo').value.toLowerCase();
+
+            const bolosFiltrados = bolosGerais.filter(bolo => {
+                const matchNome = bolo.nome.toLowerCase().includes(termoNome);
+                const matchTipo = bolo.tipo.toLowerCase().includes(termoTipo);
+                return matchNome && matchTipo;
+            });
+
+            renderizarBolos(bolosFiltrados);
+        }
+
+        function limparFormulario() {
+            document.getElementById('form-bolo').reset();
+            document.getElementById('bolo-id').value = '';
+            document.getElementById('form-titulo').innerText = "Adicionar Novo Bolo";
+            document.getElementById('btn-submit').innerText = "Salvar Bolo";
+            document.getElementById('btn-cancelar').style.display = "none";
+        }
+    </script>
+</body>
+</html>

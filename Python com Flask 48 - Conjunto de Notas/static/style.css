@@ -1,0 +1,282 @@
+/* =========================================================================
+   ESTILOS GERAIS
+   ========================================================================= */
+:root {
+    --bg-primary: #f7f9fc;
+    --text-primary: #333333;
+    --text-secondary: #5f6368;
+    --accent-color: #4a90e2; /* Um azul suave para destaque */
+    --accent-color-light: #e0e6ed;
+    --card-bg: rgba(255, 255, 255, 0.7); /* Efeito de vidro */
+    --editor-bg: #ffffff;
+    --button-success: #2ecc71; /* Verde para salvar */
+    --button-success-hover: #27ae60;
+    --button-secondary: #95a5a6; /* Cinza para cancelar */
+    --shadow-main: 0 4px 6px rgba(0,0,0,0.1);
+    --border-radius-main: 12px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 20px;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+
+.container, .editor-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* =========================================================================
+   ELEMENTOS DE FORMULÁRIO E BOTÕES
+   ========================================================================= */
+input[type="text"], select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-main);
+    font-size: 14px;
+    margin-right: 10px;
+    background-color: #fff;
+    transition: 0.2s;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-main);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, transform 0.1s;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button[type="button"].cancel {
+    background-color: var(--button-secondary);
+}
+
+button[type="button"].cancel:hover {
+    background-color: #7f8c8d;
+}
+
+/* =========================================================================
+   PÁGINA PRINCIPAL (Index)
+   ========================================================================= */
+.toolbar-main {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px); /* Efeito de vidro */
+    padding: 20px;
+    border-radius: var(--border-radius-main);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-main);
+}
+
+.add-form, .search-form {
+    display: flex;
+    align-items: center;
+}
+
+/* Grid de Cards */
+.grid-notas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* Card Estilizado */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-main);
+    padding: 20px;
+    box-shadow: var(--shadow-main);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.card-content h3 {
+    color: var(--accent-color);
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-content small {
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+.card-actions button {
+    padding: 8px 15px;
+    font-size: 12px;
+}
+
+.card-actions a.btn-delete {
+    color: #e74c3c;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.card-actions a.btn-delete:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+/* =========================================================================
+   PÁGINA DETALHADA DA NOTA (Nota)
+   ========================================================================= */
+.editor-container {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-main);
+}
+
+header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+header a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* Barra de Ferramentas do Editor */
+.toolbar-editor {
+    background: var(--accent-color-light);
+    padding: 15px;
+    border-radius: var(--border-radius-main);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.toolbar-editor button {
+    padding: 10px;
+    font-size: 12px;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid #ddd;
+    font-weight: normal;
+}
+
+.toolbar-editor button:hover {
+    background-color: var(--bg-primary);
+}
+
+.toolbar-editor button.active {
+    background-color: var(--bg-primary);
+    border-color: var(--accent-color);
+}
+
+.toolbar-editor .btn-save {
+    background-color: var(--button-success);
+    color: white;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.toolbar-editor .btn-save:hover {
+    background-color: var(--button-success-hover);
+}
+
+/* Área de Texto Enorme do Editor */
+.textarea-rich {
+    background: var(--editor-bg);
+    border: 1px solid #ddd;
+    min-height: 60vh; /* Faz com que ocupe pelo menos 60% da altura da janela de visualização */
+    padding: 30px;
+    border-radius: var(--border-radius-main);
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 1.6;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.textarea-rich:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Modal de Edição (Index) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal form {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}

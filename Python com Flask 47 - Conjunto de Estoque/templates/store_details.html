@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ store.name }} - Produtos</title>
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <a href="/" class="btn btn-secondary mb-3">Voltar</a>
+    <h2>Estoque: {{ store.name }}</h2>
+
+    <div class="card p-3 mb-4">
+        <form action="/store/{{ store.id }}/add_product" method="POST" class="row g-3">
+            <div class="col-md-3"><input type="text" name="name" class="form-control" placeholder="Produto" required></div>
+            <div class="col-md-3"><input type="text" name="supplier" class="form-control" placeholder="Fornecedor" required></div>
+            <div class="col-md-2"><input type="number" name="quantity" class="form-control" placeholder="Qtd" required></div>
+            <div class="col-md-2"><input type="number" step="0.01" name="price" class="form-control" placeholder="Preço" required></div>
+            <div class="col-md-2"><button type="submit" class="btn btn-success w-100">Adicionar</button></div>
+        </form>
+    </div>
+
+    <form method="GET" class="row g-2 mb-4">
+        <div class="col-md-6"><input type="text" name="search_prod" class="form-control" placeholder="Buscar por Produto"></div>
+        <div class="col-md-4"><input type="text" name="search_supp" class="form-control" placeholder="Buscar por Fornecedor"></div>
+        <div class="col-md-2"><button type="submit" class="btn btn-info w-100">Filtrar</button></div>
+    </form>
+
+    <div class="row">
+        {% for prod in products %}
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm border-start border-primary border-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ prod.name }}</h5>
+                    <p class="mb-1"><strong>Fornecedor:</strong> {{ prod.supplier }}</p>
+                    <p class="mb-1"><strong>Estoque:</strong> {{ prod.quantity }} un.</p>
+                    <p class="mb-1"><strong>Preço:</strong> R$ {{ "%.2f"|format(prod.price) }}</p>
+                    <div class="mt-3">
+                        <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#edit{{ prod.id }}">Editar</button>
+                        <a href="/store/{{ store.id }}/delete_product/{{ prod.id }}" class="btn btn-sm btn-outline-danger">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="edit{{ prod.id }}" tabindex="-1">
+            <div class="modal-dialog">
+                <form action="/store/{{ store.id }}/edit_product/{{ prod.id }}" method="POST" class="modal-content">
+                    <div class="modal-header"><h5>Editar {{ prod.name }}</h5></div>
+                    <div class="modal-body">
+                        <input type="text" name="name" value="{{ prod.name }}" class="form-control mb-2" required>
+                        <input type="text" name="supplier" value="{{ prod.supplier }}" class="form-control mb-2" required>
+                        <input type="number" name="quantity" value="{{ prod.quantity }}" class="form-control mb-2" required>
+                        <input type="number" step="0.01" name="price" value="{{ prod.price }}" class="form-control mb-2" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

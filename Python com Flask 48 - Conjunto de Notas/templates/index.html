@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Conjuntos de Notas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Minhas Notas</h1>
+        
+        <div class="toolbar-main">
+            <form action="/add" method="POST" class="add-form">
+                <input type="text" name="titulo" placeholder="Nome da nova nota..." required>
+                <button type="submit">Adicionar</button>
+            </form>
+
+            <form action="/" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Buscar nota pelo nome...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <div class="grid-notas">
+            {% for nota in notas %}
+            <div class="card">
+                <div class="card-content" onclick="window.location.href='/nota/{{ nota.id }}'">
+                    <h3>{{ nota.titulo }}</h3>
+                    <small>Criada em: {{ nota.data }}</small>
+                </div>
+                <div class="card-actions">
+                    <button onclick="showEdit('{{ nota.id }}', '{{ nota.titulo }}')">Editar</button>
+                    <a href="/delete/{{ nota.id }}" class="btn-delete">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <form id="editForm" method="POST">
+            <input type="text" name="titulo" id="editInput" required>
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="closeEdit()">Cancelar</button>
+        </form>
+    </div>
+
+    <script>
+        function showEdit(id, titulo) {
+            document.getElementById('editModal').style.display = 'flex';
+            document.getElementById('editInput').value = titulo;
+            document.getElementById('editForm').action = '/edit_titulo/' + id;
+        }
+        function closeEdit() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

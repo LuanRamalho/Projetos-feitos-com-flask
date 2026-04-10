@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "nome": "Bolo de Fubá",
+        "tipo": "Bolo Simples",
+        "descricao": "Bolo simples feito com fubá.",
+        "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRedHD9Qolv-u9rIJ0byPXqGzWm6LtihVKVeg&s",
+        "preco": 15.0
+    },
+    {
+        "id": "2",
+        "nome": "Bolo Negresco",
+        "tipo": "Bolo Premium",
+        "descricao": "Bolo com recheio chantilly e chocolate, com cobertura de biscoitos negresco.",
+        "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgYQQSs9UD-c8KkEQgC0R056atsWeSM-3XPw&s",
+        "preco": 25.0
+    },
+    {
+        "id": "3",
+        "nome": "Bolo Serenata do Amor",
+        "tipo": "Bolo Premium",
+        "descricao": "Bolo com Recheio de Chocolate e enfeites do bombom serenata do amor.",
+        "link": "https://www.suafranquia.com/storage/views/sources/images/conteudo/principal/7408757d1825decc2b4a8a2a60c3f906.webp",
+        "preco": 32.5
+    },
+    {
+        "id": "4",
+        "nome": "Bolo de Morango",
+        "tipo": "Bolo Simples",
+        "descricao": "Bolo de morango com cobertura de chantilly.",
+        "link": "https://claudia.abril.com.br/wp-content/uploads/2020/02/receita-bolo-morango-chantilly.jpg?quality=70&strip=info&crop=1&resize=1080,565",
+        "preco": 15.0
+    },
+    {
+        "id": "5",
+        "nome": "Bolo de Chocolate",
+        "tipo": "Bolo Simples",
+        "descricao": "Bolo simples de chocolate com cobertura de brigadeiro.",
+        "link": "https://guiadacozinha.com.br/wp-content/uploads/2009/01/bolo-de-chocolate-simples-768x619.jpg",
+        "preco": 15.0
+    },
+    {
+        "id": "6",
+        "nome": "Bolo de Cenoura",
+        "tipo": "Bolo Simples",
+        "descricao": "Bolo simples feito com cenoura e caudas de chocolate.",
+        "link": "https://www.coisasdaleia.com.br/wp-content/uploads/2023/03/bolo-de-cenoura-liquidificador-1.jpg",
+        "preco": 15.0
+    }
+]

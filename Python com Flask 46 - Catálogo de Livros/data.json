@@ -1,0 +1,142 @@
+{
+    "stores": [
+        {
+            "id": "5ceeb846-e46e-4457-9c8c-9e946ce020c6",
+            "name": "Papelaria",
+            "products": [
+                {
+                    "id": "efe86c5d-a366-4a57-b824-cf5664ab1907",
+                    "name": "Caneta Azul",
+                    "supplier": "Bic",
+                    "quantity": 75,
+                    "price": 0.75
+                },
+                {
+                    "id": "99e1d2bc-1c7a-49db-b3d1-b46a1d5b1078",
+                    "name": "Caneta Vermelha",
+                    "supplier": "Bic",
+                    "quantity": 55,
+                    "price": 0.75
+                },
+                {
+                    "id": "968db29e-7cab-4a84-8a2e-0bad9bff459f",
+                    "name": "Papel de Embrulhar Presentes",
+                    "supplier": "Ki Festa",
+                    "quantity": 300,
+                    "price": 0.65
+                },
+                {
+                    "id": "7a260a8c-de27-489e-9ccc-9cc5f0283ebf",
+                    "name": "Folha de Papel A4",
+                    "supplier": "Chamequinho",
+                    "quantity": 100,
+                    "price": 5.0
+                },
+                {
+                    "id": "f0a39421-bc78-47b1-b4de-d1e6bd0440ea",
+                    "name": "Folha de Papel A4",
+                    "supplier": "Senninha",
+                    "quantity": 300,
+                    "price": 7.0
+                },
+                {
+                    "id": "cf2ff4ba-6e55-4c62-849f-ac9f98be863a",
+                    "name": "Fich\u00e1rio Escolar",
+                    "supplier": "Tilibra",
+                    "quantity": 50,
+                    "price": 15.75
+                },
+                {
+                    "id": "a023d886-015d-4dd5-85bd-101b61925c98",
+                    "name": "Bloco de Anota\u00e7\u00f5es",
+                    "supplier": "Blocos Brasil",
+                    "quantity": 600,
+                    "price": 1.5
+                },
+                {
+                    "id": "8cb3860f-669e-47c9-875a-b6c528c7ed1b",
+                    "name": "Mochila Escolar",
+                    "supplier": "Travelcross",
+                    "quantity": 50,
+                    "price": 130.0
+                },
+                {
+                    "id": "5263a079-41f5-4e4b-bf3b-5636ad07b867",
+                    "name": "Marca Texto",
+                    "supplier": "Text Mark",
+                    "quantity": 125,
+                    "price": 1.25
+                }
+            ]
+        },
+        {
+            "id": "00a8ff3b-271f-49b6-9e0e-f897ae72f976",
+            "name": "Armaz\u00e9m",
+            "products": [
+                {
+                    "id": "4ba0e0b4-a50a-4ba1-b211-b0708e55ae28",
+                    "name": "Arroz (1K)",
+                    "supplier": "Tio Jo\u00e3o",
+                    "quantity": 20,
+                    "price": 3.25
+                },
+                {
+                    "id": "32692c36-9132-4c98-8761-0d437bc6ef48",
+                    "name": "Arroz (5KG)",
+                    "supplier": "Surreal",
+                    "quantity": 10,
+                    "price": 16.75
+                },
+                {
+                    "id": "c1eda257-0570-45ca-aadd-aeb1d62d539a",
+                    "name": "Feij\u00e3o",
+                    "supplier": "Kicaldo",
+                    "quantity": 10,
+                    "price": 4.25
+                },
+                {
+                    "id": "5dcd9c64-1287-4cac-83db-3f9ccfdc10ea",
+                    "name": "Feij\u00e3o",
+                    "supplier": "M\u00e1ximo",
+                    "quantity": 10,
+                    "price": 5.25
+                },
+                {
+                    "id": "983b9a93-1a0f-4c18-be2e-d3180b4f3a3a",
+                    "name": "Macarr\u00e3o",
+                    "supplier": "Adria",
+                    "quantity": 50,
+                    "price": 3.5
+                },
+                {
+                    "id": "03a41354-f5b5-45ba-aeb3-853817550ac4",
+                    "name": "Macarr\u00e3o",
+                    "supplier": "Piraqu\u00ea",
+                    "quantity": 30,
+                    "price": 4.25
+                },
+                {
+                    "id": "d99209fe-4a48-4a41-8a55-ddafeb81bdee",
+                    "name": "Biscoito Maizena",
+                    "supplier": "Piraqu\u00ea",
+                    "quantity": 50,
+                    "price": 3.35
+                },
+                {
+                    "id": "c624cc6e-dce6-415c-b96a-f25954d80eb0",
+                    "name": "Milho de Pipoca (500g)",
+                    "supplier": "Gran Fino",
+                    "quantity": 50,
+                    "price": 3.75
+                },
+                {
+                    "id": "2de6bfa3-3adb-425f-b090-e1440d633545",
+                    "name": "Ervilha (500g)",
+                    "supplier": "Gran Fino",
+                    "quantity": 25,
+                    "price": 3.25
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "clientes": [
+        {
+            "id": "1775840340.283672",
+            "nome": "Antônio Ramos",
+            "registros": [
+                {
+                    "reg_id": "1775840358.068544",
+                    "tipo": "Moto",
+                    "valor_unidade": 3.0,
+                    "data_hora": "02/03/2019 11:22",
+                    "horas": 2.2,
+                    "total": 6.6000000000000005
+                }
+            ]
+        },
+        {
+            "id": "1775840432.887291",
+            "nome": "João Silva",
+            "registros": [
+                {
+                    "reg_id": "1775840451.217333",
+                    "tipo": "Carro",
+                    "valor_unidade": 10.0,
+                    "data_hora": "12/05/2020 12:30",
+                    "horas": 2.5,
+                    "total": 25.0
+                }
+            ]
+        },
+        {
+            "id": "1775840460.406687",
+            "nome": "Carlos Sanchez",
+            "registros": [
+                {
+                    "reg_id": "1775840475.69935",
+                    "tipo": "Carro",
+                    "valor_unidade": 10.0,
+                    "data_hora": "16/07/2020",
+                    "horas": 4.25,
+                    "total": 42.5
+                }
+            ]
+        },
+        {
+            "id": "1775840504.623906",
+            "nome": "José Santos",
+            "registros": [
+                {
+                    "reg_id": "1775840526.41622",
+                    "tipo": "Moto",
+                    "valor_unidade": 3.0,
+                    "data_hora": "18/09/2020 19:44",
+                    "horas": 1.5,
+                    "total": 4.5
+                }
+            ]
+        }
+    ]
+}

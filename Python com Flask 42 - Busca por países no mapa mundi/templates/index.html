@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mundi Interativo</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #regions_div {
+            width: 900px;
+            height: 500px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Buscador de Países</h1>
+    
+    <div class="search-container">
+        <input type="text" id="countryInput" placeholder="Digite o nome do país em português..." onkeypress="handleKeyPress(event)">
+        <button onclick="searchCountry()">Buscar</button>
+    </div>
+
+    <div id="regions_div"></div>
+
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages':['geochart'],
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        let countriesMap = {};
+        let currentHighlight = ''; // Guarda o nome em inglês do país pesquisado
+
+        // Carrega o JSON do backend Flask
+        fetch('/api/countries')
+            .then(response => response.json())
+            .then(data => {
+                countriesMap = data;
+            })
+            .catch(error => console.error('Erro ao carregar os países:', error));
+
+        // Função para remover acentos para facilitar a busca (ex: Japão -> japao)
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        // Função para desenhar/atualizar o mapa
+        function drawRegionsMap() {
+            let dataArray = [['Country', 'Popularity']]; // Adicionamos uma coluna de valor
+            if (currentHighlight) {
+                // Atribuímos um valor (ex: 100) para o país aparecer colorido
+                dataArray.push([currentHighlight, 100]); 
+            }
+
+            var data = google.visualization.arrayToDataTable(dataArray);
+
+            var options = {
+                region: 'world',
+                displayMode: 'regions',
+                colorAxis: {colors: ['green']}, // Cor do destaque quando o valor for 100
+                datalessRegionColor: '#e0e0e0',
+                backgroundColor: '#c9ebff',
+                defaultColor: '#f5f5f5',
+                legend: 'none' // Esconde a legenda de cores
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+            chart.draw(data, options);
+        }
+
+        // Lógica de busca
+        function searchCountry() {
+            const rawInput = document.getElementById('countryInput').value;
+            if (!rawInput) return;
+
+            // Normaliza o input: minúsculas, sem espaços extras e sem acentos
+            const normalizedInput = removeAccents(rawInput.trim().toLowerCase());
+            
+            // Busca no JSON o valor em inglês
+            const englishName = countriesMap[normalizedInput];
+
+            if (englishName) {
+                currentHighlight = englishName; // Define o país a ser pintado de azul
+                drawRegionsMap(); // Redesenha o mapa
+            } else {
+                alert("País não encontrado. Verifique a ortografia ou adicione-o ao JSON.");
+            }
+        }
+
+        // Permite buscar apertando 'Enter'
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                searchCountry();
+            }
+        }
+    </script>
+</body>
+</html>

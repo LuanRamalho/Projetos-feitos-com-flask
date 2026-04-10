@@ -1,0 +1,14 @@
+[
+    {
+        "id": "7e721c17-8753-4ab6-911e-7565bf78b3b8",
+        "titulo": "Nota de Teste",
+        "conteudo": "<div style=\"text-align: center;\"><font face=\"Arial\" size=\"6\" color=\"#002eb8\"><b>Nota feita com Python</b></font></div><div style=\"text-align: justify;\"><font face=\"Times New Roman\" size=\"5\">Essa nota foi feita com python e flask. É um programa muito fácil e tranquilo de se fazer. Basta clicar na nota que abrirá essa janela que o usuário consegue utilizar tranquilamente esse programa.</font></div>",
+        "data": "10/04/2026 16:30:32"
+    },
+    {
+        "id": "bac030cf-53b4-414c-9902-4b6eafa39cd3",
+        "titulo": "Listas Teste",
+        "conteudo": "\n            <div style=\"text-align: center;\"><font face=\"Verdana\" color=\"#62008f\" size=\"5\"><b style=\"\">Listas feitas em Python Flask</b></font></div><div style=\"text-align: left;\"><ol><li><font color=\"#000000\" face=\"Courier New\">Item A</font></li><li><font color=\"#000000\" face=\"Courier New\">Item B</font></li><li><font color=\"#000000\" face=\"Courier New\">Item C</font></li><li><font color=\"#000000\" face=\"Courier New\">Item D</font></li><li><font color=\"#000000\" face=\"Courier New\">Item E</font></li><li><font color=\"#000000\" face=\"Courier New\">Item F</font></li></ol></div>\n            \n        \n        ",
+        "data": "10/04/2026 16:51:19"
+    }
+]

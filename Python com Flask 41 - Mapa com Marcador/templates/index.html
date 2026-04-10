@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mundi com Círculo</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        #map {
+            height: 100vh; /* O mapa ocupará a tela inteira */
+            width: 100%;
+        }
+        body { margin: 0; padding: 0; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Recebe as coordenadas processadas pelo Flask
+        const lat = {{ coords[0] }};
+        const lng = {{ coords[1] }};
+
+        // Inicializa o mapa focado nas coordenadas
+        const map = L.map('map').setView([lat, lng], 10);
+
+        // Adiciona a camada de visualização (OpenStreetMap)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Adiciona o círculo azul em volta do endereço
+        const circle = L.circle([lat, lng], {
+            color: 'blue',       // Cor da borda
+            fillColor: '#30a5ff', //Cor do preenchimento
+            fillOpacity: 0.5,    // Transparência
+            radius: 5000         // Raio em metros (5km)
+        }).addTo(map);
+
+        // Adiciona um balão informativo opcional
+        circle.bindPopup("Endereço: {{ local }}").openPopup();
+    </script>
+</body>
+</html>
