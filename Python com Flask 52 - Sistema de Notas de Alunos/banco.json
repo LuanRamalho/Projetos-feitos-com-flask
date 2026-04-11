@@ -1,0 +1,72 @@
+{
+    "usuarios": {
+        "20260001": {
+            "nome": "João Garcia dos Santos",
+            "senha": "homepc"
+        },
+        "20260002": {
+            "nome": "Carlos Santos da Silva",
+            "senha": "homepc"
+        }
+    },
+    "notas": {
+        "20260001": {
+            "Geografia": {
+                "n1": 7.2,
+                "n2": 8.3,
+                "n3": 8.7,
+                "n4": 7.7,
+                "media": 8.0,
+                "status": "APROVADO",
+                "nome_aluno": "João Garcia dos Santos"
+            },
+            "história": {
+                "n1": 9.2,
+                "n2": 10.0,
+                "n3": 9.3,
+                "n4": 9.1,
+                "media": 9.4,
+                "status": "APROVADO",
+                "nome_aluno": "João Garcia dos Santos"
+            },
+            "Informática": {
+                "n1": 9.6,
+                "n2": 9.5,
+                "n3": 9.7,
+                "n4": 10.0,
+                "media": 9.7,
+                "status": "APROVADO",
+                "nome_aluno": "João Garcia dos Santos"
+            }
+        },
+        "20260002": {
+            "Informática": {
+                "n1": 8.8,
+                "n2": 8.6,
+                "n3": 8.4,
+                "n4": 10.0,
+                "media": 8.9,
+                "status": "APROVADO",
+                "nome_aluno": "Carlos Santos da Silva"
+            },
+            "Língua Portuguesa": {
+                "n1": 9.3,
+                "n2": 8.6,
+                "n3": 8.5,
+                "n4": 9.6,
+                "media": 9.0,
+                "status": "APROVADO",
+                "nome_aluno": "Carlos Santos da Silva"
+            },
+            "Matemática": {
+                "n1": 7.6,
+                "n2": 8.2,
+                "n3": 7.1,
+                "n4": 8.9,
+                "media": 7.9,
+                "status": "APROVADO",
+                "nome_aluno": "Carlos Santos da Silva"
+            }
+        }
+    }
+}

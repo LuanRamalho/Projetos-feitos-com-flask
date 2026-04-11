@@ -1,0 +1,112 @@
+[
+    {
+        "id": "4cd526e6",
+        "nome": "Merc\u00fario",
+        "rotacao": "1 408",
+        "translacao": "87",
+        "diametro": "4 879",
+        "temperatura": "427",
+        "distancia": "57 910 000",
+        "imagem": "https://s2.static.brasilescola.uol.com.br/img/2019/06/mercurio.jpg"
+    },
+    {
+        "id": "abebec4f",
+        "nome": "V\u00eanus",
+        "rotacao": "5 832",
+        "translacao": "225",
+        "diametro": "12 103",
+        "temperatura": "475",
+        "distancia": "108 200 000",
+        "imagem": "https://s5.static.brasilescola.uol.com.br/img/2019/06/venus.jpg"
+    },
+    {
+        "id": "444b6a25",
+        "nome": "Terra",
+        "rotacao": "24",
+        "translacao": "365",
+        "diametro": "12 756",
+        "temperatura": "15",
+        "distancia": "149 600 000",
+        "imagem": "https://s5.static.brasilescola.uol.com.br/img/2019/06/terra.jpg"
+    },
+    {
+        "id": "3a8b3eae",
+        "nome": "Marte",
+        "rotacao": "24.6",
+        "translacao": "687",
+        "diametro": "6 794",
+        "temperatura": "-60",
+        "distancia": "227 940 000",
+        "imagem": "https://s3.static.brasilescola.uol.com.br/img/2019/06/marte.jpg"
+    },
+    {
+        "id": "aa823290",
+        "nome": "J\u00fapiter",
+        "rotacao": "9.9",
+        "translacao": "4 380",
+        "diametro": "142 984",
+        "temperatura": "-148",
+        "distancia": "778 340 821",
+        "imagem": "https://s3.static.brasilescola.uol.com.br/img/2019/06/jupiter.jpg"
+    },
+    {
+        "id": "9fdb3308",
+        "nome": "Saturno",
+        "rotacao": "10.6",
+        "translacao": "10 950",
+        "diametro": "120 536",
+        "temperatura": "-178",
+        "distancia": "1 426 666 422",
+        "imagem": "https://s5.static.brasilescola.uol.com.br/img/2019/06/saturno.jpg"
+    },
+    {
+        "id": "4b0928f3",
+        "nome": "Urano",
+        "rotacao": "17",
+        "translacao": "30 687",
+        "diametro": "51 800",
+        "temperatura": "-195",
+        "distancia": "2 870 658 186",
+        "imagem": "https://static.todamateria.com.br/upload/ur/an/urano-cke.jpg"
+    },
+    {
+        "id": "40036f5e",
+        "nome": "Netuno",
+        "rotacao": "16",
+        "translacao": "60 192",
+        "diametro": "49 244",
+        "temperatura": "-223",
+        "distancia": "4 498 396 441",
+        "imagem": "https://s1.static.brasilescola.uol.com.br/img/2019/06/netuno.jpg"
+    },
+    {
+        "id": "13a4b78a",
+        "nome": "Plut\u00e3o",
+        "rotacao": "153",
+        "translacao": "90 520",
+        "diametro": "2 376",
+        "temperatura": "-225",
+        "distancia": "5 922 000 000",
+        "imagem": "https://img.odcdn.com.br/wp-content/uploads/2023/01/curiosidades-plutao-e1713363168400.jpg"
+    },
+    {
+        "id": "e832674d",
+        "nome": "\u00c9ris",
+        "rotacao": "25.9",
+        "translacao": "203 305",
+        "diametro": "2 326",
+        "temperatura": "-248",
+        "distancia": "10 149 000 000",
+        "imagem": "https://media.istockphoto.com/id/1126615003/pt/foto/eris-dwarf-planet-in-the-outer-space-watercolor-3d-illustration.jpg?s=612x612&w=0&k=20&c=c31eSdCbsE9aI90hOW4bvqohR1k193lvjOZBFtQjl4o="
+    },
+    {
+        "id": "0c4a0e60",
+        "nome": "Ceres",
+        "rotacao": "9",
+        "translacao": "1 682",
+        "diametro": "946",
+        "temperatura": "-334",
+        "distancia": "414 000 000",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Color_global_view_of_Ceres_-_Oxo_and_Haulani_craters.png"
+    }
+]

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Acadêmico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradient 15s ease infinite; height: 100vh; }
+        @keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="glass p-8 rounded-2xl shadow-2xl w-full max-w-sm text-white">
+        <h2 class="text-3xl font-bold mb-6 text-center">Portal do Aluno</h2>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="bg-red-500/50 text-white p-3 rounded-lg mb-4 text-sm">{{ msg }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" class="space-y-4">
+            <input type="text" name="matricula" placeholder="Matrícula" required 
+                class="w-full p-3 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white">
+            <input type="password" name="senha" placeholder="Senha" required 
+                class="w-full p-3 rounded-lg bg-white/20 border border-white/30 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white">
+            <button type="submit" class="w-full bg-white text-blue-600 font-bold p-3 rounded-lg hover:bg-opacity-90 transition shadow-lg">Entrar</button>
+        </form>
+        
+        <div class="mt-6 flex justify-between text-sm">
+            <a href="/cadastro" class="hover:underline">Criar Conta</a>
+            <a href="/recuperar" class="hover:underline italic text-white/80">Esqueci a senha</a>
+        </div>
+    </div>
+</body>
+</html>

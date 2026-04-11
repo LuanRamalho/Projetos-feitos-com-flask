@@ -1,0 +1,138 @@
+{
+    "pcs": [
+        {
+            "fabricante": "Apple",
+            "modelo": "Neo Apple 13",
+            "velocidade": 3.5,
+            "nucleos": 6,
+            "ram": "8 GB",
+            "ssd": "256 GB",
+            "imagem_url": "https://images9.kabum.com.br/produtos/fotos/1015059/macbook-neo-apple-13-chip-a18-pro-cpu-de-6-nucleos-gpu-de-5-nucleos-256gb-amarelo-citrico-mhfd4bz-a_1774874009_gg.jpg"
+        },
+        {
+            "fabricante": "Dell",
+            "modelo": "Inspiron 15",
+            "velocidade": 4.4,
+            "nucleos": 10,
+            "ram": "16 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://images.tcdn.com.br/img/img_prod/15959/notebook_dell_inspiron_15_intel_pentium_4gb_de_memoria_hd_500gb_tela_de_15_6_windows_10_16175_1_20200327173215.jpg"
+        },
+        {
+            "fabricante": "Samsung",
+            "modelo": "Galaxy Book4",
+            "velocidade": 4.6,
+            "nucleos": 12,
+            "ram": "16 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/51lGW2nP9qL._AC_UF894,1000_QL80_.jpg"
+        },
+        {
+            "fabricante": "Lenovo",
+            "modelo": "Legion Slim 5i",
+            "velocidade": 5.0,
+            "nucleos": 16,
+            "ram": "32 GB",
+            "ssd": "1 TB",
+            "imagem_url": "https://p4-ofp.static.pub/fes/cms/2023/03/17/yb02luxnqq0rmxdc773hbzb1w8y252795264.png"
+        },
+        {
+            "fabricante": "Positivo",
+            "modelo": "Vision i15",
+            "velocidade": 3.8,
+            "nucleos": 8,
+            "ram": "8 GB",
+            "ssd": "256 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/51CAMWHfLrL._AC_UF894,1000_QL80_.jpg"
+        },
+        {
+            "fabricante": "Acer",
+            "modelo": "Aspire 5",
+            "velocidade": 4.2,
+            "nucleos": 10,
+            "ram": "8 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/51gEkEbXrHL.jpg"
+        },
+        {
+            "fabricante": "Asus",
+            "modelo": "Vivobook 16",
+            "velocidade": 4.5,
+            "nucleos": 12,
+            "ram": "16 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/51Q+iWdfUkL._AC_UF894,1000_QL80_.jpg"
+        },
+        {
+            "fabricante": "HP",
+            "modelo": "Victus 15",
+            "velocidade": 4.7,
+            "nucleos": 8,
+            "ram": "16 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/71gfWwWhd4L.jpg"
+        },
+        {
+            "fabricante": "MSI",
+            "modelo": "Cyborg 15",
+            "velocidade": 4.9,
+            "nucleos": 10,
+            "ram": "16 GB",
+            "ssd": "1 TB",
+            "imagem_url": "https://m.media-amazon.com/images/I/81JElV8apnL._AC_SL1500_.jpg"
+        },
+        {
+            "fabricante": "Gigabyte",
+            "modelo": "G5 KF",
+            "velocidade": 4.6,
+            "nucleos": 12,
+            "ram": "16 GB",
+            "ssd": "512 GB",
+            "imagem_url": "https://m.media-amazon.com/images/I/71tgmKoXApL.jpg"
+        },
+        {
+            "fabricante": "Razer",
+            "modelo": "Blade 14",
+            "velocidade": 5.2,
+            "nucleos": 16,
+            "ram": "32 GB",
+            "ssd": "1 TB",
+            "imagem_url": "https://m.media-amazon.com/images/I/81PB7KPoaEL.jpg"
+        },
+        {
+            "fabricante": "Microsoft",
+            "modelo": "Surface Laptop 5",
+            "velocidade": 4.1,
+            "nucleos": 10,
+            "ram": "8 GB",
+            "ssd": "256 GB",
+            "imagem_url": "https://s.yimg.com/ny/api/res/1.2/V8V37NTUMbJDBCwuiTl3Mg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTI0MDA7aD0xNDQw/https://s.yimg.com/os/creatr-uploaded-images/2022-11/c3c99bb0-5c67-11ed-af6f-716a8651bf9d"
+        }
+    ],
+    "produtos": [
+        {
+            "nome": "Cabo Adaptador Leitor Sata Usb-c Para Hd Ssd De Notebook",
+            "fabricante": "Easy Top",
+            "descricao": "SÓ FUNCIONA EM HDs DE NOTEBOOKS 2.5 (COMUM E SSD)",
+            "imagem_url": "https://http2.mlstatic.com/D_NQ_NP_2X_660015-MLB70212669880_062023-F.webp"
+        },
+        {
+            "nome": "Case Externa para SSD/HD SATA 2.5 transparente com USB 3.0 com cabo destacável",
+            "fabricante": " Brazil Collection",
+            "descricao": "Case Externa para SSD/HD SATA 2.5”",
+            "imagem_url": "https://down-br.img.susercontent.com/file/br-11134207-81z1k-mgclhmlidiboce_tn"
+        },
+        {
+            "nome": "Teclado Gamer 106 Teclas Membrana Rgb",
+            "fabricante": "Deco",
+            "descricao": "Material das teclas: ABS Quantidade de teclas: 106 Tipo de Tecla: Membrana Iluminação: LED Rainbow Anti-Ghost: 19 teclas simultâneas Teclas multimídia: 10 Teclas Cabo: 1.6 metros em PVC de alto rendimento Compatível com: Windows e MacOS",
+            "imagem_url": "https://deco.jetassets.com.br/produto/20240109141846_3699996301_D.jpg"
+        },
+        {
+            "nome": "Mouse Gamer Redragon Predator RGB M612-RGB, Preto",
+            "fabricante": "Predator",
+            "descricao": "Tecnologia de conectividade\tUSB Características especiais\tLuzes de LED Deteção de movimento\tÓptico Quantidade do botão\t9 Dispositivos compatíveis\tComputador pessoal Escala\t1.8 Plataforma de hardware\tNotebook, PC Recurso de enfeite\tLED Fonte de energia\tEnergia elétrica",
+            "imagem_url": "https://m.media-amazon.com/images/I/51AVGfhKbOL._AC_SL1500_.jpg"
+        }
+    ]
+}
