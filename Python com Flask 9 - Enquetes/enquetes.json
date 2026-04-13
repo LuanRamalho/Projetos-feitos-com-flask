@@ -1,18 +1,25 @@
 {
     "Qual é a linguagem de programação mais popular do mundo?": {
-        "C": 0,
+        "C": 2,
         "C++": 1,
         "C#": 2,
-        "Python": 8,
-        "Java": 1,
+        "Python": 12,
+        "Java": 2,
         "Javascript": 4
     },
     "Qual a sua cor favorita": {
         "Verde": 2,
         "Amarelo": 1,
         "Vermelho": 1,
-        "Azul": 12,
+        "Azul": 14,
         "Roxo": 1,
         "Rosa": 2
+    },
+    "Qual seu animal de estimação favorito?": {
+        "Cachorro": 14,
+        "Gato": 20,
+        "coelho": 4,
+        "Tartaruga": 2,
+        "Galinha": 12
     }
 }
