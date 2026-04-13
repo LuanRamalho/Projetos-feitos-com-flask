@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ nota.titulo }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='/style.css') }}">
 </head>
 <body>
@@ -35,7 +36,10 @@
 
             <button onmousedown="event.preventDefault(); changeSize(1)">A+</button>
             <button onmousedown="event.preventDefault(); changeSize(-1)">A-</button>
+
+            <button onmousedown="event.preventDefault(); createLink()">🔗 Link</button>
             
+            <button onclick="downloadPDF()" class="btn-save" style="background-color: #e67e22; margin-left: 5px;">Baixar PDF</button>
             <button onclick="saveNote('{{ nota.id }}')" class="btn-save">Salvar Conteúdo</button>
         </div>
 
