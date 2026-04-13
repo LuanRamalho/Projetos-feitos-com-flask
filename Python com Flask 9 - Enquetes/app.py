@@ -1,9 +1,39 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
+from functools import wraps
 import json
 import os
 
 app = Flask(__name__)
+
+# Configurações de acesso
+ADMIN_USER = "admin"
+ADMIN_PASS = "12345"
 DATA_FILE = 'enquetes.json'
+
+# --- Funções de Segurança (Basic Auth) ---
+
+def check_auth(username, password):
+    """Verifica se as credenciais coincidem com o definido"""
+    return username == ADMIN_USER and password == ADMIN_PASS
+
+def authenticate():
+    """Envia o cabeçalho que solicita o login ao navegador"""
+    return Response(
+        'Acesso restrito. Por favor, faça login para continuar.', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Requerido"'}
+    )
+
+def requires_auth(f):
+    """Decorator para proteger rotas específicas"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
+
+# --- Funções de Dados ---
 
 def carregar_dados():
     if not os.path.exists(DATA_FILE):
@@ -15,19 +45,21 @@ def salvar_dados(dados):
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(dados, f, indent=4, ensure_ascii=False)
 
+# --- Rotas ---
+
 @app.route('/')
 def index():
     enquetes = carregar_dados()
     return render_template('index.html', enquetes=enquetes)
 
 @app.route('/admin', methods=['GET', 'POST'])
+@requires_auth # Proteção ativada aqui
 def admin():
     if request.method == 'POST':
         pergunta = request.form.get('pergunta')
         opcoes = request.form.get('opcoes').split(',')
         
         dados = carregar_dados()
-        # Usamos a própria pergunta como chave, eliminando a necessidade de IDs
         dados[pergunta] = {opcao.strip(): 0 for opcao in opcoes}
         salvar_dados(dados)
         return redirect(url_for('index'))
