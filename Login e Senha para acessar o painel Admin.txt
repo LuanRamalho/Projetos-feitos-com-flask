@@ -1,3 +1,0 @@
-Login: admin
-
-senha: 12345
