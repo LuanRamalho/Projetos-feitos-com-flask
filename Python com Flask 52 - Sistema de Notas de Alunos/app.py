@@ -6,6 +6,10 @@ app = Flask(__name__)
 app.secret_key = 'chave_secreta_para_sessoes'
 DB_FILE = 'banco.json'
 
+# --- CONFIGURAÇÃO DE ACESSO ADMIN ---
+ADMIN_USER = "admin"
+ADMIN_PASS = "12345"
+
 # --- FUNÇÕES DO BANCO JSON ---
 def load_db():
     if not os.path.exists(DB_FILE):
@@ -18,6 +22,7 @@ def save_db(data):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 # --- ROTAS DE AUTENTICAÇÃO ---
+
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -33,47 +38,22 @@ def login():
             
     return render_template('login.html')
 
-@app.route('/cadastro', methods=['GET', 'POST'])
-def cadastro():
-    if request.method == 'POST':
-        nome = request.form['nome'] # Novo campo
-        matricula = request.form['matricula']
-        senha = request.form['senha']
-        senha2 = request.form['senha2']
-        
-        if senha != senha2:
-            flash('As senhas não coincidem!', 'error')
-            return redirect(url_for('cadastro'))
-            
-        db = load_db()
-        if matricula in db['usuarios']:
-            flash('Matrícula já cadastrada!', 'error')
-        else:
-            # Salvando nome e senha atrelados à matrícula
-            db['usuarios'][matricula] = {'nome': nome, 'senha': senha}
-            save_db(db)
-            flash('Cadastro realizado com sucesso!', 'success')
-            return redirect(url_for('login'))
-            
-    return render_template('cadastro.html')
-
-@app.route('/recuperar', methods=['GET', 'POST'])
-def recuperar():
-    if request.method == 'POST':
-        matricula = request.form['matricula']
-        db = load_db()
-        
-        if matricula in db['usuarios']:
-            senha = db['usuarios'][matricula]['senha']
-            flash(f'Sua Matrícula: {matricula} | Sua Senha: {senha}', 'success')
-        else:
-            flash('Matrícula não encontrada no sistema.', 'error')
-            
-    return render_template('recuperar.html')
+@app.route('/login_admin_prompt')
+def login_admin_prompt():
+    """ Rota que valida as credenciais enviadas pelo prompt do JavaScript """
+    u = request.args.get('u')
+    p = request.args.get('p')
+    
+    if u == ADMIN_USER and p == ADMIN_PASS:
+        session['admin_logado'] = True
+        return redirect(url_for('admin'))
+    
+    flash('Credenciais de administrador incorretas!', 'error')
+    return redirect(url_for('aluno'))
 
 @app.route('/logout')
 def logout():
-    session.pop('matricula', None)
+    session.clear() # Limpa todas as sessões (aluno e admin)
     return redirect(url_for('login'))
 
 # --- ROTAS DO ALUNO ---
@@ -84,26 +64,27 @@ def aluno():
         
     matricula = session['matricula']
     db = load_db()
-    
-    # Busca o nome do aluno no banco
     info_usuario = db['usuarios'].get(matricula, {})
     nome_aluno = info_usuario.get('nome', 'Aluno')
-    
     notas_aluno = db['notas'].get(matricula, {})
     
     return render_template('aluno.html', matricula=matricula, nome=nome_aluno, notas=notas_aluno)
 
-# --- ROTAS DO ADMIN (CRUD COMPLETO) ---
+# --- ROTAS DO ADMIN (PROTEGIDAS) ---
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
+    # Bloqueio de segurança: se não passou pelo prompt, volta pro login
+    if not session.get('admin_logado'):
+        return redirect(url_for('login'))
+        
     db = load_db()
     
     if request.method == 'POST':
-        mat = request.form['matricula_selecionada'] # Agora vem de um select
+        mat = request.form['matricula_selecionada']
         disc = request.form['disciplina']
         
         try:
-            # Mantendo a precisão de 1 casa decimal solicitada
             n1 = round(float(request.form['nota1']), 1)
             n2 = round(float(request.form['nota2']), 1)
             n3 = round(float(request.form['nota3']), 1)
@@ -121,20 +102,23 @@ def admin():
         db['notas'][mat][disc] = {
             "n1": n1, "n2": n2, "n3": n3, "n4": n4,
             "media": media, "status": status,
-            "nome_aluno": db['usuarios'][mat]['nome'] # Vincula o nome à nota
+            "nome_aluno": db['usuarios'][mat]['nome']
         }
         save_db(db)
-        flash(f'Notas salvas com sucesso!', 'success')
+        flash('Notas salvas com sucesso!', 'success')
         return redirect(url_for('admin'))
         
     return render_template('admin.html', bd=db)
 
 @app.route('/admin/delete/<matricula>/<disciplina>', methods=['POST'])
 def deletar_nota(matricula, disciplina):
+    if not session.get('admin_logado'):
+        return redirect(url_for('login'))
+
     db = load_db()
     if matricula in db['notas'] and disciplina in db['notas'][matricula]:
         del db['notas'][matricula][disciplina]
-        if not db['notas'][matricula]: # Limpa objeto vazio
+        if not db['notas'][matricula]:
             del db['notas'][matricula]
         save_db(db)
         flash('Registro removido com sucesso!', 'success')
