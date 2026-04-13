@@ -60,3 +60,35 @@ async function saveNote(id) {
         console.error("Erro na requisição:", err);
     }
 }
+
+// Função para criar Hiperlink
+function createLink() {
+    const url = prompt("Insira a URL (ex: https://google.com):");
+    if (url) {
+        // Se não começar com http, adiciona automaticamente
+        const formattedUrl = url.startsWith('http') ? url : `https://${url}`;
+        format('createLink', formattedUrl);
+    }
+}
+
+// Função para Salvar PDF
+function downloadPDF() {
+    const element = document.getElementById('editor');
+    const tituloNota = document.querySelector('header h1').innerText;
+    
+    // Configurações do PDF
+    const opt = {
+        margin: [10, 10, 10, 10], // margens em mm
+        filename: `${tituloNota}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2, 
+            useCORS: true,
+            letterRendering: true
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Gera e baixa o PDF
+    html2pdf().set(opt).from(element).save();
+}
