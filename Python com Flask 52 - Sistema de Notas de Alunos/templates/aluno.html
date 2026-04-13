@@ -13,7 +13,7 @@
                 <p class="text-slate-500 text-sm">Bem-vindo, <span class="font-bold text-blue-600">{{ nome }}</span> (Matrícula: {{ matricula }})</p>
             </div>
             <div class="flex items-center gap-4">
-                <a href="/admin" class="text-slate-600 hover:text-blue-600 text-sm font-bold transition">⚙️ Administração</a>
+                <a href="javascript:void(0)" onclick="autenticarAdmin()" class="text-slate-600 hover:text-blue-600 text-sm font-bold transition">⚙️ Administração</a>
                 <a href="/logout" class="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-600 hover:text-white transition">Sair</a>
             </div>
         </div>
@@ -75,4 +75,16 @@
         </div>
     </main>
 </body>
+<script>
+function autenticarAdmin() {
+    let user = prompt("Acesso Restrito!\nDigite o usuário administrador:");
+    if (user == null || user == "") return; // Cancela se estiver vazio
+
+    let pass = prompt("Digite a senha administrativa:");
+    if (pass == null || pass == "") return; // Cancela se estiver vazio
+
+    // Envia os dados para a rota de validação no Flask
+    window.location.href = `/login_admin_prompt?u=${user}&p=${pass}`;
+}
+</script>
 </html>
