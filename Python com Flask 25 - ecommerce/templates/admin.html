@@ -39,4 +39,20 @@
         <a href="/" class="back-link">← Voltar para a Loja</a>
     </div>
 </body>
+<script>
+    // Bloqueia a visualização até a verificação do JS
+    document.documentElement.style.display = 'none';
+
+    (function() {
+        const user = "admin";
+        const pass = "12345";
+
+        if (prompt("Usuário Admin:") !== user || prompt("Senha Admin:") !== pass) {
+            alert("Acesso negado!");
+            window.location.href = "/";
+        } else {
+            document.documentElement.style.display = 'block';
+        }
+    })();
+</script>
 </html>
