@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherAtlas — Previsão do Tempo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Exo+2:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:    #020a14;
+      --bg-mid:     #061628;
+      --glass:      rgba(10, 30, 60, 0.6);
+      --glass-h:    rgba(15, 45, 90, 0.75);
+      --border:     rgba(80, 180, 255, 0.15);
+      --border-h:   rgba(80, 180, 255, 0.4);
+      --accent:     #4fc3f7;
+      --accent2:    #b388ff;
+      --accent3:    #80cbc4;
+      --gold:       #ffd54f;
+      --text-1:     #e8f4fd;
+      --text-2:     #89b8d4;
+      --text-3:     #4a7a9b;
+      --danger:     #ef5350;
+      --success:    #66bb6a;
+      --r:          16px;
+      --shadow:     0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-1);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── STAR BACKGROUND ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(79,195,247,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(179,136,255,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 0%, rgba(128,203,196,0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stars {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+      background-size: 300px 300px, 200px 200px, 150px 150px;
+      background-position: 0 0, 50px 80px, 25px 140px;
+      animation: twinkle 8s infinite alternate;
+    }
+    @keyframes twinkle {
+      0%  { opacity: 0.4; }
+      100%{ opacity: 0.8; }
+    }
+
+    /* ─── LAYOUT ─── */
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 0 2rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .brand-icon {
+      font-size: 2.8rem;
+      filter: drop-shadow(0 0 12px rgba(79,195,247,0.6));
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100%{ transform: translateY(0); }
+      50%    { transform: translateY(-6px); }
+    }
+    .brand-text h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.05em;
+    }
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ─── SEARCH BAR ─── */
+    .search-form {
+      display: flex;
+      gap: 0.75rem;
+      flex: 1;
+      max-width: 500px;
+    }
+    .search-input-wrap {
+      position: relative; flex: 1;
+    }
+    .search-input-wrap .icon {
+      position: absolute; left: 1rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem; pointer-events: none; color: var(--text-3);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.8rem;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      color: var(--text-1);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      backdrop-filter: blur(20px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input[type="text"]::placeholder { color: var(--text-3); }
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79,195,247,0.15), inset 0 0 20px rgba(79,195,247,0.05);
+    }
+    .btn-add {
+      padding: 0.85rem 1.6rem;
+      background: linear-gradient(135deg, var(--accent), #0288d1);
+      border: none; border-radius: var(--r);
+      color: #fff; font-family: 'Exo 2', sans-serif;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 4px 20px rgba(79,195,247,0.3);
+    }
+    .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,195,247,0.45); }
+    .btn-add:active { transform: translateY(0); }
+    .btn-add:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* ─── TOAST ─── */
+    #toast {
+      position: fixed; top: 2rem; right: 2rem; z-index: 999;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      font-size: 0.9rem; font-weight: 500;
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.3s, transform 0.3s;
+      max-width: 360px;
+      backdrop-filter: blur(20px);
+    }
+    #toast.show { opacity: 1; transform: translateX(0); }
+    #toast.success { background: rgba(102,187,106,0.2); border: 1px solid rgba(102,187,106,0.4); color: #a5d6a7; }
+    #toast.error   { background: rgba(239,83,80,0.2);  border: 1px solid rgba(239,83,80,0.4);  color: #ef9a9a; }
+    #toast.info    { background: rgba(79,195,247,0.2); border: 1px solid rgba(79,195,247,0.4); color: #b3e5fc; }
+
+    /* ─── SECTION TITLE ─── */
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .section-header h2 {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .section-header .line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+    .city-count {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem; color: var(--accent);
+    }
+
+    /* ─── EMPTY STATE ─── */
+    .empty-state {
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .empty-state .empty-icon {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1.5rem;
+      filter: grayscale(0.5);
+      animation: float 5s ease-in-out infinite;
+    }
+    .empty-state h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem; color: var(--text-2);
+      margin-bottom: 0.75rem;
+    }
+    .empty-state p { color: var(--text-3); font-size: 0.95rem; }
+
+    /* ─── CARDS GRID ─── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ─── CITY CARD ─── */
+    .city-card {
+      position: relative;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.75rem;
+      cursor: pointer;
+      backdrop-filter: blur(20px);
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1),
+                  border-color 0.3s, box-shadow 0.3s, background 0.3s;
+      overflow: hidden;
+      animation: cardIn 0.5s ease both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .city-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%),
+        rgba(79,195,247,0.08) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .city-card:hover::before { opacity: 1; }
+    .city-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-h);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(79,195,247,0.1);
+      background: var(--glass-h);
+    }
+
+    /* Weather condition color overlays */
+    .city-card[data-code="clear"] { border-top: 2px solid rgba(255,213,79,0.4); }
+    .city-card[data-code="clouds"] { border-top: 2px solid rgba(138,180,211,0.3); }
+    .city-card[data-code="rain"] { border-top: 2px solid rgba(79,195,247,0.4); }
+    .city-card[data-code="storm"] { border-top: 2px solid rgba(179,136,255,0.4); }
+    .city-card[data-code="snow"] { border-top: 2px solid rgba(224,242,254,0.4); }
+
+    .card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .card-location {}
+    .card-city {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--text-1);
+      line-height: 1.2;
+    }
+    .card-country {
+      font-size: 0.8rem; color: var(--text-3);
+      margin-top: 0.2rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .flag {
+      font-size: 1rem;
+    }
+
+    .btn-delete {
+      background: rgba(239,83,80,0.1);
+      border: 1px solid rgba(239,83,80,0.2);
+      border-radius: 8px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--danger);
+      font-size: 1rem; flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      position: relative; z-index: 2;
+    }
+    .btn-delete:hover {
+      background: rgba(239,83,80,0.25);
+      border-color: rgba(239,83,80,0.5);
+      transform: scale(1.1);
+    }
+
+    .card-weather {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 1.5rem;
+    }
+    .card-left {}
+    .card-temp {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4.5rem; line-height: 1;
+      color: var(--text-1);
+      letter-spacing: 0.02em;
+    }
+    .card-condition {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      margin-top: 0.3rem;
+    }
+    .card-feels {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      margin-top: 0.2rem;
+    }
+    .card-right {
+      text-align: right;
+    }
+    .card-icon {
+      font-size: 3.5rem;
+      display: block;
+      filter: drop-shadow(0 4px 12px rgba(255,255,255,0.2));
+      line-height: 1;
+    }
+    .card-time {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      display: flex; justify-content: space-between;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .card-stat {
+      text-align: center; font-size: 0.78rem;
+    }
+    .card-stat .val { color: var(--text-2); font-weight: 600; display: block; }
+    .card-stat .lbl { color: var(--text-3); font-size: 0.7rem; margin-top: 2px; display: block; }
+
+    /* Loading skeleton */
+    .card-loading {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .skel {
+      background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.03) 75%);
+      background-size: 200% 100%;
+      border-radius: 8px;
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Click hint */
+    .click-hint {
+      position: absolute; bottom: 1rem; right: 1.2rem;
+      font-size: 0.7rem; color: var(--text-3);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+    .city-card:hover .click-hint { opacity: 1; }
+
+    /* ─── SPINNER ─── */
+    .spinner {
+      display: inline-block; width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: stretch; }
+      .search-form { max-width: 100%; }
+      .brand-text h1 { font-size: 1.5rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="stars"></div>
+
+<div id="toast"></div>
+
+<div class="wrapper">
+  <header>
+    <div class="brand">
+      <span class="brand-icon">🌍</span>
+      <div class="brand-text">
+        <h1>WeatherAtlas</h1>
+        <p>Previsão Global do Tempo</p>
+      </div>
+    </div>
+    <div class="search-form">
+      <div class="search-input-wrap">
+        <span class="icon">🔍</span>
+        <input type="text" id="cityInput" placeholder="Buscar cidade no mundo…" autocomplete="off" />
+      </div>
+      <button class="btn-add" id="addBtn" onclick="addCity()">Adicionar</button>
+    </div>
+  </header>
+
+  <div class="section-header">
+    <h2>Minhas Cidades</h2>
+    <div class="line"></div>
+    <span class="city-count" id="cityCount">0 cidades</span>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid"></div>
+</div>
+
+<script>
+  const CITIES = {{ cities | tojson }};
+
+  // ─── WMO Codes ───
+  const WMO_LABEL = {
+    0:'Céu Limpo',1:'Principalmente Limpo',2:'Parcialmente Nublado',3:'Nublado',
+    45:'Névoa',48:'Névoa com Geada',
+    51:'Garoa Leve',53:'Garoa Moderada',55:'Garoa Densa',
+    56:'Garoa Gelada Leve',57:'Garoa Gelada',
+    61:'Chuva Leve',63:'Chuva Moderada',65:'Chuva Forte',
+    66:'Chuva Gelada Leve',67:'Chuva Gelada',
+    71:'Neve Leve',73:'Neve Moderada',75:'Neve Forte',77:'Granizo de Neve',
+    80:'Pancada Leve',81:'Pancada Moderada',82:'Pancada Forte',
+    85:'Neve em Pancadas Leve',86:'Neve em Pancadas Forte',
+    95:'Trovoada',96:'Trovoada com Granizo',99:'Trovoada com Granizo Forte'
+  };
+
+  function getIcon(code, isDay=1) {
+    const map = {
+      0: isDay ? '☀️' : '🌙',
+      1: isDay ? '🌤️' : '🌙',
+      2: '⛅', 3: '☁️',
+      45: '🌫️', 48: '🌫️',
+      51: '🌦️', 53: '🌦️', 55: '🌧️',
+      56: '🌧️', 57: '🌧️',
+      61: '🌧️', 63: '🌧️', 65: '🌧️',
+      66: '🌧️', 67: '🌧️',
+      71: '🌨️', 73: '🌨️', 75: '❄️', 77: '❄️',
+      80: '🌦️', 81: '🌧️', 82: '🌧️',
+      85: '🌨️', 86: '❄️',
+      95: '⛈️', 96: '⛈️', 99: '⛈️'
+    };
+    return map[code] || '🌡️';
+  }
+
+  function codeCategory(code) {
+    if (code === 0 || code === 1) return 'clear';
+    if (code === 2 || code === 3) return 'clouds';
+    if ([95,96,99].includes(code)) return 'storm';
+    if (code >= 70 && code <= 77) return 'snow';
+    if (code >= 50 && code <= 82) return 'rain';
+    return 'clouds';
+  }
+
+  function countryFlag(code) {
+    if (!code) return '🌐';
+    return code.toUpperCase().replace(/./g, c =>
+      String.fromCodePoint(c.charCodeAt(0) + 127397)
+    );
+  }
+
+  function localTime(timezone) {
+    try {
+      return new Date().toLocaleTimeString('pt-BR', {
+        timeZone: timezone, hour: '2-digit', minute: '2-digit'
+      });
+    } catch { return '--:--'; }
+  }
+
+  function windDir(deg) {
+    const dirs = ['N','NE','L','SE','S','SO','O','NO'];
+    return dirs[Math.round(deg / 45) % 8];
+  }
+
+  // ─── Toast ───
+  let toastTimer;
+  function toast(msg, type='info') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = `show ${type}`;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { el.className = ''; }, 3500);
+  }
+
+  // ─── Render Cards ───
+  function renderGrid() {
+    const grid = document.getElementById('cardsGrid');
+    const count = document.getElementById('cityCount');
+
+    if (CITIES.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column:1/-1">
+          <span class="empty-icon">🌐</span>
+          <h3>Nenhuma cidade adicionada</h3>
+          <p>Busque por uma cidade acima para começar a acompanhar o clima.</p>
+        </div>`;
+      count.textContent = '0 cidades';
+      return;
+    }
+
+    count.textContent = `${CITIES.length} cidade${CITIES.length !== 1 ? 's' : ''}`;
+    grid.innerHTML = '';
+
+    CITIES.forEach((city, i) => {
+      const card = document.createElement('div');
+      card.className = 'city-card';
+      card.dataset.id = city.id;
+      card.style.animationDelay = `${i * 0.08}s`;
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="card-location">
+            <div class="card-city">${city.name}</div>
+            <div class="card-country">
+              <span class="flag">${countryFlag(city.country_code)}</span>
+              ${city.country}${city.admin1 ? ' · ' + city.admin1 : ''}
+            </div>
+          </div>
+          <button class="btn-delete" title="Remover cidade">✕</button>
+        </div>
+        <div class="card-loading">
+          <div class="skel" style="height:64px;margin-top:1.5rem"></div>
+          <div class="skel" style="height:20px;width:60%"></div>
+        </div>
+        <span class="click-hint">Ver detalhes →</span>`;
+
+      // Delete handler (stop propagation)
+      card.querySelector('.btn-delete').addEventListener('click', e => {
+        e.stopPropagation();
+        deleteCity(city.id, city.name);
+      });
+
+      // Click → detail
+      card.addEventListener('click', () => {
+        window.open(`/city/${city.id}`, '_blank');
+      });
+
+      // Mouse-follow glow
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${((e.clientX-r.left)/r.width*100).toFixed(1)}%`);
+        card.style.setProperty('--my', `${((e.clientY-r.top)/r.height*100).toFixed(1)}%`);
+      });
+
+      grid.appendChild(card);
+      loadWeather(city, card);
+    });
+  }
+
+  async function loadWeather(city, card) {
+    try {
+      const res = await fetch(`/api/weather/${city.id}`);
+      const data = await res.json();
+      if (!res.ok || !data.weather || !data.weather.current) throw new Error('fail');
+
+      const cur = data.weather.current;
+      const code = cur.weather_code;
+      const isDay = cur.is_day;
+      const temp = Math.round(cur.temperature_2m);
+      const feels = Math.round(cur.apparent_temperature);
+      const label = WMO_LABEL[code] || 'Desconhecido';
+      const icon = getIcon(code, isDay);
+      const cat = codeCategory(code);
+      const time = localTime(city.timezone);
+      const hum = cur.relative_humidity_2m;
+      const wind = Math.round(cur.wind_speed_10m);
+      const vis = cur.visibility ? (cur.visibility / 1000).toFixed(0) + ' km' : '--';
+
+      card.dataset.code = cat;
+      card.querySelector('.card-loading').outerHTML = `
+        <div class="card-weather">
+          <div class="card-left">
+            <div class="card-temp">${temp}°</div>
+            <div class="card-condition">${label}</div>
+            <div class="card-feels">Sensação ${feels}°C</div>
+          </div>
+          <div class="card-right">
+            <span class="card-icon">${icon}</span>
+            <div class="card-time">🕐 ${time}</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-stat">
+            <span class="val">💧${hum}%</span>
+            <span class="lbl">Umidade</span>
+          </div>
+          <div class="card-stat">
+            <span class="val">💨${wind} km/h</span>
+            <span class="lbl">Vento</span>
+          </div>
+          <div class="card-stat">
+            <span class="val">👁 ${vis}</span>
+            <span class="lbl">Visibilidade</span>
+          </div>
+        </div>`;
+    } catch {
+      card.querySelector('.card-loading').innerHTML = `
+        <p style="color:var(--text-3);font-size:.85rem;margin-top:1rem">⚠️ Erro ao carregar dados</p>`;
+    }
+  }
+
+  // ─── Add City ───
+  async function addCity() {
+    const input = document.getElementById('cityInput');
+    const btn = document.getElementById('addBtn');
+    const city = input.value.trim();
+    if (!city) { input.focus(); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>';
+
+    try {
+      const res = await fetch('/api/add_city', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ city })
+      });
+      const data = await res.json();
+      if (!res.ok) { toast(data.error, 'error'); return; }
+
+      CITIES.push(data);
+      input.value = '';
+      toast(`✅ ${data.name} adicionada com sucesso!`, 'success');
+      renderGrid();
+    } catch {
+      toast('Erro de conexão. Tente novamente.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Adicionar';
+    }
+  }
+
+  // ─── Delete City ───
+  async function deleteCity(id, name) {
+    if (!confirm(`Remover ${name}?`)) return;
+    try {
+      await fetch(`/api/delete_city/${id}`, { method: 'DELETE' });
+      const idx = CITIES.findIndex(c => c.id === id);
+      if (idx > -1) CITIES.splice(idx, 1);
+      toast(`🗑️ ${name} removida.`, 'info');
+      renderGrid();
+    } catch {
+      toast('Erro ao remover cidade.', 'error');
+    }
+  }
+
+  // ─── Enter key ───
+  document.getElementById('cityInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addCity();
+  });
+
+  // ─── Init ───
+  renderGrid();
+
+  // ─── Auto-refresh time ───
+  setInterval(() => {
+    document.querySelectorAll('.card-time').forEach(el => {
+      const card = el.closest('.city-card');
+      const city = CITIES.find(c => c.id === card?.dataset.id);
+      if (city) el.textContent = `🕐 ${localTime(city.timezone)}`;
+    });
+  }, 30000);
+</script>
+</body>
+</html>

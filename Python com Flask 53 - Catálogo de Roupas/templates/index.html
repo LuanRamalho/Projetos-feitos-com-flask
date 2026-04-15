@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row mb-4">
+    <div class="col-12">
+      <form class="row g-2" method="get" action="{{ url_for('index') }}">
+        <div class="col-md-2">
+          <input class="form-control" name="name" placeholder="Buscar por nome" value="{{ query.get('name','') }}">
+        </div>
+        <div class="col-md-2">
+          <input class="form-control" name="brand" placeholder="Buscar por marca" value="{{ query.get('brand','') }}">
+        </div>
+        <div class="col-md-2">
+          <input class="form-control" name="type" placeholder="Buscar por tipo" value="{{ query.get('type','') }}">
+        </div>
+        <div class="col-md-2">
+          <input class="form-control" name="color" placeholder="Buscar por cor" value="{{ query.get('color','') }}">
+        </div>
+        <div class="col-md-2">
+          <input class="form-control" name="size" placeholder="Buscar por tamanho" value="{{ query.get('size','') }}">
+        </div>
+        <div class="col-md-2 d-grid">
+          <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% if items %}
+    <div class="card-grid">
+      {% for it in items %}
+        <div class="card">
+          {% if it.url %}
+            <img src="{{ it.url }}" class="card-img-top" alt="{{ it.name }}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x220?text=Imagem+indisponivel';">
+          {% else %}
+            <img src="https://via.placeholder.com/400x220?text=Sem+imagem" class="card-img-top" alt="Sem imagem">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ it.name }}</h5>
+            <p class="card-text mb-1"><strong>Marca:</strong> {{ it.brand or '-' }}</p>
+            <p class="card-text mb-1"><strong>Tipo:</strong> {{ it.type or '-' }}</p>
+            <p class="card-text mb-1"><strong>Cor:</strong> {{ it.color or '-' }}</p>
+            <p class="card-text mb-1"><strong>Tamanho:</strong> {{ it.size or '-' }}</p>
+            <div class="d-flex justify-content-between mt-3">
+              <a class="btn btn-sm btn-outline-primary" href="{{ url_for('edit', item_id=it.id) }}">Editar</a>
+              <form method="post" action="{{ url_for('delete', item_id=it.id) }}" onsubmit="return confirm('Excluir este item?');">
+                <button class="btn btn-sm btn-outline-danger" type="submit">Excluir</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">Nenhuma roupa encontrada.</div>
+  {% endif %}
+{% endblock %}

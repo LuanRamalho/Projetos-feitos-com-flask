@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Player de Música</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container py-4">
+    <div class="glass p-4 mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+            <div>
+                <h1 class="fw-bold mb-1">Player de Música</h1>
+                <div class="muted-small">CRUD com Flask e JSON.</div>
+            </div>
+
+            <form class="d-flex gap-2" method="GET" action="{{ url_for('index') }}">
+                <input class="form-control" style="min-width:280px" type="text" name="q"
+                       placeholder="Buscar por música ou autor..." value="{{ termo }}">
+                <button class="btn btn-primary btn-rounded px-4" type="submit">Buscar</button>
+                {% if termo %}
+                    <a class="btn btn-outline-light btn-rounded px-4" href="{{ url_for('index') }}">Limpar</a>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-3">
+          {% for message in messages %}
+            <div class="alert alert-info border-0 rounded-4">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="row g-4">
+        <div class="col-12 col-lg-4">
+            <div class="glass p-4 sticky-top" style="top: 20px;">
+                <h4 class="mb-3">{{ 'Editar música' if musica_edicao else 'Adicionar música' }}</h4>
+                <form method="POST" action="{{ url_for('salvar') }}">
+                    <input type="hidden" name="id" value="{{ musica_edicao.id if musica_edicao else '' }}">
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome da música</label>
+                        <input class="form-control" name="nome" required
+                               placeholder="Ex.: Shape of You"
+                               value="{{ musica_edicao.nome if musica_edicao else '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Nome do autor</label>
+                        <input class="form-control" name="autor" required
+                               placeholder="Ex.: Ed Sheeran"
+                               value="{{ musica_edicao.autor if musica_edicao else '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Link da música</label>
+                        <input class="form-control" name="link" required
+                               placeholder="Link direto .mp3 ou YouTube"
+                               value="{{ musica_edicao.link if musica_edicao else '' }}">
+                        <div class="muted-small mt-2">
+                            Use links diretos (.mp3) para o player nativo.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-rounded w-100" type="submit">
+                        {{ 'Atualizar' if musica_edicao else 'Salvar' }}
+                    </button>
+
+                    {% if musica_edicao %}
+                        <a class="btn btn-outline-light btn-rounded w-100 mt-2" href="{{ url_for('index') }}">
+                            Cancelar edição
+                        </a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+            {% if musicas %}
+                <div class="row g-4">
+                    {% for musica in musicas %}
+                    <div class="col-12 col-md-6">
+                        <div class="card card-music shadow-sm">
+                            <div class="card-body d-flex flex-column">
+
+                                <div class="mb-2">
+                                    <span class="badge badge-soft">#{{ musica.id }}</span>
+                                    <h5 class="fw-bold mt-2 mb-1">{{ musica.nome }}</h5>
+                                    <div class="muted-small">{{ musica.autor }}</div>
+                                </div>
+
+                                <div class="my-3">
+                                    <audio controls class="w-100 custom-audio-player" preload="none">
+                                        <source src="{{ musica.link }}" type="audio/mpeg">
+                                        Seu navegador não suporta áudio.
+                                    </audio>
+                                </div>
+
+                                <div class="small mb-3">
+                                    <strong>Link:</strong>
+                                    <a href="{{ musica.link }}" target="_blank" class="text-info">Abrir original</a>
+                                </div>
+
+                                <div class="mt-auto d-flex gap-2">
+                                    <a class="btn btn-outline-info btn-sm btn-rounded"
+                                       href="{{ url_for('editar', musica_id=musica.id) }}">
+                                       Editar
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm btn-rounded"
+                                       href="{{ url_for('excluir', musica_id=musica.id) }}"
+                                       onclick="return confirm('Excluir?')">
+                                       Excluir
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h4>Nenhuma música encontrada</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

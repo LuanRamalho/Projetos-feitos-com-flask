@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1fb9e5b3-a4f1-4456-931f-1d34839fa84a",
+    "name": "Camiseta Masculina",
+    "color": "Azul",
+    "type": "Algodão",
+    "brand": "TH6",
+    "url": "https://m.media-amazon.com/images/I/314VZv0mnsL._AC_.jpg",
+    "size": "G"
+  },
+  {
+    "id": "4fc30f3e-cc85-4775-a9e8-e509e9436c2b",
+    "name": "Calça Jeans Tradicional",
+    "color": "Preta",
+    "type": "Algodão",
+    "brand": "R7",
+    "url": "https://http2.mlstatic.com/D_NQ_NP_2X_761359-MLB79264038182_092024-F-calca-jeans-tradicional-diversas-cores-direto-da-fabrica.webp",
+    "size": "40"
+  },
+  {
+    "id": "2b81f0eb-f677-4563-a548-f1af653a5ba2",
+    "name": "Camiseta Básica Regata Masculina",
+    "color": "Vermelho",
+    "type": "Algodão",
+    "brand": "Malwee",
+    "url": "https://http2.mlstatic.com/D_NQ_NP_2X_980640-MLB107249316111_022026-F-camiseta-basica-regata-masculina-vermelho.webp",
+    "size": "M"
+  }
+]

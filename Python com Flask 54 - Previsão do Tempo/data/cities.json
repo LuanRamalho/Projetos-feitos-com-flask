@@ -1,0 +1,90 @@
+[
+  {
+    "id": "ea19e0c5",
+    "name": "Rio de Janeiro",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Rio de Janeiro",
+    "latitude": -22.90642,
+    "longitude": -43.18223,
+    "timezone": "America/Sao_Paulo",
+    "population": 6747815
+  },
+  {
+    "id": "fbffd50b",
+    "name": "Nova Friburgo",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Rio de Janeiro",
+    "latitude": -22.28194,
+    "longitude": -42.53111,
+    "timezone": "America/Sao_Paulo",
+    "population": 191158
+  },
+  {
+    "id": "2ef4be40",
+    "name": "Petrópolis",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Rio de Janeiro",
+    "latitude": -22.505,
+    "longitude": -43.17861,
+    "timezone": "America/Sao_Paulo",
+    "population": 272691
+  },
+  {
+    "id": "a0cf4f5b",
+    "name": "Teresópolis",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Rio de Janeiro",
+    "latitude": -22.4167,
+    "longitude": -42.97822,
+    "timezone": "America/Sao_Paulo",
+    "population": 123979
+  },
+  {
+    "id": "66934a84",
+    "name": "Porto Alegre",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Rio Grande do Sul",
+    "latitude": -30.03283,
+    "longitude": -51.23019,
+    "timezone": "America/Sao_Paulo",
+    "population": 1488252
+  },
+  {
+    "id": "f35892b4",
+    "name": "Florianópolis",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Santa Catarina",
+    "latitude": -27.59667,
+    "longitude": -48.54917,
+    "timezone": "America/Sao_Paulo",
+    "population": 508826
+  },
+  {
+    "id": "de10985f",
+    "name": "Urupema",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Santa Catarina",
+    "latitude": -28.1738,
+    "longitude": -49.5554,
+    "timezone": "America/Sao_Paulo",
+    "population": 2465
+  },
+  {
+    "id": "cd9027e0",
+    "name": "Curitiba",
+    "country": "Brasil",
+    "country_code": "br",
+    "admin1": "Paraná",
+    "latitude": -25.42778,
+    "longitude": -49.27306,
+    "timezone": "America/Sao_Paulo",
+    "population": 1948626
+  }
+]
