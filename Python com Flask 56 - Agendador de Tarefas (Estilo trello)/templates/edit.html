@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Editar</title>
+<style>
+    body {
+        background:#1e1e2f;
+        font-family:Arial;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        margin:0;
+    }
+
+    .modal {
+        background:#2c2c3e;
+        padding:30px;
+        border-radius:15px;
+        width:350px;
+        box-shadow:0 0 20px rgba(0,0,0,0.5);
+    }
+
+    input, textarea, select {
+        width:100%;
+        margin-top:10px;
+        padding:10px;
+        border-radius:8px;
+        border:none;
+    }
+
+    button {
+        margin-top:15px;
+        width:100%;
+        padding:10px;
+        border:none;
+        border-radius:8px;
+        background:#3498db;
+        color:white;
+        cursor:pointer;
+    }
+
+    a {
+        display:block;
+        text-align:center;
+        margin-top:10px;
+        color:#aaa;
+    }
+</style>
+</head>
+<body>
+
+<div class="modal">
+    <h2>Editar Tarefa</h2>
+
+    <form method="POST">
+        <input name="title" value="{{task.title}}">
+        <textarea name="description">{{task.description}}</textarea>
+
+        <select name="status">
+            <option value="todo" {% if task.status=='todo' %}selected{% endif %}>A Fazer</option>
+            <option value="doing" {% if task.status=='doing' %}selected{% endif %}>Em Andamento</option>
+            <option value="done" {% if task.status=='done' %}selected{% endif %}>Concluído</option>
+        </select>
+
+        <button>Salvar</button>
+    </form>
+
+    <a href="/">Cancelar</a>
+</div>
+
+</body>
+</html>

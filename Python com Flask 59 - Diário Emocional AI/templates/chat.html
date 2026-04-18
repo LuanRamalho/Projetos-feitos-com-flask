@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="panel-card p-4 h-100">
+      <h1 class="h3 mb-3">Chatbot pessoal</h1>
+      <p class="text-white-50">Ele responde usando os dados do seu diário, sem complicar a estrutura do projeto.</p>
+      <div class="mini-stats mb-4">
+        <div><span>{{ stats.total }}</span><small>Registros</small></div>
+        <div><span>{{ stats.top_keywords | join(' • ') if stats.top_keywords else '—' }}</span><small>Tópicos</small></div>
+      </div>
+      <form method="post" class="d-grid gap-3">
+        <textarea class="form-control glass-input" name="question" rows="8" placeholder="Ex.: Como eu tenho me sentido?">{{ question }}</textarea>
+        <button class="btn btn-glow"><i class="fa-solid fa-comments me-2"></i>Perguntar ao chatbot</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-7">
+    <div class="panel-card p-4 h-100 chat-response">
+      <h2 class="h4 mb-3">Resposta</h2>
+      {% if answer %}
+        <div class="answer-bubble">{{ answer }}</div>
+      {% else %}
+        <div class="empty-state">Faça uma pergunta para receber uma resposta baseada no seu histórico.</div>
+      {% endif %}
+      <div class="mt-4 suggestion-box">
+        <div class="soft-chip mb-2">Sugestões</div>
+        <p class="mb-1">• Como estou no geral?</p>
+        <p class="mb-1">• Qual foi meu melhor dia?</p>
+        <p class="mb-0">• O que está aparecendo mais nos meus textos?</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+[
+    {
+        "id": "3b621f66-81f9-4861-b223-5f34a0c01640",
+        "fabricante": "Volkswagen",
+        "modelo": "Fusca",
+        "ano": "1974",
+        "placa": "FKS-2837",
+        "cor": "Azul",
+        "link": "https://lartbr.com.br/wp-content/uploads/2025/05/att.L6USvT4cJ703MFk4h2k5yZ3JcznBFahNL1WRDefa71k.jpeg",
+        "combustivel": "Gasolina"
+    },
+    {
+        "id": "a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d",
+        "fabricante": "Toyota",
+        "modelo": "Corolla",
+        "ano": "2022",
+        "placa": "BRA2E19",
+        "cor": "Prata",
+        "link": "https://vinac.com.br/wp-content/uploads/2022/03/vinac-consorcios-toyota-corolla-xei-2.0-2022-cinza-celestial-frente-800x800px.jpg",
+        "combustivel": "Híbrido"
+    },
+    {
+        "id": "b2c3d4e5-f6a7-4b6c-9d0e-1f2a3b4c5d6e",
+        "fabricante": "Fiat",
+        "modelo": "Uno",
+        "ano": "2013",
+        "placa": "MIO-1994",
+        "cor": "Branco",
+        "link": "https://www.infomoney.com.br/wp-content/uploads/2019/06/fiat-uno-vivace.jpg?fit=900%2C572&quality=50&strip=all",
+        "combustivel": "Gasolina"
+    },
+    {
+        "id": "c3d4e5f6-a7b8-4c7d-0e1f-2a3b4c5d6e7f",
+        "fabricante": "BYD",
+        "modelo": "Dolphin",
+        "ano": "2024",
+        "placa": "EVB-0D24",
+        "cor": "Rosa",
+        "link": "https://cdn.motor1.com/images/mgl/E6Yl0o/s3/byd-dolphin-2026---registro-na-china.jpg",
+        "combustivel": "Elétrico"
+    },
+    {
+        "id": "d4e5f6a7-b8c9-4d8e-1f2a-3b4c5d6e7f8a",
+        "fabricante": "Chevrolet",
+        "modelo": "Onix",
+        "ano": "2023",
+        "placa": "ONX-2023",
+        "cor": "Preto",
+        "link": "https://www.liderbhchevrolet.com.br/content/dam/chevrolet/sa/br/pt/master/home/cars/onix/onix-2026/colorizer/onix-premier/onix-premier-2026-cor-preto-ouro-negro.jpg?imwidth=960",
+        "combustivel": "Flex"
+    },
+    {
+        "id": "e5f6a7b8-c9d0-4e9f-2a3b-4c5d6e7f8a9b",
+        "fabricante": "Honda",
+        "modelo": "Civic Type R",
+        "ano": "2024",
+        "placa": "TYP-3R24",
+        "cor": "Vermelho",
+        "link": "https://cdn.motor1.com/images/mgl/AY6nx/s1/2019-honda-civic-type-r.jpg",
+        "combustivel": "Gasolina"
+    },
+    {
+        "id": "f6a7b8c9-d0e1-4f0a-3b4c-5d6e7f8a9b0c",
+        "fabricante": "Jeep",
+        "modelo": "Renegade",
+        "ano": "2022",
+        "placa": "JEP-4X40",
+        "cor": "Verde Militar",
+        "link": "https://cdn.motor1.com/images/mgl/KEJ7b/s1/jeep-renegade-novidades-2018.webp",
+        "combustivel": "Flex"
+    },
+    {
+        "id": "a7b8c9d0-e1f2-4a1b-4c5d-6e7f8a9b0c1d",
+        "fabricante": "Tesla",
+        "modelo": "Model 3",
+        "ano": "2023",
+        "placa": "TSL-3333",
+        "cor": "Branco",
+        "link": "https://upload.wikimedia.org/wikipedia/commons/9/91/2019_Tesla_Model_3_Performance_AWD_Front.jpg",
+        "combustivel": "Elétrico"
+    },
+    {
+        "id": "b8c9d0e1-f2a3-4b2c-5d6e-7f8a9b0c1d2e",
+        "fabricante": "Ford",
+        "modelo": "Mustang Mach-E",
+        "ano": "2023",
+        "placa": "FRD-1964",
+        "cor": "Azul",
+        "link": "https://s2-autoesporte.glbimg.com/fMU767rhZG8SiAg5vL_8kDy4t2o=/0x0:1018x650/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2023/q/f/xYdvrCSUikABbK5GOlrQ/mustang-mach-e.jpg",
+        "combustivel": "Elétrico"
+    },
+    {
+        "id": "c9d0e1f2-a3b4-4c3d-6e7f-8a9b0c1d2e3f",
+        "fabricante": "Hyundai",
+        "modelo": "HB20",
+        "ano": "2024",
+        "placa": "HBD-2024",
+        "cor": "Cinza",
+        "link": "https://www.kovi.com.br/hs-fs/hubfs/200.webp?width=1140&height=400&name=200.webp",
+        "combustivel": "Flex"
+    },
+    {
+        "id": "d0e1f2a3-b4c5-4d4e-7f8a-9b0c1d2e3f4a",
+        "fabricante": "Volvo",
+        "modelo": "XC40",
+        "ano": "2022",
+        "placa": "VOL-0040",
+        "cor": "Azul Denim",
+        "link": "https://parkers-images.bauersecure.com/wp-images/335/driving-moving-exterior/930x620/064-volvo-xc40-blue-front.jpg",
+        "combustivel": "Elétrico"
+    }
+]

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero-card p-4 p-lg-5 mb-4">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <span class="badge pill-badge mb-3">IA + Diário + JSON local</span>
+      <h1 class="display-5 fw-bold mb-3">Registre emoções, analise o texto e converse com seu próprio histórico.</h1>
+      <p class="lead mb-0 text-white-75">Um projeto de portfólio simples de manter, mas visualmente forte e com uma cara moderna.</p>
+    </div>
+    <div class="col-lg-5">
+      <div class="stat-grid">
+        <div class="stat-card"><span>{{ stats.total }}</span><small>Registros</small></div>
+        <div class="stat-card"><span>{{ stats.positives }}</span><small>Positivos</small></div>
+        <div class="stat-card"><span>{{ stats.negatives }}</span><small>Negativos</small></div>
+        <div class="stat-card"><span>{{ stats.avg_score }}</span><small>Média IA</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-lg-5">
+    <div class="panel-card p-4 h-100">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h4 mb-0">Novo registro</h2>
+        <i class="fa-solid fa-pen-nib panel-icon"></i>
+      </div>
+      <form method="post" class="d-grid gap-3">
+        <div>
+          <label class="form-label">Título</label>
+          <input type="text" class="form-control form-control-lg glass-input" name="title" placeholder="Ex.: Dia produtivo">
+        </div>
+        <div>
+          <label class="form-label">Texto emocional</label>
+          <textarea class="form-control glass-input" name="text" rows="9" placeholder="Escreva aqui como foi o seu dia..."></textarea>
+        </div>
+        <button class="btn btn-glow btn-lg w-100"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Analisar e salvar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="panel-card p-4 mb-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h4 mb-0">Tendência recente</h2>
+        <span class="soft-chip">Últimos 7 registros</span>
+      </div>
+      <canvas id="moodChart" height="120"></canvas>
+    </div>
+
+    <div class="panel-card p-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 class="h4 mb-0">Últimos registros</h2>
+        <a class="soft-link" href="{{ url_for('history') }}">Ver histórico completo</a>
+      </div>
+      <div class="list-group list-group-flush custom-list">
+        {% for entry in entries %}
+          <div class="list-group-item bg-transparent text-white border-0 px-0 py-3">
+            <div class="d-flex justify-content-between flex-wrap gap-2">
+              <div>
+                <h3 class="h5 mb-1">{{ entry.title }}</h3>
+                <div class="small text-white-50">{{ entry.created_at }} • {{ entry.emotion_label }} • {{ entry.text_category }}</div>
+              </div>
+              <span class="sentiment-pill {{ entry.sentiment_label }}">{{ entry.sentiment_label }} • {{ entry.sentiment_score }}</span>
+            </div>
+            <p class="mb-0 mt-2 text-white-75">{{ entry.text }}</p>
+          </div>
+        {% else %}
+          <div class="text-white-50">Nenhum registro ainda.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ctx = document.getElementById('moodChart');
+if (ctx) {
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ stats.recent_dates | tojson }},
+      datasets: [{
+        label: 'Humor',
+        data: {{ stats.recent_labels | tojson }},
+        tension: 0.35,
+        fill: true,
+        borderWidth: 3,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: {
+          min: -1.2,
+          max: 1.2,
+          ticks: {
+            stepSize: 1,
+            callback: (value) => ({'-1':'Negativo','0':'Neutro','1':'Positivo'}[value] ?? value)
+          }
+        }
+      }
+    }
+  });
+}
+</script>
+{% endblock %}

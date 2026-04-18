@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Esqueci senha{% endblock %}
+{% block content %}
+<div class="auth-shell">
+  <div class="auth-card glass">
+    <div class="brand-mark">N</div>
+    <h1>Recuperar senha</h1>
+    <p class="muted">Digite o nome de usuário para visualizar os dados salvos no JSON.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-list">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" class="auth-form">
+      <label>Usuário</label>
+      <input type="text" name="username" placeholder="Digite o nome do usuário" required>
+      <button class="primary-btn" type="submit">Buscar</button>
+    </form>
+
+    {% if recovered %}
+      <div class="recovery-box">
+        <strong>Usuário:</strong> {{ recovered.username }}<br>
+        <strong>Senha:</strong> {{ recovered.password }}
+      </div>
+    {% endif %}
+
+    <div class="auth-links">
+      <a href="{{ url_for('login') }}">Voltar ao login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

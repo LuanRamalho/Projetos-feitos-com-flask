@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📌 Trello Clone</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5;
+            --todo-color: #ff4757;
+            --doing-color: #ffa502;
+            --done-color: #2ed573;
+            --primary-btn: #1e90ff;
+            --text-main: #2f3542;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #57606f;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Barra de Busca e Adição */
+        .top-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        input[type="text"], textarea {
+            padding: 12px;
+            border: 2px solid #e1e4e8;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: var(--primary-btn);
+        }
+
+        .top-bar button {
+            background-color: var(--primary-btn);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .top-bar button:hover {
+            background-color: #3742fa;
+            transform: translateY(-2px);
+        }
+
+        /* Quadro de Tarefas */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
+        .column {
+            background-color: #ebedf0;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 400px;
+        }
+
+        .column h2 {
+            font-size: 1.2rem;
+            padding-bottom: 10px;
+            margin-top: 0;
+            border-bottom: 3px solid;
+            text-align: center;
+        }
+
+        .todo-header { border-color: var(--todo-color) !important; color: var(--todo-color); }
+        .doing-header { border-color: var(--doing-color) !important; color: var(--doing-color); }
+        .done-header { border-color: var(--done-color) !important; color: var(--done-color); }
+
+        /* Cartões */
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .todo-card { border-left-color: var(--todo-color); }
+        .doing-card { border-left-color: var(--doing-color); }
+        .done-card { border-left-color: var(--done-color); }
+
+        .card strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #2f3542;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #747d8c;
+            margin: 0 0 12px 0;
+            line-height: 1.4;
+        }
+
+        /* Ações */
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            border-top: 1px solid #f1f2f6;
+            padding-top: 10px;
+        }
+
+        .actions a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: opacity 0.2s;
+        }
+
+        .edit { background: #f1c40f22; color: #d35400; }
+        .delete { background: #e74c3c22; color: #c0392b; }
+        .actions a:hover { opacity: 0.7; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📌 Trello Clone</h1>
+
+    <div class="top-bar">
+        <form method="GET" style="flex-grow: 1; display: flex; gap: 10px;">
+            <input type="text" name="q" placeholder="🔍 Buscar tarefa..." style="flex-grow: 1;">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <form method="POST" action="/add" class="top-bar">
+        <input type="text" name="title" placeholder="Título da tarefa" required style="flex: 1;">
+        <textarea name="description" placeholder="Descrição curta..." style="flex: 2; height: 18px;"></textarea>
+        <button type="submit">Adicionar Task</button>
+    </form>
+
+    <div class="board">
+        <div class="column">
+            <h2 class="todo-header">A Fazer</h2>
+            {% for t in tasks if t.status == 'todo' %}
+            <div class="card todo-card">
+                <strong>{{t.title}}</strong>
+                <p>{{t.description}}</p>
+                <div class="actions">
+                    <a class="edit" href="/edit/{{t.id}}">Editar</a>
+                    <a class="delete" href="/delete/{{t.id}}">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <h2 class="doing-header">Em Andamento</h2>
+            {% for t in tasks if t.status == 'doing' %}
+            <div class="card doing-card">
+                <strong>{{t.title}}</strong>
+                <p>{{t.description}}</p>
+                <div class="actions">
+                    <a class="edit" href="/edit/{{t.id}}">Editar</a>
+                    <a class="delete" href="/delete/{{t.id}}">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <h2 class="done-header">Concluído</h2>
+            {% for t in tasks if t.status == 'done' %}
+            <div class="card done-card">
+                <strong>{{t.title}}</strong>
+                <p>{{t.description}}</p>
+                <div class="actions">
+                    <a class="edit" href="/edit/{{t.id}}">Editar</a>
+                    <a class="delete" href="/delete/{{t.id}}">Excluir</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

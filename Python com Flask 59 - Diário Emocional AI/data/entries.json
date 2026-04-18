@@ -1,0 +1,57 @@
+[
+  {
+    "id": "f41d1ef2-5327-48df-8c54-2f2d5dd4e333",
+    "created_at": "2026-04-17 14:20",
+    "title": "Mensagem estranha",
+    "text": "Ganhe dinheiro rápido clicando neste link!",
+    "sentiment_label": "negative",
+    "sentiment_score": 0.84,
+    "emotion_label": "anger",
+    "text_category": "spam",
+    "keywords": [
+      "dinheiro",
+      "link"
+    ]
+  },
+  {
+    "id": "2b1d7b7d-2f78-4c54-8e04-7c98c7b0d222",
+    "created_at": "2026-04-16 20:40",
+    "title": "Dia pesado",
+    "text": "Passei o dia cansado e um pouco irritado, mas consegui terminar uma tarefa.",
+    "sentiment_label": "negative",
+    "sentiment_score": 0.71,
+    "emotion_label": "sadness",
+    "text_category": "emoção",
+    "keywords": [
+      "cansado",
+      "irritado"
+    ]
+  },
+  {
+    "id": "b3d86f7f-4c1d-4cb0-bce4-0f5f8a8f1a11",
+    "created_at": "2026-04-15 09:10",
+    "title": "Voltei a estudar Flask",
+    "text": "Hoje consegui corrigir um bug e isso me deixou animado.",
+    "sentiment_label": "positive",
+    "sentiment_score": 0.96,
+    "emotion_label": "joy",
+    "text_category": "emoção",
+    "keywords": [
+      "bug",
+      "animado"
+    ]
+  },
+  {
+    "id": "937b457a-f154-4801-8436-6ea47edd460b",
+    "created_at": "2026-04-18 14:24",
+    "title": "Desenvolvendo projetos com flask",
+    "text": "Excelente. Desenvolvendo diversos projetos flask, da melhor qualidade. Já coloquei no github, sendo que esse projetos podem ajudar muitos outros usuários.",
+    "sentiment_label": "neutral",
+    "sentiment_score": 0.5,
+    "emotion_label": "neutral",
+    "text_category": "suporte",
+    "keywords": [
+      "ajuda"
+    ]
+  }
+]

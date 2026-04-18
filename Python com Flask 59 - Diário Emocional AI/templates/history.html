@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="panel-card p-4 mb-4">
+  <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+    <div>
+      <h1 class="h3 mb-1">Histórico</h1>
+      <p class="mb-0 text-white-50">Pesquise, filtre e edite seus registros.</p>
+    </div>
+    <form class="d-flex gap-2 flex-wrap" method="get">
+      <input type="search" class="form-control glass-input" name="q" placeholder="Buscar..." value="{{ query }}">
+      <select class="form-select glass-input" name="filter">
+        <option value="all" {% if filter_type == 'all' %}selected{% endif %}>Todos</option>
+        <option value="positive" {% if filter_type == 'positive' %}selected{% endif %}>Positivos</option>
+        <option value="negative" {% if filter_type == 'negative' %}selected{% endif %}>Negativos</option>
+        <option value="neutral" {% if filter_type == 'neutral' %}selected{% endif %}>Neutros</option>
+      </select>
+      <button class="btn btn-glow">Filtrar</button>
+    </form>
+  </div>
+
+  <div class="timeline">
+    {% for entry in entries %}
+      <article class="timeline-item">
+        <div class="timeline-badge {{ entry.sentiment_label }}"></div>
+        <div class="timeline-content">
+          <div class="d-flex justify-content-between flex-wrap gap-2 mb-2">
+            <div>
+              <h2 class="h5 mb-1">{{ entry.title }}</h2>
+              <div class="small text-white-50">{{ entry.created_at }} • emoção: {{ entry.emotion_label }} • categoria: {{ entry.text_category }}</div>
+            </div>
+            <span class="sentiment-pill {{ entry.sentiment_label }}">{{ entry.sentiment_label }} • {{ entry.sentiment_score }}</span>
+          </div>
+          <p class="text-white-75 mb-3">{{ entry.text }}</p>
+          <div class="d-flex gap-2 flex-wrap">
+            <a class="btn btn-sm btn-outline-light" href="{{ url_for('edit_entry', entry_id=entry.id) }}"><i class="fa-solid fa-pen-to-square me-1"></i>Editar</a>
+            <form action="{{ url_for('delete_entry', entry_id=entry.id) }}" method="post" onsubmit="return confirm('Remover este registro?')">
+              <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-trash me-1"></i>Excluir</button>
+            </form>
+          </div>
+        </div>
+      </article>
+    {% else %}
+      <div class="text-white-50">Nenhum item encontrado.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

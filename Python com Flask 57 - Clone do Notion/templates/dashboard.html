@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Painel{% endblock %}
+{% block content %}
+<section class="dashboard-header">
+  <div>
+    <p class="eyebrow">Bem-vindo</p>
+    <h1>Suas páginas</h1>
+    <p class="muted">Crie, edite, exclua e pesquise páginas sem sair do painel.</p>
+  </div>
+
+  <div class="dashboard-actions">
+    <a class="primary-btn link-btn" href="{{ url_for('new_page') }}">+ Nova página</a>
+  </div>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-list">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<section class="search-card glass">
+  <label for="search">Buscar páginas</label>
+  <div class="search-row">
+    <input id="search" type="text" placeholder="Digite o nome da página ou texto dentro dos blocos">
+    <button class="secondary-btn" type="button" onclick="searchPages()">Buscar</button>
+  </div>
+  <div id="search-results" class="results-grid"></div>
+</section>
+
+<section class="pages-grid">
+  {% for page in pages %}
+  <article class="page-card glass">
+    <div class="page-card-top">
+      <div>
+        <span class="page-dot"></span>
+        <h3>{{ page.title }}</h3>
+      </div>
+      <span class="meta">{{ page.blocks|length }} bloco(s)</span>
+    </div>
+
+    <p class="muted small">Atualizada em {{ page.updated_at }}</p>
+
+    <div class="card-actions">
+      <a class="secondary-btn link-btn" href="{{ url_for('edit_page', page_id=page.id) }}">Abrir</a>
+      <form method="post" action="{{ url_for('delete_page', page_id=page.id) }}" onsubmit="return confirm('Excluir esta página?');">
+        <button class="danger-btn" type="submit">Excluir</button>
+      </form>
+    </div>
+  </article>
+  {% else %}
+  <div class="empty-state glass">
+    <h3>Nenhuma página criada ainda</h3>
+    <p>Clique em “Nova página” para começar.</p>
+  </div>
+  {% endfor %}
+</section>
+
+<script>
+async function searchPages() {
+  const q = document.getElementById("search").value;
+  const box = document.getElementById("search-results");
+  box.innerHTML = "<div class='muted'>Pesquisando...</div>";
+
+  const response = await fetch(`/search?q=${encodeURIComponent(q)}`);
+  const data = await response.json();
+
+  if (!data.results.length) {
+    box.innerHTML = "<div class='empty-mini'>Nenhum resultado encontrado.</div>";
+    return;
+  }
+
+  box.innerHTML = data.results.map(page => `
+    <div class="result-item glass">
+      <div>
+        <strong>${page.title}</strong>
+        <div class="muted small">${page.block_count} bloco(s) • ${page.updated_at}</div>
+      </div>
+      <a class="secondary-btn link-btn" href="/page/${page.id}">Abrir</a>
+    </div>
+  `).join("");
+}
+</script>
+{% endblock %}

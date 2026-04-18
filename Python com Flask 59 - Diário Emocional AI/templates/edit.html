@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="panel-card p-4 p-lg-5 mx-auto" style="max-width: 900px;">
+  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+    <div>
+      <h1 class="h3 mb-1">Editar registro</h1>
+      <p class="mb-0 text-white-50">Atualize o texto e a IA recalcula tudo automaticamente.</p>
+    </div>
+    <a href="{{ url_for('history') }}" class="soft-link">Voltar</a>
+  </div>
+
+  <form method="post" class="d-grid gap-3">
+    <div>
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control form-control-lg glass-input" name="title" value="{{ entry.title }}">
+    </div>
+    <div>
+      <label class="form-label">Texto</label>
+      <textarea class="form-control glass-input" name="text" rows="11">{{ entry.text }}</textarea>
+    </div>
+    <button class="btn btn-glow btn-lg"><i class="fa-solid fa-arrows-rotate me-2"></i>Salvar alterações</button>
+  </form>
+</div>
+{% endblock %}

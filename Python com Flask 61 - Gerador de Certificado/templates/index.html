@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Certificados</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #3498db;
+            --primary-hover: #2980b9;
+            --text-color: #f1f1f1;
+            --input-bg: #2c2c2c;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: var(--surface-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: white;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        /* Ajuste do ícone de calendário no input date para Dark Mode */
+        ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Emissão de Certificado</h2>
+        <form action="/gerar" method="POST">
+            <div class="form-group">
+                <label for="nome">Nome do Aluno</label>
+                <input type="text" id="nome" name="nome" required placeholder="Ex: Ada Lovelace">
+            </div>
+            <div class="form-group">
+                <label for="curso">Nome do Curso</label>
+                <input type="text" id="curso" name="curso" required placeholder="Ex: Arquitetura de Software">
+            </div>
+            <div class="form-group">
+                <label for="data">Data de Conclusão</label>
+                <input type="date" id="data" name="data" required>
+            </div>
+            <button type="submit">Gerar PDF</button>
+        </form>
+    </div>
+</body>
+</html>

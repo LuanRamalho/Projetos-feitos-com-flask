@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-4 align-items-stretch">
+  <div class="col-lg-6">
+    <div class="panel-card p-4 h-100">
+      <h1 class="h3 mb-3">Classificador de textos</h1>
+      <p class="text-white-50">Cole qualquer texto e veja a previsão de sentimento e categoria.</p>
+      <form method="post" class="d-grid gap-3">
+        <textarea class="form-control glass-input" name="sample_text" rows="12" placeholder="Digite um texto para classificar...">{{ sample_text }}</textarea>
+        <button class="btn btn-glow"><i class="fa-solid fa-magnifying-glass-chart me-2"></i>Classificar texto</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel-card p-4 h-100">
+      <h2 class="h4 mb-3">Resultado</h2>
+      {% if result %}
+        <div class="result-grid">
+          <div class="result-box"><span>Sentimento</span><strong>{{ result.sentiment_label }}</strong></div>
+          <div class="result-box"><span>Confiança</span><strong>{{ result.sentiment_score }}</strong></div>
+          <div class="result-box"><span>Categoria</span><strong>{{ result.text_category }}</strong></div>
+          <div class="result-box"><span>Palavras-chave</span><strong>{{ result.keywords | join(', ') if result.keywords else 'nenhuma' }}</strong></div>
+        </div>
+      {% else %}
+        <div class="empty-state">Seu resultado vai aparecer aqui.</div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

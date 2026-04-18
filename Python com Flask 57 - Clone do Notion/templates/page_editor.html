@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}
+<section class="editor-header">
+  <div>
+    <p class="eyebrow">Página</p>
+    <h1>{{ page.title }}</h1>
+    <p class="muted">Edite título, crie blocos, atualize texto e remova itens.</p>
+  </div>
+
+  <form method="post" action="{{ url_for('delete_page', page_id=page.id) }}" onsubmit="return confirm('Excluir esta página?');">
+    <button class="danger-btn" type="submit">Excluir página</button>
+  </form>
+</section>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-list">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="editor-layout">
+  <section class="editor-main glass">
+    <form method="post" class="title-form" action="{{ url_for('save_page_title', page_id=page.id) }}">
+      <label>Título</label>
+      <input type="text" name="title" value="{{ page.title }}" required>
+      <button class="secondary-btn" type="submit">Salvar título</button>
+    </form>
+
+    <div class="block-list">
+      {% for block in page.blocks %}
+      <article class="block-item">
+        <form method="post" class="block-form" action="{{ url_for('save_block', page_id=page.id, block_id=block.id) }}">
+
+          <div class="block-head">
+            <select name="block_type">
+              <option value="paragraph" {% if block.type == 'paragraph' %}selected{% endif %}>Parágrafo</option>
+              <option value="heading1" {% if block.type == 'heading1' %}selected{% endif %}>Título</option>
+              <option value="quote" {% if block.type == 'quote' %}selected{% endif %}>Citação</option>
+              <option value="todo" {% if block.type == 'todo' %}selected{% endif %}>Tarefa</option>
+              <option value="bullet" {% if block.type == 'bullet' %}selected{% endif %}>Item</option>
+            </select>
+            <span class="meta">Bloco #{{ block.id }}</span>
+          </div>
+
+          {% if block.type == 'todo' %}
+            <label class="todo-row">
+              <input type="checkbox" name="checked" value="1" {% if block.checked %}checked{% endif %}>
+              <span>Concluído</span>
+            </label>
+          {% endif %}
+
+          <textarea name="text" rows="3" placeholder="{{ block_label(block.type) }}">{{ block.text }}</textarea>
+
+          <div class="block-actions">
+            <button class="secondary-btn" type="submit">Salvar</button>
+          </div>
+        </form>
+
+        <form method="post" action="{{ url_for('delete_block', page_id=page.id, block_id=block.id) }}" class="delete-block-form" onsubmit="return confirm('Excluir este bloco?');">
+          <button class="danger-btn" type="submit">Excluir bloco</button>
+        </form>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <aside class="editor-aside glass">
+    <h3>Adicionar bloco</h3>
+    <p class="muted small">Escolha um tipo e escreva o texto inicial.</p>
+
+    <form method="post" class="add-block-form" action="{{ url_for('add_block_to_page', page_id=page.id) }}">
+      <label>Tipo</label>
+      <select name="block_type">
+        <option value="paragraph">Parágrafo</option>
+        <option value="heading1">Título</option>
+        <option value="quote">Citação</option>
+        <option value="todo">Tarefa</option>
+        <option value="bullet">Item</option>
+      </select>
+
+      <label>Texto</label>
+      <textarea name="text" rows="5" placeholder="Digite o conteúdo"></textarea>
+
+      <label class="todo-row">
+        <input type="checkbox" name="checked" value="1">
+        <span>Marcar como concluído</span>
+      </label>
+
+      <button class="primary-btn" type="submit">Adicionar bloco</button>
+    </form>
+  </aside>
+</div>
+{% endblock %}
