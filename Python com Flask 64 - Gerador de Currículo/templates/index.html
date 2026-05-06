@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gerador Automático de Currículos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.15);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.28), transparent 30%),
+        radial-gradient(circle at top right, rgba(6,182,212,0.22), transparent 25%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 28px 0 14px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      font-size: 0.92rem;
+    }
+
+    .main-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .section-title {
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .form-label {
+      color: #f8fafc;
+      font-weight: 600;
+    }
+
+    .form-control, .form-select {
+      background: rgba(15,23,42,0.72);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 0.8rem 0.95rem;
+    }
+
+    .form-control::placeholder, textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    .form-control:focus, .form-select:focus {
+      box-shadow: 0 0 0 0.2rem rgba(139,92,246,.25);
+      border-color: rgba(139,92,246,.7);
+      background: rgba(15,23,42,0.88);
+      color: #fff;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .btn-gradient {
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      color: white;
+      font-weight: 700;
+      padding: 0.9rem 1.2rem;
+      box-shadow: 0 10px 24px rgba(6,182,212,0.25);
+    }
+
+    .btn-gradient:hover {
+      opacity: 0.95;
+      color: white;
+    }
+
+    .preview-box {
+      width: 100%;
+      min-height: 220px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .preview-placeholder {
+      color: #cbd5e1;
+      text-align: center;
+      padding: 18px;
+    }
+
+    .floating-card {
+      background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(6,182,212,0.12));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+    }
+
+    .small-note {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .badge-soft {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+    }
+
+    textarea.form-control {
+      min-height: 124px;
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4 py-lg-5">
+    <div class="hero text-center text-lg-start">
+      <span class="hero-badge mb-3">
+        <i class="fa-solid fa-file-pdf"></i>
+        Currículo em PDF com foto e layout profissional
+      </span>
+      <h1 class="display-5 fw-bold mb-2">Gerador Automático de Currículos</h1>
+      <p class="lead mb-0">Preencha seus dados, envie uma foto e gere um PDF elegante em poucos segundos.</p>
+    </div>
+
+    <form id="curriculoForm" action="{{ url_for('generate') }}" method="post" enctype="multipart/form-data">
+      <div class="row g-4 mt-1 align-items-stretch">
+        <div class="col-lg-8">
+          <div class="main-card p-4 p-lg-5 h-100">
+            <div class="row g-4">
+              <div class="col-12">
+                <h4 class="section-title mb-1"><i class="fa-solid fa-user me-2"></i>Dados pessoais</h4>
+                <p class="hint mb-0">Os campos abaixo serão usados na capa do currículo e no cabeçalho do PDF.</p>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Nome completo</label>
+                <input name="nome" class="form-control" required placeholder="Ex.: João Silva">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Cargo pretendido</label>
+                <input name="cargo" class="form-control" placeholder="Ex.: Desenvolvedor Python">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">E-mail</label>
+                <input name="email" type="email" class="form-control" required placeholder="voce@email.com">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Telefone</label>
+                <input name="telefone" class="form-control" placeholder="(00) 00000-0000">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Cidade / Estado</label>
+                <input name="cidade" class="form-control" placeholder="Rio de Janeiro - RJ">
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">LinkedIn / Portfólio</label>
+                <input name="linkedin" class="form-control" placeholder="linkedin.com/in/seu-perfil">
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Resumo profissional</label>
+                <textarea name="resumo" class="form-control" placeholder="Escreva um resumo curto destacando sua experiência e objetivos."></textarea>
+              </div>
+
+              <div class="col-12">
+                <h4 class="section-title mb-1"><i class="fa-solid fa-graduation-cap me-2"></i>Formação acadêmica</h4>
+                <p class="hint mb-0">Digite uma formação por linha. Ex.: Graduação em Sistemas de Informação - Universidade X - 2022.</p>
+              </div>
+
+              <div class="col-12">
+                <textarea name="formacao" class="form-control" placeholder="Graduação em ...&#10;Pós-graduação em ..."></textarea>
+              </div>
+
+              <div class="col-12">
+                <h4 class="section-title mb-1"><i class="fa-solid fa-screwdriver-wrench me-2"></i>Habilidades</h4>
+                <p class="hint mb-0">Digite uma habilidade por linha ou separe com vírgulas.</p>
+              </div>
+
+              <div class="col-12">
+                <textarea name="habilidades" class="form-control" placeholder="Python, Flask, SQL, Excel, Comunicação"></textarea>
+              </div>
+
+              <div class="col-12">
+                <h4 class="section-title mb-1"><i class="fa-solid fa-briefcase me-2"></i>Experiência profissional</h4>
+                <p class="hint mb-0">Escreva uma experiência por linha. Ex.: Empresa X - Analista - 2021 a 2024.</p>
+              </div>
+
+              <div class="col-12">
+                <textarea name="experiencia" class="form-control" placeholder="Empresa X - Cargo - 2021 a 2024&#10;Empresa Y - Cargo - 2019 a 2021"></textarea>
+              </div>
+
+              <div class="col-12">
+                <button class="btn btn-gradient btn-lg w-100" type="submit">
+                  <i class="fa-solid fa-file-arrow-down me-2"></i>Gerar currículo em PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="main-card p-4 h-100">
+            <h4 class="section-title mb-3"><i class="fa-solid fa-image me-2"></i>Foto do currículo</h4>
+
+            <div class="preview-box mb-3">
+              <img id="previewImage" alt="Pré-visualização da foto">
+              <div id="placeholder" class="preview-placeholder">
+                <i class="fa-regular fa-image fa-2x mb-2 d-block"></i>
+                Sua foto aparecerá aqui
+              </div>
+            </div>
+
+            <label class="form-label">Adicionar foto</label>
+            <input id="fotoInput" name="foto" type="file" accept="image/*" class="form-control mb-3" onchange="previewPhoto(event)">
+
+            <p class="small-note mb-4">
+              A foto é opcional, mas deixa o currículo mais profissional. O PDF será gerado com a imagem enviada.
+            </p>
+
+            <div class="floating-card p-3 mb-3">
+              <span class="badge rounded-pill badge-soft mb-2">Dica</span>
+              <div class="small-note">Mantenha frases curtas e objetivas. O PDF ficará mais limpo e bonito.</div>
+            </div>
+
+            <div class="floating-card p-3">
+              <span class="badge rounded-pill badge-soft mb-2">Importante</span>
+              <div class="small-note">O currículo será baixado automaticamente após clicar em gerar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const previewImage = document.getElementById('previewImage');
+    const placeholder = document.getElementById('placeholder');
+
+    function previewPhoto(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImage.src = e.target.result;
+        previewImage.style.display = 'block';
+        placeholder.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+</body>
+</html>
