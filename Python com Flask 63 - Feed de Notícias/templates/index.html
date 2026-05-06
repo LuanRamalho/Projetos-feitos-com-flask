@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NewsFlow — Feed de Notícias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── RESET & BASE ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d0f14;
+    --bg2:       #13161e;
+    --bg3:       #1a1e2a;
+    --surface:   #1f2434;
+    --border:    rgba(255,255,255,0.07);
+    --text:      #e8ecf4;
+    --muted:     #7a8299;
+    --accent1:   #ff5e5e;
+    --accent2:   #ffb347;
+    --accent3:   #4cf0c0;
+    --accent4:   #6e8cff;
+    --accent5:   #c86fff;
+    --grad1:     linear-gradient(135deg, #ff5e5e 0%, #ff9a3c 100%);
+    --grad2:     linear-gradient(135deg, #6e8cff 0%, #c86fff 100%);
+    --grad3:     linear-gradient(135deg, #4cf0c0 0%, #6e8cff 100%);
+    --shadow:    0 8px 40px rgba(0,0,0,0.6);
+    --radius:    14px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND DECORATION ── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(110,140,255,0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,94,94,0.07) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,15,20,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .header-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px; gap: 1rem;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 38px; height: 38px;
+    background: var(--grad1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900;
+    background: var(--grad1);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .logo-tag {
+    font-size: .65rem; font-weight: 500; letter-spacing: .12em;
+    color: var(--muted); text-transform: uppercase;
+  }
+  .header-actions { display: flex; gap: .6rem; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: .5rem 1.1rem; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: .85rem; font-weight: 600;
+    cursor: pointer; border: none; transition: all .2s; letter-spacing: .02em;
+  }
+  .btn-primary { background: var(--grad1); color: #fff; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(255,94,94,.35); }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent4); color: var(--accent4); }
+  .btn-sm { padding: .35rem .8rem; font-size: .8rem; }
+  .btn-danger { background: rgba(255,94,94,.12); color: var(--accent1); border: 1px solid rgba(255,94,94,.2); }
+  .btn-danger:hover { background: rgba(255,94,94,.25); }
+
+  /* ── HERO TICKER ── */
+  .ticker-wrap {
+    background: var(--bg2); border-bottom: 1px solid var(--border);
+    overflow: hidden; padding: 0;
+  }
+  .ticker-inner {
+    display: flex; align-items: center;
+    max-width: 1400px; margin: 0 auto; padding: 0 2rem;
+  }
+  .ticker-label {
+    flex-shrink: 0;
+    background: var(--grad1); color: #fff;
+    font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; padding: .45rem .9rem;
+    margin-right: 1rem;
+  }
+  .ticker-scroll {
+    flex: 1; overflow: hidden;
+    font-size: .82rem; color: var(--muted);
+    white-space: nowrap;
+  }
+  .ticker-scroll span { animation: ticker 40s linear infinite; display: inline-block; }
+  @keyframes ticker {
+    from { transform: translateX(100vw); }
+    to   { transform: translateX(-100%); }
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .container {
+    max-width: 1400px; margin: 0 auto;
+    padding: 1.5rem 2rem; position: relative; z-index: 1;
+  }
+
+  /* ── SIDEBAR ── */
+  .layout { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: start; }
+
+  .sidebar {
+    position: sticky; top: 90px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .sidebar-section { padding: 1.2rem; border-bottom: 1px solid var(--border); }
+  .sidebar-section:last-child { border-bottom: none; }
+  .sidebar-title {
+    font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+  }
+
+  /* ── CATEGORY BUTTONS ── */
+  .cat-btn {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: .65rem .9rem;
+    background: transparent; border: none; border-radius: var(--radius-sm);
+    color: var(--muted); font-family: 'DM Sans', sans-serif;
+    font-size: .88rem; font-weight: 500; cursor: pointer;
+    transition: all .18s; text-align: left; margin-bottom: 2px;
+  }
+  .cat-btn:hover { background: var(--bg3); color: var(--text); }
+  .cat-btn.active { background: var(--bg3); color: var(--text); }
+  .cat-btn.active .cat-dot { transform: scale(1.3); }
+  .cat-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    transition: transform .2s;
+  }
+  .cat-count {
+    margin-left: auto;
+    background: var(--bg3); color: var(--muted);
+    font-size: .7rem; font-family: 'DM Mono', monospace;
+    padding: .1rem .45rem; border-radius: 50px;
+  }
+  .cat-btn.active .cat-count { background: var(--accent4); color: #fff; }
+
+  /* ── SOURCES LIST ── */
+  .source-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: .55rem .4rem;
+    border-radius: var(--radius-sm);
+    font-size: .85rem; border-bottom: 1px solid var(--border);
+  }
+  .source-item:last-child { border-bottom: none; }
+  .source-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .source-name { flex: 1; color: var(--text); font-size: .83rem; }
+  .source-icon { font-size: 1rem; }
+  .del-btn {
+    background: none; border: none; cursor: pointer;
+    color: var(--muted); font-size: 1rem; padding: 2px 4px;
+    border-radius: 4px; transition: color .15s;
+  }
+  .del-btn:hover { color: var(--accent1); }
+
+  /* ── ADD SOURCE FORM ── */
+  .form-group { margin-bottom: .85rem; }
+  .form-label { font-size: .75rem; font-weight: 600; color: var(--muted); display: block; margin-bottom: .35rem; }
+  .form-input {
+    width: 100%; padding: .55rem .8rem;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: .85rem;
+    outline: none; transition: border-color .2s;
+  }
+  .form-input:focus { border-color: var(--accent4); }
+  .form-input::placeholder { color: var(--muted); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+
+  /* ── CITY FILTER ── */
+  .city-wrap { display: flex; gap: .5rem; }
+  .city-wrap .form-input { flex: 1; }
+
+  /* ── MAIN CONTENT ── */
+  .main-content {}
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.2rem; gap: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+  }
+  .section-title span { color: var(--accent1); }
+  .news-meta {
+    font-size: .78rem; color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+  .refresh-btn {
+    display: flex; align-items: center; gap: 5px;
+    background: var(--bg2); border: 1px solid var(--border);
+    color: var(--muted); padding: .4rem .85rem;
+    border-radius: 50px; cursor: pointer; font-size: .8rem;
+    transition: all .2s;
+  }
+  .refresh-btn:hover { color: var(--accent3); border-color: var(--accent3); }
+  .refresh-btn.spinning svg { animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── NEWS GRID ── */
+  .news-grid {
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .news-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    animation: fadeUp .4s ease both;
+  }
+  .news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: rgba(255,255,255,0.13);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card-image {
+    width: 100%; height: 180px; object-fit: cover;
+    background: var(--bg3);
+    display: block;
+  }
+  .card-image-placeholder {
+    width: 100%; height: 180px;
+    background: linear-gradient(135deg, var(--bg3) 0%, var(--surface) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; color: var(--border);
+  }
+  .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: .6rem; }
+  .card-source {
+    display: flex; align-items: center; gap: 6px;
+    font-size: .72rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  }
+  .card-source-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; line-height: 1.35;
+    color: var(--text); text-decoration: none;
+  }
+  .card-title:hover { color: var(--accent2); }
+  .card-summary {
+    font-size: .82rem; color: var(--muted); line-height: 1.55;
+    flex: 1;
+  }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: .6rem; border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .card-date { font-size: .73rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+  .card-link {
+    font-size: .78rem; font-weight: 600; color: var(--accent4);
+    text-decoration: none; display: flex; align-items: center; gap: 4px;
+    transition: gap .15s;
+  }
+  .card-link:hover { gap: 7px; }
+  .card-cats {
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .cat-tag {
+    font-size: .65rem; font-weight: 600; letter-spacing: .05em;
+    padding: .18rem .55rem; border-radius: 50px; text-transform: uppercase;
+  }
+
+  /* ── FEATURED (first card) ── */
+  .news-grid .news-card:first-child {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .news-grid .news-card:first-child .card-image { width: 380px; height: auto; flex-shrink: 0; }
+  .news-grid .news-card:first-child .card-image-placeholder { width: 380px; height: auto; flex-shrink: 0; }
+  .news-grid .news-card:first-child .card-body { padding: 1.5rem; }
+  .news-grid .news-card:first-child .card-title { font-size: 1.4rem; }
+  .news-grid .news-card:first-child .card-summary { font-size: .88rem; }
+
+  /* ── LOADING / EMPTY ── */
+  .loader {
+    grid-column: 1 / -1;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 4rem; gap: 1rem; color: var(--muted);
+  }
+  .loader-spinner {
+    width: 42px; height: 42px; border: 3px solid var(--border);
+    border-top-color: var(--accent1); border-radius: 50%;
+    animation: spin .9s linear infinite;
+  }
+  .empty-state {
+    grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--muted);
+  }
+  .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    background: var(--surface); border: 1px solid var(--border);
+    padding: .8rem 1.4rem; border-radius: var(--radius-sm);
+    font-size: .85rem; box-shadow: var(--shadow);
+    opacity: 0; transform: translateY(10px);
+    transition: all .25s;
+    pointer-events: none;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+  #toast.success { border-left: 3px solid var(--accent3); }
+  #toast.error   { border-left: 3px solid var(--accent1); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.7); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 2rem; width: 440px; max-width: 95vw;
+    box-shadow: var(--shadow); animation: fadeUp .3s ease;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem;
+  }
+  .modal-actions { display: flex; gap: .6rem; justify-content: flex-end; margin-top: 1.5rem; }
+
+  /* ── COLOR PICKER ROW ── */
+  .color-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: .4rem; }
+  .color-swatch {
+    width: 24px; height: 24px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: transform .15s, border-color .15s;
+  }
+  .color-swatch:hover, .color-swatch.selected { border-color: #fff; transform: scale(1.2); }
+
+  /* ── ICON ROW ── */
+  .icon-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .4rem; }
+  .icon-swatch {
+    font-size: 1.3rem; cursor: pointer; padding: 3px;
+    border-radius: 6px; border: 2px solid transparent;
+    transition: border-color .15s;
+  }
+  .icon-swatch.selected { border-color: var(--accent4); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 3px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .news-grid .news-card:first-child { flex-direction: column; }
+    .news-grid .news-card:first-child .card-image,
+    .news-grid .news-card:first-child .card-image-placeholder { width: 100%; height: 200px; }
+  }
+  @media (max-width: 600px) {
+    .container { padding: 1rem; }
+    .header-inner { padding: 0 1rem; }
+    .logo-text { font-size: 1.3rem; }
+    .news-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">📡</div>
+      <div>
+        <div class="logo-text">NewsFlow</div>
+        <div class="logo-tag">Feed de Notícias</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-sm" onclick="openModal()">+ Adicionar Fonte</button>
+      <button class="btn btn-primary btn-sm" onclick="loadNews()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Atualizar
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <div class="ticker-label">AO VIVO</div>
+    <div class="ticker-scroll">
+      <span id="ticker-content">Carregando manchetes…</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- CATEGORIES -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">📂 Categorias</div>
+        <div id="cat-buttons">
+          <button class="cat-btn active" data-cat="todas" onclick="filterCat(this, 'todas')">
+            <span class="cat-dot" style="background:var(--grad1)"></span>
+            Todas as Notícias
+            <span class="cat-count" id="cnt-todas">0</span>
+          </button>
+          <button class="cat-btn" data-cat="tecnologia" onclick="filterCat(this, 'tecnologia')">
+            <span class="cat-dot" style="background:#6e8cff"></span>
+            💻 Ciência & Tecnologia
+            <span class="cat-count" id="cnt-tecnologia">0</span>
+          </button>
+          <button class="cat-btn" data-cat="saude" onclick="filterCat(this, 'saude')">
+            <span class="cat-dot" style="background:#4cf0c0"></span>
+            🏥 Saúde
+            <span class="cat-count" id="cnt-saude">0</span>
+          </button>
+          <button class="cat-btn" data-cat="automoveis" onclick="filterCat(this, 'automoveis')">
+            <span class="cat-dot" style="background:#ffb347"></span>
+            🚗 Automóveis
+            <span class="cat-count" id="cnt-automoveis">0</span>
+          </button>
+          <button class="cat-btn" data-cat="esportes" onclick="filterCat(this, 'esportes')">
+            <span class="cat-dot" style="background:#ff5e5e"></span>
+            ⚽ Esportes
+            <span class="cat-count" id="cnt-esportes">0</span>
+          </button>
+          <button class="cat-btn" data-cat="entretenimento" onclick="filterCat(this, 'entretenimento')">
+            <span class="cat-dot" style="background:#c86fff"></span>
+            🎬 Entretenimento
+            <span class="cat-count" id="cnt-entretenimento">0</span>
+          </button>
+          <button class="cat-btn" data-cat="negocios" onclick="filterCat(this, 'negocios')">
+            <span class="cat-dot" style="background:#00d4aa"></span>
+            💼 Negócios
+            <span class="cat-count" id="cnt-negocios">0</span>
+          </button>
+          <button class="cat-btn" data-cat="brasil" onclick="filterCat(this, 'brasil')">
+            <span class="cat-dot" style="background:#00a651"></span>
+            🇧🇷 Brasil
+            <span class="cat-count" id="cnt-brasil">0</span>
+          </button>
+          <button class="cat-btn" data-cat="mundo" onclick="filterCat(this, 'mundo')">
+            <span class="cat-dot" style="background:#4ca3ff"></span>
+            🌍 Mundo
+            <span class="cat-count" id="cnt-mundo">0</span>
+          </button>
+          <button class="cat-btn" data-cat="local" onclick="filterCat(this, 'local')">
+            <span class="cat-dot" style="background:#ff8c42"></span>
+            📍 Local
+            <span class="cat-count" id="cnt-local">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LOCAL CITY -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">📍 Notícias Locais</div>
+        <p style="font-size:.78rem;color:var(--muted);margin-bottom:.8rem;line-height:1.5">
+          Digite sua cidade para filtrar notícias locais:
+        </p>
+        <div class="city-wrap">
+          <input class="form-input" type="text" id="city-input" 
+                 placeholder="Ex: Rio de Janeiro" 
+                 value="{{ local_city }}"
+                 onkeydown="if(event.key==='Enter')saveCity()">
+          <button class="btn btn-primary btn-sm" onclick="saveCity()">OK</button>
+        </div>
+        <div id="city-display" style="font-size:.75rem;color:var(--accent3);margin-top:.5rem;display:none"></div>
+      </div>
+
+      <!-- SOURCES -->
+      <div class="sidebar-section">
+        <div class="sidebar-title">📡 Fontes Ativas</div>
+        <div id="sources-list">
+          {% for s in sources %}
+          <div class="source-item" data-idx="{{ loop.index0 }}">
+            <span class="source-icon">{{ s.icon }}</span>
+            <span class="source-dot" style="background:{{ s.color }}"></span>
+            <span class="source-name">{{ s.name }}</span>
+            <button class="del-btn" onclick="deleteSource({{ loop.index0 }})" title="Remover">✕</button>
+          </div>
+          {% endfor %}
+        </div>
+        <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:.8rem;justify-content:center" onclick="openModal()">
+          + Adicionar Fonte
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Últimas <span>Notícias</span></h1>
+          <div class="news-meta" id="news-meta">Carregando…</div>
+        </div>
+        <button class="refresh-btn" id="refresh-btn" onclick="loadNews()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Atualizar feed
+        </button>
+      </div>
+      <div class="news-grid" id="news-grid">
+        <div class="loader">
+          <div class="loader-spinner"></div>
+          <div>Buscando notícias…</div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<!-- ADD SOURCE MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">➕ Adicionar Fonte de Notícias</div>
+    <div class="form-group">
+      <label class="form-label">Nome da Fonte *</label>
+      <input class="form-input" type="text" id="m-name" placeholder="Ex: Tecnoblog">
+    </div>
+    <div class="form-group">
+      <label class="form-label">URL do RSS Feed *</label>
+      <input class="form-input" type="url" id="m-url" placeholder="https://exemplo.com/feed.xml">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Ícone</label>
+        <div class="icon-row" id="icon-row">
+          {% for ico in ["📰","💻","🌍","📺","🎙️","⚡","🔵","🟠","🟢","🔴","📡","🗞️","📋","💡","🎯"] %}
+          <span class="icon-swatch {% if loop.first %}selected{% endif %}" onclick="selectIcon(this, '{{ ico }}')">{{ ico }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Cor</label>
+        <div class="color-row" id="color-row">
+          {% for c in ["#ff5e5e","#ffb347","#4cf0c0","#6e8cff","#c86fff","#00a651","#0066cc","#ff8c42","#00d4aa","#e8382a","#555555","#ffffff"] %}
+          <div class="color-swatch {% if loop.first %}selected{% endif %}" 
+               style="background:{{ c }}" 
+               onclick="selectColor(this, '{{ c }}')" 
+               title="{{ c }}"></div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:.9rem;font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:.5rem">
+      💡 <strong style="color:var(--text)">Exemplos de RSS:</strong><br>
+      <span style="font-family:'DM Mono',monospace;font-size:.73rem">
+        G1: https://g1.globo.com/rss/g1/<br>
+        G1 Rio: https://g1.globo.com/rss/g1/rio-de-janeiro<br>
+        CNN Brasil: https://www.cnnbrasil.com.br/feed/<br>
+        CNN Rio: https://www.cnnbrasil.com.br/tudo-sobre/rio-de-janeiro-capital/feed/<br>
+        UOL: https://rss.uol.com.br/feed/noticias.xml<br>
+        Tecnoblog: https://tecnoblog.net/feed/<br>
+        TecMundo: https://rss.tecmundo.com.br/feed
+      </span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="addSource()">✓ Adicionar Fonte</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────────────────
+let allArticles = [];
+let currentCat = 'todas';
+let cityFilter = {{ local_city | tojson }};
+let selectedIcon = '📰';
+let selectedColor = '#ff5e5e';
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  if (cityFilter) updateCityDisplay();
+  loadNews();
+});
+
+// ── LOAD NEWS ─────────────────────────────────────────────────────────────
+async function loadNews() {
+  const grid = document.getElementById('news-grid');
+  const btn  = document.getElementById('refresh-btn');
+  btn.classList.add('spinning');
+  grid.innerHTML = `<div class="loader"><div class="loader-spinner"></div><div>Buscando notícias…</div></div>`;
+
+  try {
+    const res = await fetch('/api/news');
+    const data = await res.json();
+    allArticles = data.articles;
+    updateCounts();
+    renderNews();
+    updateTicker();
+    document.getElementById('news-meta').textContent =
+      `${allArticles.length} notícias · atualizado agora`;
+  } catch(e) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><div>Erro ao carregar notícias.<br>Verifique as fontes configuradas.</div></div>`;
+  } finally {
+    btn.classList.remove('spinning');
+  }
+}
+
+// ── COUNT PER CATEGORY ────────────────────────────────────────────────────
+function updateCounts() {
+  const cats = ['todas','tecnologia','saude','automoveis','esportes',
+                'entretenimento','negocios','brasil','mundo','local'];
+  cats.forEach(cat => {
+    const el = document.getElementById('cnt-' + cat);
+    if (!el) return;
+    el.textContent = filterArticles(cat).length;
+  });
+}
+
+// ── FILTER LOGIC ─────────────────────────────────────────────────────────
+function normalizeText(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function buildCityAliases(city) {
+  const cityNorm = normalizeText(city);
+  if (!cityNorm) return [];
+
+  const aliases = new Set([cityNorm, cityNorm.replace(/\s*-\s*/g, ' '), cityNorm.replace(/-/g, ' ')]);
+
+  if (cityNorm.includes('rio de janeiro')) {
+    [
+      'rio de janeiro', 'rio de janeiro rj', 'carioca', 'cariocas',
+      'capital fluminense', 'zona norte', 'zona sul', 'zona oeste',
+      'baixada fluminense', 'niteroi', 'sao goncalo', 'duque de caxias',
+      'nova iguacu', 'marica', 'nilopolis', 'queimados', 'seropedica',
+      'petropolis', 'belford roxo', 'mesquita', 'mage', 'itaborai',
+      'sao joao de meriti', 'barra da tijuca', 'copacabana', 'ipanema',
+      'leblon', 'tijuca', 'madureira', 'bangu'
+    ].forEach(a => aliases.add(a));
+  }
+
+  return [...aliases].filter(Boolean);
+}
+
+function articleText(a) {
+  return normalizeText([a.title, a.summary, a.source, a.link].join(' '));
+}
+
+function matchesLocalCity(a, city) {
+  const cityNorm = normalizeText(city);
+  if (!cityNorm) return false;
+  const text = articleText(a);
+  const aliases = buildCityAliases(city);
+
+  if (aliases.some(alias => alias && text.includes(alias))) return true;
+
+  if (cityNorm.includes('rio de janeiro')) {
+    return /\brj\b|rio de janeiro|carioc[ao]s?|zona norte|zona sul|zona oeste|baixada fluminense|capital fluminense/.test(text);
+  }
+
+  return text.includes(cityNorm);
+}
+
+function filterArticles(cat) {
+  if (cat === 'todas') return allArticles;
+
+  // LOCAL: artigos de fontes locais (tag 'local') OU que mencionam a cidade
+  if (cat === 'local') {
+    if (!cityFilter) return [];
+    return allArticles.filter(a =>
+      a.categories.includes('local') || matchesLocalCity(a, cityFilter)
+    );
+  }
+
+  // BRASIL: notícias com a tag 'brasil' (exclui artigos apenas de fontes locais)
+  if (cat === 'brasil') {
+    return allArticles.filter(a =>
+      a.categories.includes('brasil') && !a.categories.includes('local')
+    );
+  }
+
+  // MUNDO: notícias com a tag 'mundo' que NÃO são classificadas como 'brasil'
+  if (cat === 'mundo') {
+    return allArticles.filter(a =>
+      a.categories.includes('mundo') && !a.categories.includes('brasil')
+    );
+  }
+
+  // Regra Geral: Tecnologia, Saúde, Automóveis, Negócios, Esportes, Entretenimento
+  return allArticles.filter(a => a.categories.includes(cat));
+}
+
+// ── RENDER NEWS ───────────────────────────────────────────────────────────
+function renderNews() {
+  const articles = filterArticles(currentCat);
+  const grid = document.getElementById('news-grid');
+
+  if (!articles.length) {
+    const msg = currentCat === 'local' && !cityFilter
+      ? '📍 Configure sua cidade na barra lateral para ver notícias locais.'
+      : `Nenhuma notícia encontrada para esta categoria.`;
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><div>${msg}</div></div>`;
+    return;
+  }
+
+  grid.innerHTML = articles.map((a, i) => cardHTML(a, i)).join('');
+}
+
+const CAT_COLORS = {
+  tecnologia: '#6e8cff', saude: '#4cf0c0', automoveis: '#ffb347',
+  esportes: '#ff5e5e', entretenimento: '#c86fff', negocios: '#00d4aa',
+  brasil: '#00a651', mundo: '#4ca3ff', local: '#ff8c42', geral: '#7a8299'
+};
+const CAT_LABELS = {
+  tecnologia: 'Tech', saude: 'Saúde', automoveis: 'Carros',
+  esportes: 'Esportes', entretenimento: 'Entret.', negocios: 'Negócios',
+  brasil: 'Brasil', mundo: 'Mundo', local: 'Local', geral: 'Geral'
+};
+
+function cardHTML(a, i) {
+  const delay = Math.min(i * 40, 400);
+  const img = a.image
+    ? `<img class="card-image" src="${escHtml(a.image)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=card-image-placeholder>${a.source_icon}</div>'">`
+    : `<div class="card-image-placeholder">${a.source_icon}</div>`;
+
+  const tags = a.categories.slice(0, 2).map(c =>
+    `<span class="cat-tag" style="background:${CAT_COLORS[c]}22;color:${CAT_COLORS[c]}">${CAT_LABELS[c] || c}</span>`
+  ).join('');
+
+  return `
+  <article class="news-card" style="animation-delay:${delay}ms">
+    ${img}
+    <div class="card-body">
+      <div class="card-source">
+        <span class="card-source-dot" style="background:${a.source_color}"></span>
+        <span style="color:${a.source_color}">${escHtml(a.source)}</span>
+      </div>
+      <a class="card-title" href="${escHtml(a.link)}" target="_blank" rel="noopener">${escHtml(a.title)}</a>
+      ${a.summary ? `<p class="card-summary">${escHtml(a.summary.substring(0,160))}…</p>` : ''}
+      <div class="card-cats">${tags}</div>
+      <div class="card-footer">
+        <span class="card-date">${a.published || '—'}</span>
+        <a class="card-link" href="${escHtml(a.link)}" target="_blank" rel="noopener">
+          Ler mais →
+        </a>
+      </div>
+    </div>
+  </article>`;
+}
+
+// ── CATEGORY FILTER ───────────────────────────────────────────────────────
+function filterCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = cat;
+
+  const title = {
+    todas:'Últimas Notícias', tecnologia:'Ciência & Tecnologia', saude:'Saúde',
+    automoveis:'Automóveis', esportes:'Esportes', entretenimento:'Entretenimento',
+    negocios:'Negócios', brasil:'Brasil', mundo:'Mundo', local:'Local'
+  }[cat] || cat;
+
+  document.querySelector('.section-title').innerHTML =
+    cat === 'todas' ? `Últimas <span>Notícias</span>` : `<span>${title}</span>`;
+  renderNews();
+}
+
+// ── TICKER ────────────────────────────────────────────────────────────────
+function updateTicker() {
+  const top = allArticles.slice(0, 10);
+  document.getElementById('ticker-content').textContent =
+    top.map(a => `▸ ${a.title}`).join('   ');
+}
+
+// ── CITY ──────────────────────────────────────────────────────────────────
+async function saveCity() {
+  const val = document.getElementById('city-input').value.trim();
+  cityFilter = val;
+  await fetch('/api/city', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({city: val})
+  });
+  updateCityDisplay();
+  updateCounts();
+  if (currentCat === 'local') renderNews();
+  toast(`Cidade definida: ${val || 'removida'}`, 'success');
+}
+
+function updateCityDisplay() {
+  const d = document.getElementById('city-display');
+  if (cityFilter) {
+    d.style.display = 'block';
+    d.textContent = `📍 ${cityFilter}`;
+  } else {
+    d.style.display = 'none';
+  }
+}
+
+// ── SOURCES ───────────────────────────────────────────────────────────────
+function openModal() { document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.getElementById('modal').addEventListener('click', closeModal);
+
+async function addSource() {
+  const name  = document.getElementById('m-name').value.trim();
+  const url   = document.getElementById('m-url').value.trim();
+  if (!name || !url) { toast('Preencha nome e URL!', 'error'); return; }
+
+  const res = await fetch('/api/sources', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({name, url, icon: selectedIcon, color: selectedColor})
+  });
+  const d = await res.json();
+  if (!res.ok) { toast(d.error || 'Erro', 'error'); return; }
+
+  closeModal();
+  document.getElementById('m-name').value = '';
+  document.getElementById('m-url').value = '';
+  toast(`Fonte "${name}" adicionada!`, 'success');
+  await refreshSourcesList();
+  loadNews();
+}
+
+async function deleteSource(idx) {
+  if (!confirm('Remover esta fonte?')) return;
+  const res = await fetch(`/api/sources/${idx}`, {method:'DELETE'});
+  if (res.ok) {
+    toast('Fonte removida.', 'success');
+    await refreshSourcesList();
+    loadNews();
+  }
+}
+
+async function refreshSourcesList() {
+  const res = await fetch('/api/sources');
+  const sources = await res.json();
+  const list = document.getElementById('sources-list');
+  list.innerHTML = sources.map((s, i) => `
+    <div class="source-item" data-idx="${i}">
+      <span class="source-icon">${s.icon}</span>
+      <span class="source-dot" style="background:${s.color}"></span>
+      <span class="source-name">${escHtml(s.name)}</span>
+      <button class="del-btn" onclick="deleteSource(${i})" title="Remover">✕</button>
+    </div>`).join('');
+}
+
+// ── ICON / COLOR PICKER ───────────────────────────────────────────────────
+function selectIcon(el, icon) {
+  document.querySelectorAll('.icon-swatch').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedIcon = icon;
+}
+function selectColor(el, color) {
+  document.querySelectorAll('.color-swatch').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedColor = color;
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+let toastTimer;
+function toast(msg, type = 'success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = `show ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+{
+  "sources": [
+    {
+      "name": "G1 - Brasil",
+      "url": "https://g1.globo.com/rss/g1/",
+      "icon": "📰",
+      "color": "#e8382a",
+      "type": "geral"
+    },
+    {
+      "name": "UOL Notícias",
+      "url": "https://rss.uol.com.br/feed/noticias.xml",
+      "icon": "🔵",
+      "color": "#0066cc",
+      "type": "geral"
+    },
+    {
+      "name": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/feed/",
+      "icon": "📺",
+      "color": "#cc0000",
+      "type": "geral"
+    },
+    {
+      "name": "BBC News Brasil",
+      "url": "https://feeds.bbci.co.uk/portuguese/rss.xml",
+      "icon": "🌍",
+      "color": "#bb1919",
+      "type": "geral"
+    },
+    {
+      "name": "Agência Brasil",
+      "url": "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml",
+      "icon": "🇧🇷",
+      "color": "#00a651",
+      "type": "geral"
+    },
+    {
+      "name": "Folha de S.Paulo",
+      "url": "https://feeds.folha.uol.com.br/folha/emcimadahora/rss091.xml",
+      "icon": "🗞️",
+      "color": "#c00",
+      "type": "geral"
+    },
+    {
+      "name": "Estadão",
+      "url": "https://www.estadao.com.br/rss/ultimas.xml",
+      "icon": "📋",
+      "color": "#003f8a",
+      "type": "geral"
+    },
+    {
+      "name": "Metrópoles",
+      "url": "https://www.metropoles.com.br/feed",
+      "icon": "🏙️",
+      "color": "#ed1c24",
+      "type": "geral"
+    },
+    {
+      "name": "R7 Notícias",
+      "url": "https://noticias.r7.com/feed.xml",
+      "icon": "🔵",
+      "color": "#0047bb",
+      "type": "geral"
+    },
+    {
+      "name": "Terra",
+      "url": "https://www.terra.com.br/rss/",
+      "icon": "🌍",
+      "color": "#00a651",
+      "type": "geral"
+    },
+    {
+      "name": "Nexo Jornal",
+      "url": "https://www.nexojornal.com.br/rss",
+      "icon": "📈",
+      "color": "#212121",
+      "type": "geral"
+    },
+    {
+      "name": "Poder360",
+      "url": "https://www.poder360.com.br/feed/",
+      "icon": "⚡",
+      "color": "#ff8a00",
+      "type": "geral"
+    },
+    {
+      "name": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/rss/rss.xml",
+      "icon": "🏛️",
+      "color": "#005a9c",
+      "type": "geral"
+    },
+    {
+      "name": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/feed/rss/rodoa.xml",
+      "icon": "🗞️",
+      "color": "#004a80",
+      "type": "geral"
+    },
+    {
+      "name": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/feed/",
+      "icon": "🚩",
+      "color": "#cc0000",
+      "type": "geral"
+    },
+    {
+      "name": "Jovem Pan News",
+      "url": "https://jovempan.com.br/feed",
+      "icon": "📻",
+      "color": "#e21a22",
+      "type": "geral"
+    },
+    {
+      "name": "O Globo",
+      "url": "https://oglobo.globo.com/rss.xml",
+      "icon": "🗞️",
+      "color": "#1f408a",
+      "type": "geral"
+    },
+    {
+      "name": "Estado de Minas",
+      "url": "https://www.em.com.br/rss/noticia/geral/rss.xml",
+      "icon": "🔺",
+      "color": "#cd191e",
+      "type": "geral"
+    },
+    {
+      "name": "Zero Hora",
+      "url": "https://gauchazh.clicrbs.com.br/rss/ultimas-noticias/",
+      "icon": "🧉",
+      "color": "#004a80",
+      "type": "geral"
+    },
+    {
+      "name": "Valor Econômico",
+      "url": "https://valor.globo.com/rss/valor/",
+      "icon": "💼",
+      "color": "#004a80",
+      "type": "negocios"
+    },
+    {
+      "name": "Exame",
+      "url": "https://exame.com/feed/",
+      "icon": "📈",
+      "color": "#003399",
+      "type": "negocios"
+    },
+    {
+      "name": "InfoMoney",
+      "url": "https://www.infomoney.com.br/feed/",
+      "icon": "💰",
+      "color": "#122132",
+      "type": "negocios"
+    },
+    {
+      "name": "Investing.com",
+      "url": "https://br.investing.com/rss/news.rss",
+      "icon": "📊",
+      "color": "#f2a100",
+      "type": "negocios"
+    },
+    {
+      "name": "Money Times",
+      "url": "https://www.moneytimes.com.br/feed/",
+      "icon": "💸",
+      "color": "#1e1e1e",
+      "type": "negocios"
+    },
+    {
+      "name": "Brazil Journal",
+      "url": "https://www.braziljournal.com/feed/",
+      "icon": "📰",
+      "color": "#000000",
+      "type": "negocios"
+    },
+    {
+      "name": "Seu Dinheiro",
+      "url": "https://www.seudinheiro.com/feed/",
+      "icon": "🪙",
+      "color": "#004aad",
+      "type": "negocios"
+    },
+    {
+      "name": "NeoFeed",
+      "url": "https://neofeed.com.br/feed/",
+      "icon": "📈",
+      "color": "#1a1a1a",
+      "type": "negocios"
+    },
+    {
+      "name": "Finsiders",
+      "url": "https://finsidersbrasil.com.br/feed/",
+      "icon": "💳",
+      "color": "#00c4cc",
+      "type": "negocios"
+    },
+    {
+      "name": "Tecnoblog",
+      "url": "https://tecnoblog.net/feed/",
+      "icon": "💻",
+      "color": "#7952b3",
+      "type": "tecnologia"
+    },
+    {
+      "name": "TecMundo",
+      "url": "https://rss.tecmundo.com.br/feed",
+      "icon": "⚡",
+      "color": "#ff6600",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Canaltech",
+      "url": "https://canaltech.com.br/rss/",
+      "icon": "📱",
+      "color": "#ff5e5e",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Olhar Digital",
+      "url": "https://olhardigital.com.br/feed/",
+      "icon": "👁️",
+      "color": "#0080ff",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Meio Bit",
+      "url": "https://meiobit.com/feed/",
+      "icon": "🖱️",
+      "color": "#333333",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Adrenaline",
+      "url": "https://www.adrenaline.com.br/feed/",
+      "icon": "🎮",
+      "color": "#e21a22",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Gizmodo Brasil",
+      "url": "https://gizmodo.uol.com.br/feed/",
+      "icon": "⚙️",
+      "color": "#ff0000",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Hardware.com.br",
+      "url": "https://www.hardware.com.br/feed/",
+      "icon": "🔌",
+      "color": "#0078d7",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Manual do Usuário",
+      "url": "https://manualdousuario.net/feed/",
+      "icon": "📝",
+      "color": "#222222",
+      "type": "tecnologia"
+    },
+    {
+      "name": "IGN Brasil",
+      "url": "https://br.ign.com/feed.xml",
+      "icon": "🕹️",
+      "color": "#bf0000",
+      "type": "tecnologia"
+    },
+    {
+      "name": "TudoCelular",
+      "url": "https://www.tudocelular.com/feed/",
+      "icon": "📱",
+      "color": "#2c3e50",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Showmetech",
+      "url": "https://www.showmetech.com.br/feed/",
+      "icon": "💻",
+      "color": "#000000",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Voxel",
+      "url": "https://www.voxel.com.br/rss.xml",
+      "icon": "🎮",
+      "color": "#6113b2",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Diolinux",
+      "url": "https://diolinux.com.br/feed",
+      "icon": "🐧",
+      "color": "#222222",
+      "type": "tecnologia"
+    },
+    {
+      "name": "MacMagazine",
+      "url": "https://macmagazine.com.br/feed/",
+      "icon": "🍎",
+      "color": "#555555",
+      "type": "tecnologia"
+    },
+    {
+      "name": "Jovem Nerd",
+      "url": "https://jovemnerd.com.br/feed/",
+      "icon": "🤓",
+      "color": "#2b3c4d",
+      "type": "entretenimento"
+    },
+    {
+      "name": "The Enemy",
+      "url": "https://www.theenemy.com.br/feed",
+      "icon": "💀",
+      "color": "#ed1c24",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Hugo Gloss",
+      "url": "https://hugogloss.uol.com.br/feed/",
+      "icon": "💎",
+      "color": "#000000",
+      "type": "entretenimento"
+    },
+    {
+      "name": "CinePOP",
+      "url": "https://cinepop.com.br/feed/",
+      "icon": "🍿",
+      "color": "#e30613",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Pipoca Moderna",
+      "url": "https://pipocamoderna.com.br/feed/",
+      "icon": "🎬",
+      "color": "#ffcc00",
+      "type": "entretenimento"
+    },
+    {
+      "name": "ge (Globo Esporte)",
+      "url": "https://ge.globo.com/rss/ge/",
+      "icon": "⚽",
+      "color": "#06aa48",
+      "type": "esportes"
+    },
+    {
+      "name": "Lance!",
+      "url": "https://www.lance.com.br/rss/index.xml",
+      "icon": "🏆",
+      "color": "#cc0000",
+      "type": "esportes"
+    },
+    {
+      "name": "Gazeta Esportiva",
+      "url": "https://www.gazetaesportiva.com/feed/",
+      "icon": "🏅",
+      "color": "#003e7e",
+      "type": "esportes"
+    },
+    {
+      "name": "Trivela",
+      "url": "https://trivela.com.br/feed/",
+      "icon": "⚽",
+      "color": "#7e191b",
+      "type": "esportes"
+    },
+    {
+      "name": "Motorsport Brasil",
+      "url": "https://motorsport.uol.com.br/rss/news/",
+      "icon": "🏎️",
+      "color": "#cc0000",
+      "type": "esportes"
+    },
+    {
+      "name": "Placar",
+      "url": "https://placar.com.br/feed/",
+      "icon": "⚽",
+      "color": "#008000",
+      "type": "esportes"
+    },
+    {
+      "name": "G1 Rio",
+      "url": "https://g1.globo.com/rss/g1/rio-de-janeiro/",
+      "icon": "📺",
+      "color": "#0066cc",
+      "type": "local"
+    },
+    {
+      "name": "O Dia",
+      "url": "https://odia.ig.com.br/rss/",
+      "icon": "📰",
+      "color": "#ff5e5e",
+      "type": "local"
+    },
+    {
+      "name": "Diário do Rio",
+      "url": "https://diariodorio.com/feed/",
+      "icon": "🏛️",
+      "color": "#003f8a",
+      "type": "local"
+    },
+    {
+      "name": "Extra (Rio)",
+      "url": "https://extra.globo.com/rss/noticias/rio/",
+      "icon": "🗞️",
+      "color": "#0047bb",
+      "type": "local"
+    },
+    {
+      "name": "Voz das Comunidades",
+      "url": "https://www.vozdascomunidades.com.br/feed/",
+      "icon": "🎤",
+      "color": "#009b3a",
+      "type": "local"
+    },
+    {
+      "name": "Jornal do Brasil",
+      "url": "https://www.jb.com.br/rss/noticias/rss.xml",
+      "icon": "🏛️",
+      "color": "#003466",
+      "type": "local"
+    },
+    {
+      "name": "Meia Hora",
+      "url": "https://www.meiahora.com.br/rss/",
+      "icon": "🗞️",
+      "color": "#ec1d24",
+      "type": "local"
+    },
+    {
+      "name": "Diário do Nordeste",
+      "url": "https://diariodonordeste.verdesmares.com.br/rss",
+      "icon": "☀️",
+      "color": "#0056a0",
+      "type": "local"
+    },
+    {
+      "name": "Catraca Livre",
+      "url": "https://catracalivre.com.br/feed/",
+      "icon": "💡",
+      "color": "#000000",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Omelete",
+      "url": "https://www.omelete.com.br/feed/",
+      "icon": "🎬",
+      "color": "#ffc400",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Rolling Stone Brasil",
+      "url": "https://rollingstone.uol.com.br/feed/",
+      "icon": "🎸",
+      "color": "#000000",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Tenho Mais Discos Que Amigos",
+      "url": "https://www.tenhomaisdiscosqueamigos.com/feed/",
+      "icon": "💿",
+      "color": "#f15a24",
+      "type": "entretenimento"
+    },
+    {
+      "name": "Brasil 247",
+      "url": "https://www.brasil247.com/feed",
+      "icon": "🚩",
+      "color": "#ff0000",
+      "type": "geral"
+    },
+    {
+      "name": "Revista Oeste",
+      "url": "https://revistaoeste.com/feed/",
+      "icon": "📍",
+      "color": "#003366",
+      "type": "geral"
+    },
+    {
+      "name": "JOTA",
+      "url": "https://www.jota.info/feed",
+      "icon": "⚖️",
+      "color": "#e81f26",
+      "type": "politica"
+    },
+    {
+      "name": "Congresso em Foco",
+      "url": "https://congressoemfoco.uol.com.br/feed/",
+      "icon": "🏛️",
+      "color": "#000000",
+      "type": "politica"
+    },
+    {
+      "name": "Consultor Jurídico (ConJur)",
+      "url": "https://www.conjur.com.br/rss.xml",
+      "icon": "⚖️",
+      "color": "#004a80",
+      "type": "politica"
+    },
+    {
+      "name": "Migalhas",
+      "url": "https://www.migalhas.com.br/rss",
+      "icon": "⚖️",
+      "color": "#8b0000",
+      "type": "politica"
+    },
+    {
+      "name": "Auto Esporte",
+      "url": "https://g1.globo.com/rss/g1/autoesporte/",
+      "icon": "🚗",
+      "color": "#f11",
+      "type": "automoveis"
+    },
+    {
+      "name": "Quatro Rodas",
+      "url": "https://quatrorodas.abril.com.br/feed/",
+      "icon": "🛞",
+      "color": "#e30613",
+      "type": "automoveis"
+    },
+    {
+      "name": "Motor1 Brasil",
+      "url": "https://pt.motor1.com/rss/all/",
+      "icon": "🏁",
+      "color": "#000",
+      "type": "automoveis"
+    },
+    {
+      "name": "G1 Saúde",
+      "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/",
+      "icon": "🏥",
+      "color": "#009c3b",
+      "type": "saude"
+    },
+    {
+      "name": "CNN Saúde",
+      "url": "https://www.cnnbrasil.com.br/saude/feed/",
+      "icon": "💊",
+      "color": "#cc0000",
+      "type": "saude"
+    },
+    {
+      "name": "Vida Saudável (Einstein)",
+      "url": "https://vidasaudavel.einstein.br/feed/",
+      "icon": "🍎",
+      "color": "#004a80",
+      "type": "saude"
+    },
+    {
+      "name": "Drauzio Varella",
+      "url": "https://drauziovarella.uol.com.br/feed/",
+      "icon": "🩺",
+      "color": "#003366",
+      "type": "saude"
+    },
+    {
+      "name": "Revista Galileu",
+      "url": "https://revistagalileu.globo.com/rss/galileu/",
+      "icon": "🔭",
+      "color": "#006699",
+      "type": "ciencia"
+    },
+    {
+      "name": "Superinteressante",
+      "url": "https://super.abril.com.br/feed/",
+      "icon": "🧠",
+      "color": "#e30613",
+      "type": "ciencia"
+    },
+    {
+      "name": "Canal Ciência (IBICT)",
+      "url": "http://www.canalciencia.ibict.br/noticias?format=feed&type=rss",
+      "icon": "🧪",
+      "color": "#0096d6",
+      "type": "ciencia"
+    },
+    {
+      "name": "Um Só Planeta",
+      "url": "https://umsoplaneta.globo.com/rss/um-so-planeta/",
+      "icon": "🌿",
+      "color": "#008542",
+      "type": "ciencia"
+    },
+    {
+      "name": "Pesquisa FAPESP",
+      "url": "https://revistapesquisa.fapesp.br/feed/",
+      "icon": "🔬",
+      "color": "#1a5a96",
+      "type": "ciencia"
+    },
+    {
+      "name": "Hypeness",
+      "url": "https://www.hypeness.com.br/feed/",
+      "icon": "✨",
+      "color": "#000000",
+      "type": "cultura"
+    },
+    {
+      "name": "B9",
+      "url": "https://www.b9.com.br/feed/",
+      "icon": "🧠",
+      "color": "#000000",
+      "type": "cultura"
+    },
+    {
+      "name": "Globo Rural",
+      "url": "https://g1.globo.com/rss/g1/economia/agronegocios/",
+      "icon": "🚜",
+      "color": "#006400",
+      "type": "geral"
+    },
+    {
+      "name": "Canal Rural",
+      "url": "https://www.canalrural.com.br/feed/",
+      "icon": "🐄",
+      "color": "#004a80",
+      "type": "geral"
+    },
+    {
+      "name": "Nova Escola",
+      "url": "https://novaescola.org.br/rss.xml",
+      "icon": "🍎",
+      "color": "#00a896",
+      "type": "geral"
+    }
+  ],
+  "local_city": "Rio de Janeiro - RJ"
+}
